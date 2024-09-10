@@ -300,7 +300,7 @@ local plugins = {
       })
     end
   },
-  --[[ {
+  {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
       "ray-x/guihua.lua",
@@ -313,7 +313,7 @@ local plugins = {
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  }, ]]
+  },
   -- Database Management
   {
     "tpope/vim-dadbod",
@@ -526,6 +526,9 @@ local plugins = {
       -- see below for full list of optional dependencies 👇
     },
     opts = {
+      ui = {
+        enable = false,
+      },
       workspaces = {
         {
           name = "personal",

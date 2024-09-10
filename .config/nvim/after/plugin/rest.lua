@@ -37,6 +37,7 @@ rest.setup({
         },
       },
       formatters = {
+        plain = "jq",
         json = "jq",
         html = function(body)
           if vim.fn.executable("tidy") == 0 then
