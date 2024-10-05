@@ -113,3 +113,6 @@ fpath+=~/.zfunc
 
 # Setup keychain
 eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+
+# Ollama Aliases
+alias ozc="docker exec -it ollama ollama run zephyr"

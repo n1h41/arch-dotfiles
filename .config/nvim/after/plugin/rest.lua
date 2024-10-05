@@ -2,7 +2,7 @@ local status, rest = pcall(require, "rest-nvim")
 if (not status) then return end
 
 ---@diagnostic disable-next-line: missing-fields
-rest.setup({
+--[[ rest.setup({
   client = "curl",
   env_file = ".env",
   env_pattern = "\\.env\\.env.*",
@@ -77,6 +77,6 @@ rest.setup({
       "<leader>rl", "<cmd>Rest run last<cr>", "Re-run latest request",
     },
   },
-})
+}) ]]
 
 require("telescope").load_extension("rest")

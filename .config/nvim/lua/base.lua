@@ -51,7 +51,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
 
--- Colorscheme custom (gruvbox)
 vim.o.background = "dark"
 
 vim.o.autoread = true
@@ -62,7 +61,6 @@ vim.g.neovide_scroll_animation_length = 0.3
 vim.g.neovide_cursor_trail_size = 0.3
 
 -- copilot
-
 vim.g.copilot_filetypes = {
   TelescopePrompt = false,
 }
@@ -107,23 +105,6 @@ vim.cmd([[let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex
 
 vim.cmd([[let g:vimtex_compiler_method = 'latexmk']])
 
--- Hyprlang LSP
---[[ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-  pattern = { "*.hl", "hypr*.conf" },
-  callback = function(event)
-    print(string.format("starting hyprls for %s", vim.inspect(event)))
-    vim.lsp.start {
-      name = "hyprlang",
-      cmd = { "hyprls" },
-      root_dir = vim.fn.getcwd(),
-    }
-  end
-})
-
-vim.filetype.add({
-  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
-}) ]]
-
 -- Noevide only configs
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMono Nerd Font"
@@ -136,6 +117,6 @@ end
 local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
 
 for name, icon in pairs(symbols) do
-	local hl = "DiagnosticSign" .. name
-	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+  local hl = "DiagnosticSign" .. name
+  vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end

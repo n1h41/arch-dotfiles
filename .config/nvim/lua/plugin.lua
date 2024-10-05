@@ -71,7 +71,7 @@ local plugins = {
     'stevearc/dressing.nvim',
   },
   {
-    enabled = false,
+    enabled = true,
     "github/copilot.vim",
   },
   "j-hui/fidget.nvim",
