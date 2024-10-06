@@ -6,7 +6,7 @@ end
 
 lsp_zero.preset('recommended')
 
-lsp_zero.ensure_installed({ 'tsserver', 'lua_ls', "gopls", "html", "graphql", "emmet_language_server", "tailwindcss",
+lsp_zero.ensure_installed({ 'ts_ls', 'lua_ls', "gopls", "html", "graphql", "emmet_language_server", "tailwindcss",
   "htmx", "templ" })
 
 local cmp = require('cmp')
@@ -181,14 +181,14 @@ flutter.setup {
     exception_breakpoints = { "always" }
   },
   flutter_path = "/home/n1h41/development/flutter/bin/flutter",
-  fvm = false,                                   -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+  fvm = false, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
   widget_guides = {
     enabled = true,
   },
   dev_log = {
     enabled = true,
     notify_errors = true, -- if there is an error whilst running then notify the user
-    open_cmd = "tabnew",   -- command to use to open the log buffer
+    open_cmd = "tabnew",  -- command to use to open the log buffer
   },
   dev_tools = {
     autostart = true,          -- autostart devtools server if not detected
@@ -228,7 +228,7 @@ local util = require("lspconfig.util")
 lsp_zero.configure('lua_ls', {
   on_init = function(client)
     local path = client.workspace_folders[1].name
----@diagnostic disable-next-line: undefined-field
+    ---@diagnostic disable-next-line: undefined-field
     if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
       return
     end

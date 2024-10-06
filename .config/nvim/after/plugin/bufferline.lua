@@ -14,7 +14,7 @@ bufferline.setup({
     show_close_icon = false,
     color_icons = true,
     diagnostics = "nvim_lsp",
-    diagnostics_update_in_insert = true,
+    -- diagnostics_update_in_insert = true,
     offsets = {
       {
         filetype = "NvimTree",

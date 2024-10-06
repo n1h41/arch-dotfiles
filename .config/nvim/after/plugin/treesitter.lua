@@ -33,6 +33,7 @@ ts.setup {
     "vimdoc",
     "vim",
     "regex",
+    "dart",
   },
   autotag = {
     enable = true,
