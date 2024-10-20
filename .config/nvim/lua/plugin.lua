@@ -249,6 +249,7 @@ local plugins = {
       vim.o.timeoutlen = 300
     end,
     opts = {
+      notify = false
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
@@ -266,6 +267,7 @@ local plugins = {
   -- Flutter
   {
     'akinsho/flutter-tools.nvim',
+    commit = "5aa227fa083fd740184b55b5220dfabc24a25cc7",
     lazy = false,
     dependencies = {
       'nvim-lua/plenary.nvim',

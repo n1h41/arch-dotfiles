@@ -9,7 +9,7 @@ local keymap = {
   }
 }
 
-whichkey.register(keymap, {
+whichkey.add(keymap, {
   silent = true,
   noremap = true,
 })
