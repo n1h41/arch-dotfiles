@@ -4,6 +4,12 @@ if (not status) then
 end
 
 local keymap = {
+  r = {
+    name = "Rest",
+    r = {
+      "<cmd>Rest run<CR>", "Run request"
+    }
+  },
   d = {
     g = {
       t = {

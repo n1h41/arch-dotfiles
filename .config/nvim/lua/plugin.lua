@@ -422,7 +422,7 @@ local plugins = {
       { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
       { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
       { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      -- { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       -- { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
@@ -549,12 +549,12 @@ local plugins = {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
   -- LOCAL PLUGIN DEVELOPMENT
-  --[[ {
-    dir = "~/dev/nvim/personal/n1h41",
+  {
+    dir = "~/dev/nvim/n1h41-nvim",
     config = function()
       require('n1h41').setup()
     end
-  }, ]]
+  },
 }
 
 require('lazy').setup(plugins, {})

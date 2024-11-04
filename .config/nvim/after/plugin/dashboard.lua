@@ -33,8 +33,8 @@ dashboard.setup({
     winbar = true,
   },
   config = {
-    header = git_dashboard,
-    --[[ header = {
+    -- header = git_dashboard,
+    header = {
       "                                   ",
       "                                   ",
       "                                   ",
@@ -50,7 +50,7 @@ dashboard.setup({
       "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
       "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
       "                                   ",
-    }, ]]
+    },
     center = {
       {
         icon = '󰈞  ',

@@ -67,7 +67,7 @@ alias g="git"
 alias tmux="tmux -u"
 alias cat="bat"
 alias lzd="lazydocker"
-alias tr="tmuxinator"
+# alias tr="tmuxinator"
 alias mk="make"
 alias tx="tmux"
 
@@ -117,3 +117,6 @@ eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
 # Ollama Aliases
 alias orz="docker exec -it ollama ollama run zephyr"
 alias orl="docker exec -it ollama ollama run llama3.2"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
