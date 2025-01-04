@@ -49,6 +49,52 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# myenv wrapper
+# ----------------start----------------
+
+# include following in .bashrc / .bash_profile / .zshrc
+# usage
+# $ mkvenv myvirtualenv # creates venv under ~/.virtualenvs/
+# $ venv myvirtualenv   # activates venv
+# $ deactivate          # deactivates venv
+# $ rmvenv myvirtualenv # removes venv
+
+export VENV_HOME="$HOME/.virtualenvs"
+[[ -d $VENV_HOME ]] || mkdir $VENV_HOME
+
+lsvenv() {
+  ls -1 $VENV_HOME
+}
+
+venv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      source "$VENV_HOME/$1/bin/activate"
+  fi
+}
+
+mkvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      python3 -m venv $VENV_HOME/$1
+  fi
+}
+
+rmvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      rm -r $VENV_HOME/$1
+  fi
+}
+
+# ----------------end----------------
+
 # Plugins
 ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
 bindkey '^ ' autosuggest-accept
@@ -84,10 +130,13 @@ export PATH="$PATH:/home/n1h41/development/flutter/bin"
 export PATH="$PATH:/home/n1h41/Android/Sdk/platform-tools"
 
 # Go path
-export PATH="$PATH:/usr/local/go/bin"
+# export PATH="$PATH:/usr/local/go/bin"
 
 # Go executables path
-export PATH="$PATH:/home/n1h41/go/bin"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+
 export PATH="$PATH:/opt/mssql-tools/bin"
 
 # cargo installed apps path
@@ -104,6 +153,8 @@ source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 export EDITOR="nvim"
+
+export CHROME_EXECUTABLE="/opt/google/chrome/chrome"
 
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6

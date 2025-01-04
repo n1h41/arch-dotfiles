@@ -120,3 +120,6 @@ for name, icon in pairs(symbols) do
   local hl = "DiagnosticSign" .. name
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
+
+-- Molten configuration
+vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python3'

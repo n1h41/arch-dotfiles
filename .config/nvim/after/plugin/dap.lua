@@ -61,7 +61,7 @@ dap.configurations.dart = {
     flutterSdkPath = "/home/n1h41/development/flutter/",
     program = "${workspaceFolder}/lib/main.dart",
     cwd = "${workspaceFolder}",
-    console = 'terminal',
+    console = 'console',
   }
 }
 
@@ -77,6 +77,8 @@ dap.configurations.c = {
     stopOnEntry = false,
   },
 }
+
+dap.configurations.cpp = dap.configurations.c
 
 local dap_breakpoint = {
   error = {

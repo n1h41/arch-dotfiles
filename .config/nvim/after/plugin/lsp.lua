@@ -306,3 +306,4 @@ lsp_zero.configure('emmet_language_server', {
 lsp_zero.setup()
 
 -- require("fidget").setup({})
+-- require("fidget").setup({})
