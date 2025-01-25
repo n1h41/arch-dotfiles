@@ -34,6 +34,7 @@ ts.setup {
     "vim",
     "regex",
     "dart",
+    "sql",
   },
   autotag = {
     enable = true,

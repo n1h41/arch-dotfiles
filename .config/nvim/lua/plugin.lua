@@ -593,6 +593,8 @@ local plugins = {
     version = '0.1',
     opts = {}, -- see Options
   },
+  { 'nvim-java/nvim-java' },
+  { "folke/neoconf.nvim" },
   -- LOCAL PLUGIN DEVELOPMENT
   {
     dir = "~/dev/nvim/n1h41-nvim",

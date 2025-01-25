@@ -30,7 +30,7 @@ dap.adapters.codelldb = {
     args = { "--port", "${port}" },
 
     -- On windows you may have to uncomment this:
-    -- detached = false,
+    -- detached = true,
   }
 }
 
@@ -75,6 +75,7 @@ dap.configurations.c = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
+    console = 'internalConsole',
   },
 }
 
