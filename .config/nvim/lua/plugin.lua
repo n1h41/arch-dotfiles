@@ -565,7 +565,7 @@ local plugins = {
       no_auto_close = false,  -- Never closes the window automatically.
       file = false,           -- Write the payload to a temporary file to keep the command short.
       hidden = false,         -- Hide the generation window (if true, will implicitly set `prompt.replace = true`), requires Neovim >= 0.10
-      init = function(options) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
+      init = function(_) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
       -- Function to initialize Ollama
       command = function(options)
         local body = { model = options.model, stream = true }
@@ -593,15 +593,15 @@ local plugins = {
     version = '0.1',
     opts = {}, -- see Options
   },
-  { 'nvim-java/nvim-java' },
-  { "folke/neoconf.nvim" },
+  -- { 'nvim-java/nvim-java' },
+  -- { "folke/neoconf.nvim" },
   -- LOCAL PLUGIN DEVELOPMENT
-  {
+  --[[ {
     dir = "~/dev/nvim/n1h41-nvim",
     config = function()
       require('n1h41').setup()
     end
-  },
+  }, ]]
 }
 
 require('lazy').setup(plugins, {})
