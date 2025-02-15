@@ -374,16 +374,6 @@ local plugins = {
   {
     "mbbill/undotree",
   },
-  -- Octo
-  --[[ {
-    lazy = true,
-    'pwntester/octo.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-  }, ]]
   -- Rest client
   {
     "vhyrro/luarocks.nvim",
@@ -545,12 +535,10 @@ local plugins = {
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {},
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
   { "nvzone/showkeys",      cmd = "ShowkeysToggle" },
   -- Custom Parameters (with defaults)
-  {
+  --[[ {
     "David-Kunz/gen.nvim",
     opts = {
       model = "llama3.2",     -- The default model to use.
@@ -578,6 +566,106 @@ local plugins = {
       -- list_models = '<omitted lua function>', -- Retrieves a list of model names
       debug = false -- Prints errors and the command which is run.
     }
+  }, ]]
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    opts = {
+      -- add any opts here
+      -- for example
+      -- provider = "openai",
+      -- openai = {
+      --   endpoint = "https://api.openai.com/v1",
+      --   model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+      --   timeout = 30000,  -- timeout in milliseconds
+      --   temperature = 0,  -- adjust if needed
+      --   max_tokens = 4096,
+      -- },
+      provider = "ollama",
+      vendors = {
+        ollama = {
+          __inherited_from = "openai",
+          api_key_name = "",
+          endpoint = "http://127.0.0.1:11434/api",
+          model = "qwen2.5-coder:7b",
+          parse_curl_args = function(opts, code_opts)
+            return {
+              url = opts.endpoint .. "/chat",
+              headers = {
+                ["Accept"] = "application/json",
+                ["Content-Type"] = "application/json",
+              },
+              body = {
+                model = opts.model,
+                options = {
+                  num_ctx = 16384,
+                },
+                messages = require("avante.providers").copilot.parse_messages(code_opts), -- you can make your own message, but this is very advanced
+                stream = true,
+              },
+            }
+          end,
+          parse_stream_data = function(data, handler_opts)
+            -- Parse the JSON data
+            local json_data = vim.fn.json_decode(data)
+            -- Check for stream completion marker first
+            if json_data and json_data.done then
+              handler_opts.on_complete(nil) -- Properly terminate the stream
+              return
+            end
+            -- Process normal message content
+            if json_data and json_data.message and json_data.message.content then
+              -- Extract the content from the message
+              local content = json_data.message.content
+              -- Call the handler with the content
+              handler_opts.on_chunk(content)
+            end
+          end,
+        }
+      },
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
   },
   {
     "benlubas/molten-nvim",
@@ -593,13 +681,24 @@ local plugins = {
     version = '0.1',
     opts = {}, -- see Options
   },
-  -- { 'nvim-java/nvim-java' },
+  {
+    'nvim-java/nvim-java',
+    config = function ()
+      require('java').setup()
+    end
+  },
   -- { "folke/neoconf.nvim" },
   -- LOCAL PLUGIN DEVELOPMENT
   --[[ {
     dir = "~/dev/nvim/n1h41-nvim",
     config = function()
       require('n1h41').setup()
+    end
+  }, ]]
+  --[[ {
+    dir = "~/dev/nvim/whether",
+    config = function()
+      -- require('whether').setup()
     end
   }, ]]
 }

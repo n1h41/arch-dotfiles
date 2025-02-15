@@ -303,4 +303,9 @@ lsp_zero.configure('emmet_language_server', {
   filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
 })
 
+lsp_zero.configure('jdtls', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 lsp_zero.setup()
