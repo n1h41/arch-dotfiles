@@ -35,6 +35,8 @@ ts.setup {
     "regex",
     "dart",
     "sql",
+    "java",
+    "kotlin",
   },
   autotag = {
     enable = true,

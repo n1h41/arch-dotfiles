@@ -156,6 +156,10 @@ export EDITOR="nvim"
 
 export CHROME_EXECUTABLE="/opt/google/chrome/chrome"
 
+#Howdy exports
+export OPENCV_LOG_LEVEL=0
+export OPENCV_VIDEOIO_PRIORITY_INTEL_MFX=0
+
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
 
@@ -163,7 +167,7 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 # Setup keychain
-eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+# eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
 
 # Ollama Aliases
 alias orz="docker exec -it ollama ollama run zephyr"

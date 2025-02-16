@@ -683,10 +683,13 @@ local plugins = {
   },
   {
     'nvim-java/nvim-java',
-    config = function ()
+    config = function()
       require('java').setup()
     end
   },
+  {
+    "jackplus-xyz/player-one.nvim",
+  }
   -- { "folke/neoconf.nvim" },
   -- LOCAL PLUGIN DEVELOPMENT
   --[[ {
