@@ -161,7 +161,7 @@ export OPENCV_LOG_LEVEL=0
 export OPENCV_VIDEOIO_PRIORITY_INTEL_MFX=0
 
 #Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
+# pokemon-colorscripts --no-title -r 1,3,6
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc

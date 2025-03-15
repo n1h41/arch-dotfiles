@@ -289,20 +289,8 @@ local plugins = {
   -- Golang Debugger
   {
     "leoluz/nvim-dap-go",
-    config = function()
-      require('dap-go').setup({
-        dap_configurations = {
-          {
-            type = "go",
-            name = "Attach remote",
-            mode = "remote",
-            request = "attach",
-          },
-        },
-      })
-    end
   },
-  {
+  --[[ {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
       "ray-x/guihua.lua",
@@ -315,7 +303,7 @@ local plugins = {
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  },
+  }, ]]
   -- Database Management
   {
     "tpope/vim-dadbod",
@@ -567,7 +555,7 @@ local plugins = {
       debug = false -- Prints errors and the command which is run.
     }
   }, ]]
-  {
+  --[[ {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
@@ -666,7 +654,7 @@ local plugins = {
         ft = { "markdown", "Avante" },
       },
     },
-  },
+  }, ]]
   {
     "benlubas/molten-nvim",
     version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
@@ -688,8 +676,14 @@ local plugins = {
     end
   },
   {
-    "jackplus-xyz/player-one.nvim",
+    'wthollingsworth/pomodoro.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim'
+    }
   }
+  --[[ {
+    "jackplus-xyz/player-one.nvim",
+  } ]]
   -- { "folke/neoconf.nvim" },
   -- LOCAL PLUGIN DEVELOPMENT
   --[[ {
