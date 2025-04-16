@@ -200,10 +200,10 @@ flutter.setup {
   },
   lsp = {
     color = { -- show the derived colours for dart variables
-      enabled = true, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-      background = true, -- highlight the background
-      background_color = { r = 19, g = 17, b = 24 }, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
-      foreground = true, -- highlight the foreground
+      enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
+      background = false, -- highlight the background
+      background_color = { r = 19, g = 17, b = 24}, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
+      foreground = false, -- highlight the foreground
       virtual_text = true, -- show the highlight using virtual text
       virtual_text_str = "■", -- the virtual text character to highlight
     },
@@ -306,6 +306,15 @@ lsp_zero.configure('emmet_language_server', {
 lsp_zero.configure('jdtls', {
   on_attach = on_attach,
   capabilities = capabilities,
+})
+
+lsp_zero.configure('clangd', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "/home/n1h41/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", },
+  root_dir = function ()
+    -- leave empty to stop nvim from cd'ing into ~/ due to global .clangd file
+  end
 })
 
 lsp_zero.setup()

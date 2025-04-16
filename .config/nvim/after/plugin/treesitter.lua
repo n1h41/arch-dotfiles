@@ -30,6 +30,8 @@ ts.setup {
     "json",
     "rust",
     "c",
+    "cpp",
+    "bash",
     "vimdoc",
     "vim",
     "regex",
@@ -37,6 +39,7 @@ ts.setup {
     "sql",
     "java",
     "kotlin",
+    "templ",
   },
   autotag = {
     enable = true,

@@ -17,3 +17,13 @@ disabled = false
 [cmd_duration]
 min_time = 500
 format = 'underwent [$duration](bold yellow)'
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = 'bold blue'
+symbol = '🅰 '
+[aws.region_aliases]
+ap-south-1 = 'in'
+[aws.profile_aliases]
+zolaris = 'Frobozz'
+default = 'Hooli'

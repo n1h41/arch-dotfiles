@@ -5,7 +5,8 @@ end
 
 local keymap = {
   mode = { "n" },
-  { "<leader>rr", "<cmd>Rest run<CR>", desc = "List" },
+  { "<leader>pr", "<cmd>Piorun<CR>", desc = "Platformio Run" },
+  { "<leader>pm", "<cmd>Piomon<CR>", desc = "Platformio Monitor" },
 }
 
 whichkey.add(keymap)
