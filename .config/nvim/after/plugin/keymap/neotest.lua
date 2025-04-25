@@ -5,12 +5,16 @@ if (not status) or (not status2) then
   return
 end
 
-local keymap = {
-  t = {
-    name = "Tests",
-    w = { function() neotest.summary.toggle() end, "Toggle test summary window" },
-    r = { function() neotest.run.run() end, "Run nearest test" },
-    d = { function()
+whichkey.add({
+  -- Group registration
+  { "<leader>t",  group = "Tests" },
+
+  -- Neotest commands
+  { "<leader>tw", function() neotest.summary.toggle() end, desc = "Toggle test summary window" },
+  { "<leader>tr", function() neotest.run.run() end,        desc = "Run nearest test" },
+  {
+    "<leader>td",
+    function()
       local filetype = vim.bo.filetype
       if (filetype == "go") then
         require("dap-go").debug_test()
@@ -18,18 +22,16 @@ local keymap = {
       end
       ---@diagnostic disable-next-line: missing-fields
       neotest.run.run_last({ strategy = "dap" })
-    end, "Debug last runned test" },
-    o = { function() neotest.output.open() end, "Toggle output" },
-    O = { function() neotest.output_panel.toggle() end, "Toggle output panel" },
-    c = { function() neotest.output_panel.clear() end, "Clear output panel" },
-  }
-}
-
-whichkey.register(keymap, {
+    end,
+    desc = "Debug last runned test"
+  },
+  { "<leader>to", function() neotest.output.open() end,         desc = "Toggle output" },
+  { "<leader>tO", function() neotest.output_panel.toggle() end, desc = "Toggle output panel" },
+  { "<leader>tc", function() neotest.output_panel.clear() end,  desc = "Clear output panel" },
+}, {
   mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
   silent = true,
   noremap = true,
   nowait = false,
 })
+

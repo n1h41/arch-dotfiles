@@ -1,6 +1,15 @@
 local status, lualine = pcall(require, "lualine")
 if (not status) then return end
 
+local battery = require("battery").setup()
+
+local nvimbattery = {
+  function()
+    return require("battery").get_status_line()
+  end,
+  -- color = { fg = colors.violet, bg = colors.bg },
+}
+
 lualine.setup {
   options = {
     icons_enabled = true,
@@ -15,12 +24,16 @@ lualine.setup {
   sections = {
     lualine_a = { 'mode' },
     lualine_b = { 'branch' },
-    lualine_c = { {
-      'filename',
-      file_status = true, -- displays file status (readonly status, modified status)
-      path = 0            -- 0 = just filename, 1 = relative path, 2 = absolute path
-    } },
+    lualine_c = {
+      {
+        'filename',
+        file_status = true, -- displays file status (readonly status, modified status)
+        path = 0            -- 0 = just filename, 1 = relative path, 2 = absolute path
+      },
+      nvimbattery,
+    },
     lualine_x = {
+      { require('mcphub.extensions.lualine') },
       {
         'diagnostics',
         sources = { "nvim_diagnostic" },

@@ -3,18 +3,27 @@ if (not status) then
   return
 end
 
-local keymap = {
-  c = {
-    d = { "<cmd>Copilot disable<CR>", "Disable copilot" },
-    e = { "<cmd>Copilot enable<CR>", "Enable copilot" }
+-- Using the new which-key API (v3+)
+whichkey.add({
+  {
+    "<leader>c",
+    group = "Copilot"
+  },
+  {
+    "<leader>cd",
+    "<cmd>Copilot disable<CR>",
+    desc = "Disable copilot",
+    mode = "n"
+  },
+  {
+    "<leader>ce",
+    "<cmd>Copilot enable<CR>",
+    desc = "Enable copilot",
+    mode = "n"
   }
-}
-
-whichkey.register(keymap, {
-  mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
+}, {
   silent = true,
   noremap = true,
   nowait = false,
 })
+

@@ -3,13 +3,16 @@ if (not status) then
   return
 end
 
-local keymap = {
-  t = {
-    t = { "<cmd>ZenMode<cr>", "Toggle Zen Mode" },
-  }
-}
+whichkey.add({
+  -- Group registration
+  { "t",  group = "Toggle" },
 
-whichkey.register(keymap, {
+  -- Zen Mode command
+  { "tt", "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode" },
+}, {
+  mode = "n",
   silent = true,
   noremap = true,
+  nowait = false,
 })
+

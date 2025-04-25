@@ -3,19 +3,16 @@ if (not status) then
   return
 end
 
-local keymap = {
-  t = {
-    name = "Trouble",
-    l = {
-      "<cmd>Trouble<CR>", "List"
-    }
-  }
-}
+whichkey.add({
+  -- Group registration
+  { "t",  group = "Trouble" },
 
-whichkey.register(keymap, {
+  -- Trouble command
+  { "tl", "<cmd>Trouble<CR>", desc = "List" },
+}, {
   mode = "n",
-  buffer = nil,
   silent = true,
   noremap = true,
   nowait = false,
 })
+

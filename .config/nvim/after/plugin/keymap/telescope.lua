@@ -8,35 +8,21 @@ if (not status2) then
   return
 end
 
-local keymap = {
-  h = {
-    t = {
-      function()
-        telescope.help_tags()
-      end,
-      "List help tags"
-    }
-  },
-  f = {
-    f = { function()
-      telescope.find_files({ no_ignore = false, hidden = true })
-    end, "Find files" },
-    r = { function()
-      telescope.live_grep({ no_ignore = false, hidden = true })
-    end, "Live Grep" },
-  },
-  a = {
-    c = { function()
-      telescope.commands()
-    end, "List commands" },
-  }
-}
+whichkey.add({
+  -- Group registrations
+  { "<leader>h",  group = "Help" },
+  { "<leader>f",  group = "Find" },
+  { "<leader>a",  group = "Actions" },
 
-whichkey.register(keymap, {
+  -- Telescope commands
+  { "<leader>ht", function() telescope.help_tags() end,                                      desc = "List help tags" },
+  { "<leader>ff", function() telescope.find_files({ no_ignore = false, hidden = true }) end, desc = "Find files" },
+  { "<leader>fr", function() telescope.live_grep({ no_ignore = false, hidden = true }) end,  desc = "Live Grep" },
+  { "<leader>ac", function() telescope.commands() end,                                       desc = "List commands" },
+}, {
   mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
   silent = true,
   noremap = true,
   nowait = false,
 })
+

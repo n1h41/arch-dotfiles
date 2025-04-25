@@ -12,3 +12,5 @@ if [[ "$current_line" == *"auto, 2"* ]]; then
 else
   sed -i '13s/auto, auto/auto, 2/' "$file"
 fi
+
+notify-send "Monitor scale changed" "The monitor scale has been changed to $(sed -n '13p' "$file")" -i ~/Downloads/nihal-abdulla.jpg

@@ -1,23 +1,18 @@
-local status, whichKey = pcall(require, "which-key")
+local status, whichkey = pcall(require, "which-key")
 if not status then
   return
 end
 
-local keymap = {
-  g = {
-    G = {
-      function()
-        require('neogit').open()
-      end, "Open Neogit"
-    }
-  }
-}
+whichkey.add({
+  -- Group registration
+  { "<leader>g",  group = "Git" },
 
-whichKey.register(keymap, {
-  prefix = '<leader>',
-  mode = 'n',
-  buffer = nil,
+  -- Neogit command
+  { "<leader>gG", function() require('neogit').open() end, desc = "Open Neogit" },
+}, {
+  mode = "n",
   silent = true,
   noremap = true,
   nowait = true,
 })
+

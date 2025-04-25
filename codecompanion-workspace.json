@@ -1,0 +1,192 @@
+{
+  "name": "Dotfiles Configuration Workspace",
+  "version": "1.0.0",
+  "system_prompt": "This workspace contains configuration files for various tools and applications in a personal dotfiles repository. The repository includes configurations for shell (zsh), terminal emulators (kitty), window managers (Hyprland), text editors (Neovim), and terminal multiplexers (tmux). Help the user understand, modify, or troubleshoot these configurations.",
+  "vars": {
+    "config_dir": ".config"
+  },
+  "groups": [
+    {
+      "name": "Shell Configuration",
+      "system_prompt": "This group contains shell configuration files, primarily for ZSH. These files define aliases, environment variables, functions, and shell behavior. When helping with shell configurations, consider compatibility with the user's system and common shell patterns.",
+      "data": [
+        "zsh_config",
+        "starship_config"
+      ]
+    },
+    {
+      "name": "Neovim Configuration",
+      "system_prompt": "This group contains Neovim configuration files. The user has a modular Neovim setup with core settings, mappings, and plugin configurations split into separate files. Note that plugin-specific configurations are located in the 'after/plugin' directory.",
+      "data": [
+        "nvim_init",
+        "nvim_base",
+        "nvim_maps",
+        "nvim_highlights",
+        "nvim_tree_config",
+        "nvim_dap_go",
+        "nvim_toggleterm",
+        "nvim_noice",
+        "nvim_cyberdream",
+        "nvim_image",
+        "nvim_web_devicons"
+      ]
+    },
+    {
+      "name": "Window Manager Configuration",
+      "system_prompt": "This group contains configuration files for the Hyprland window manager. These files define window rules, keybindings, monitor settings, and visual appearance. When helping with these configurations, consider potential effects on workspace organization and system resource usage.",
+      "data": [
+        "hypr_config",
+        "hypr_userprefs",
+        "hypr_paper",
+        "hypr_shade",
+        "hypr_scripts"
+      ]
+    },
+    {
+      "name": "Terminal Configuration",
+      "system_prompt": "This group contains configuration files for terminal emulators (Kitty) and multiplexers (Tmux). These files define visual appearance, keybindings, and behavior. When helping with terminal configurations, consider the user's workflow and other integrated tools.",
+      "data": [
+        "kitty_config",
+        "tmux_config",
+        "tmux_statusline",
+        "tmux_utility",
+        "tmux_plugins",
+        "tmux_macos"
+      ]
+    },
+    {
+      "name": "Application Launchers",
+      "system_prompt": "This group contains configuration files for application launchers like Rofi. These configurations define appearance, behavior, and keyboard shortcuts. When helping with launcher configurations, consider integration with the window manager and user workflow.",
+      "data": [
+        "rofi_config"
+      ]
+    }
+  ],
+  "data": {
+    "zsh_config": {
+      "type": "file",
+      "path": ".zshrc",
+      "description": "Main ZSH configuration file with shell settings, aliases, functions, and environment variables"
+    },
+    "starship_config": {
+      "type": "file",
+      "path": ".config/starship.toml",
+      "description": "Configuration file for Starship prompt with custom styling and module settings"
+    },
+    "nvim_init": {
+      "type": "file",
+      "path": "${config_dir}/nvim/init.lua",
+      "description": "Main Neovim configuration entry point that imports other configuration modules"
+    },
+    "nvim_base": {
+      "type": "file",
+      "path": "${config_dir}/nvim/lua/base.lua",
+      "description": "Core Neovim settings including UI, editing behavior, and basic options"
+    },
+    "nvim_maps": {
+      "type": "file",
+      "path": "${config_dir}/nvim/lua/maps.lua",
+      "description": "Keyboard mapping configurations for Neovim"
+    },
+    "nvim_highlights": {
+      "type": "file",
+      "path": "${config_dir}/nvim/lua/highlights.lua",
+      "description": "Visual highlight configurations for Neovim"
+    },
+    "nvim_tree_config": {
+      "type": "file",
+      "path": "${config_dir}/nvim/plugin/nvim-tree.lua",
+      "description": "Configuration for the Nvim-tree file explorer plugin"
+    },
+    "nvim_dap_go": {
+      "type": "file",
+      "path": "${config_dir}/nvim/after/plugin/nvim-dap-go.lua",
+      "description": "Configuration for Go language debugging with DAP"
+    },
+    "nvim_toggleterm": {
+      "type": "file",
+      "path": "${config_dir}/nvim/after/plugin/toggleterm.lua",
+      "description": "Configuration for the ToggleTerm terminal plugin in Neovim"
+    },
+    "nvim_noice": {
+      "type": "file",
+      "path": "${config_dir}/nvim/after/plugin/noice.lua",
+      "description": "Configuration for the Noice UI improvement plugin in Neovim"
+    },
+    "nvim_cyberdream": {
+      "type": "file",
+      "path": "${config_dir}/nvim/after/plugin/cyberdream.lua",
+      "description": "Configuration for the Cyberdream color theme in Neovim"
+    },
+    "nvim_image": {
+      "type": "file",
+      "path": "${config_dir}/nvim/after/plugin/image.lua",
+      "description": "Configuration for the image preview plugin in Neovim"
+    },
+    "nvim_web_devicons": {
+      "type": "file",
+      "path": "${config_dir}/nvim/after/plugin/nvim-web-devicons.lua",
+      "description": "Configuration for the web devicons plugin in Neovim"
+    },
+    "hypr_config": {
+      "type": "file",
+      "path": "${config_dir}/hypr/hyprland.conf",
+      "description": "Main Hyprland window manager configuration file (using the backup for reference)"
+    },
+    "hypr_userprefs": {
+      "type": "file",
+      "path": "${config_dir}/hypr/userprefs.conf",
+      "description": "User preferences for Hyprland window manager"
+    },
+    "hypr_paper": {
+      "type": "file",
+      "path": "${config_dir}/hypr.bak/hyprpaper.conf",
+      "description": "Wallpaper configuration for Hyprland"
+    },
+    "hypr_shade": {
+      "type": "file",
+      "path": "${config_dir}/hypr.bak/hyprshade.toml",
+      "description": "Screen shader configuration for Hyprland"
+    },
+    "hypr_scripts": {
+      "type": "file",
+      "path": "${config_dir}/hypr.bak/scripts/change-wallpaper.sh",
+      "description": "Script for changing wallpaper in Hyprland"
+    },
+    "kitty_config": {
+      "type": "file",
+      "path": "${config_dir}/kitty.bak/kitty.conf",
+      "description": "Configuration file for Kitty terminal emulator"
+    },
+    "tmux_config": {
+      "type": "file",
+      "path": "${config_dir}/tmux/tmux.conf",
+      "description": "Main configuration file for Tmux terminal multiplexer"
+    },
+    "tmux_statusline": {
+      "type": "file",
+      "path": "${config_dir}/tmux/statusline.conf",
+      "description": "Status line configuration for Tmux"
+    },
+    "tmux_utility": {
+      "type": "file",
+      "path": "${config_dir}/tmux/utility.conf",
+      "description": "Utility functions and bindings for Tmux"
+    },
+    "tmux_plugins": {
+      "type": "file",
+      "path": "${config_dir}/tmux/plugins.conf",
+      "description": "Plugin configuration for Tmux"
+    },
+    "tmux_macos": {
+      "type": "file",
+      "path": "${config_dir}/tmux/macos.conf",
+      "description": "macOS-specific configuration for Tmux"
+    },
+    "rofi_config": {
+      "type": "file",
+      "path": "${config_dir}/rofi.bak/config.rasi",
+      "description": "Configuration file for Rofi application launcher"
+    }
+  }
+}

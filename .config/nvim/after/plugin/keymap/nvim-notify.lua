@@ -3,13 +3,16 @@ if (not status) then
   return
 end
 
-local keymap = {
-  c = {
-    n = { "<cmd>lua require('notify').dismiss()<cr>", "Close all notifications" },
-  }
-}
+whichkey.add({
+  -- Group registration
+  { "c",  group = "Commands" },
 
-whichkey.register(keymap, {
+  -- Notify command
+  { "cn", "<cmd>lua require('notify').dismiss()<cr>", desc = "Close all notifications" },
+}, {
+  mode = "n",
   silent = true,
   noremap = true,
+  nowait = false,
 })
+

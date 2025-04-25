@@ -3,17 +3,16 @@ if not status then
   return
 end
 
-local keymap = {
-  d = {
-    b = { "<cmd>DBUI<cr>", "Database UI" },
-  }
-}
+whichKey.add({
+  -- Group registration
+  { "<leader>d",  group = "Database" },
 
-whichKey.register(keymap, {
-  prefix = '<leader>',
-  mode = 'n',
-  buffer = nil,
+  -- Database UI command
+  { "<leader>db", "<cmd>DBUI<cr>",   desc = "Database UI" },
+}, {
+  mode = "n",
   silent = true,
   noremap = true,
   nowait = true,
 })
+

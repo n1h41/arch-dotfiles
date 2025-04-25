@@ -37,6 +37,7 @@ vim.opt.splitbelow = true
 vim.opt.clipboard:append { 'unnamedplus' }
 
 vim.opt_local.conceallevel = 3
+vim.treesitter.language.register('markdown', 'vimwiki')
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -123,3 +124,6 @@ end
 
 -- Molten configuration
 vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python3'
+
+-- Codecompanion configs
+vim.g.codecompanion_auto_tool_mode = true

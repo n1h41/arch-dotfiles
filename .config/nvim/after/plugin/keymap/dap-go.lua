@@ -1,31 +1,30 @@
-local status, whichkey = pcall(require, "which-key")
+local status, wk = pcall(require, "which-key")
 if (not status) then
   return
 end
 
-local keymap = {
-  d = {
-    g = {
-      t = {
-        function()
-          require("dap-go").debug_test()
-        end,
-        "Debug test",
-      },
-      l = {
-        function()
-          require("dap-go").debug_last()
-        end,
-        "Debug last",
-      }
-    }
+wk.add({
+  {
+    "<leader>dg", -- assuming you're using <leader> prefix, adjust if needed
+    group = "Debug Go",
+    mode = "n",
+  },
+  {
+    "<leader>dgt",
+    function()
+      require("dap-go").debug_test()
+    end,
+    desc = "Debug test",
+    mode = "n",
+  },
+  {
+    "<leader>dgl",
+    function()
+      require("dap-go").debug_last()
+    end,
+    desc = "Debug last",
+    mode = "n",
   }
-}
-
-whichkey.register(keymap, {
-  mode = "n",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
 })
+
+

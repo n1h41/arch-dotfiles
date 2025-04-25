@@ -249,7 +249,7 @@ local plugins = {
       vim.o.timeoutlen = 300
     end,
     opts = {
-      notify = false
+      notify = false,
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
@@ -266,8 +266,7 @@ local plugins = {
   },
   -- Flutter
   {
-    'akinsho/flutter-tools.nvim',
-    commit = "5aa227fa083fd740184b55b5220dfabc24a25cc7",
+    'nvim-flutter/flutter-tools.nvim',
     lazy = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -521,8 +520,9 @@ local plugins = {
   },
   {
     'MeanderingProgrammer/render-markdown.nvim',
-    opts = {},
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
   { "nvzone/showkeys",      cmd = "ShowkeysToggle" },
   {
@@ -541,18 +541,16 @@ local plugins = {
     opts = {}, -- see Options
   },
   {
-    {
-      "CopilotC-Nvim/CopilotChat.nvim",
-      dependencies = {
-        { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
-        { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-      },
-      build = "make tiktoken",                          -- Only on MacOS or Linux
-      --[[ opts = {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",                          -- Only on MacOS or Linux
+    --[[ opts = {
         -- See Configuration section for options
       }, ]]
-      -- See Commands section for default commands if you want to lazy load on them
-    },
+    -- See Commands section for default commands if you want to lazy load on them
   },
   {
     "anurag3301/nvim-platformio.lua",
@@ -562,6 +560,79 @@ local plugins = {
       { "nvim-lua/plenary.nvim" },
     },
   },
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    init = function()
+      require("user.lualine.codecompanion_fidget_spinner"):init()
+    end
+  },
+  {
+    "Davidyz/VectorCode",
+    version = "*",                     -- optional, depending on whether you're on nightly or release
+    build = "pipx upgrade vectorcode", -- optional but recommended if you set `version = "*"`
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = "MCPHub",                          -- lazy load by default
+    build = "npm install -g mcp-hub@latest", -- Installs globally
+    config = function()
+      require("mcphub").setup({
+        -- Server configuration
+        port = 37373,                                            -- Port for MCP Hub Express API
+        config = vim.fn.expand("~/.config/mcphub/servers.json"), -- Config file path
+
+        native_servers = {},                                     -- add your native servers here
+        -- Extension configurations
+        auto_approve = false,
+        extensions = {
+          codecompanion = {
+            show_result_in_chat = true, -- Show tool results in chat
+            make_vars = true,           -- Create chat variables from resources
+            make_slash_commands = true, -- make /slash_commands from MCP server prompts
+          },
+        },
+
+        -- UI configuration
+        ui = {
+          window = {
+            width = 0.8,         -- Window width (0-1 ratio)
+            height = 0.8,        -- Window height (0-1 ratio)
+            border = "rounded",  -- Window border style
+            relative = "editor", -- Window positioning
+            zindex = 50,         -- Window stack order
+          },
+        },
+
+        -- Event callbacks
+        on_ready = function(_) end, -- Called when hub is ready
+        on_error = function(_) end, -- Called on errors
+
+        -- Logging configuration
+        log = {
+          level = vim.log.levels.WARN, -- Minimum log level
+          to_file = false,             -- Enable file logging
+          file_path = nil,             -- Custom log file path
+          prefix = "MCPHub"            -- Log message prefix
+        }
+      })
+    end,
+  },
+  {
+    'justinhj/battery.nvim',
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons' },
+      { 'nvim-lua/plenary.nvim' }
+    }
+  },
   -- LOCAL PLUGIN DEVELOPMENT
   --[[ {
     dir = "~/dev/nvim/n1h41-nvim",
@@ -569,12 +640,12 @@ local plugins = {
       require('n1h41').setup()
     end
   }, ]]
-  --[[ {
-    dir = "~/dev/nvim/whether",
+  {
+    dir = "~/dev/nvim/battery-n1.nvim",
     config = function()
       -- require('whether').setup()
     end
-  }, ]]
+  },
 }
 
 require('lazy').setup(plugins, {})

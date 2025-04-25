@@ -261,7 +261,7 @@ lsp_zero.configure('lua_ls', {
 lsp_zero.configure('tsserver', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "templ", "javascript" },
   cmd = { "typescript-language-server", "--stdio" }
 })
 
@@ -275,7 +275,7 @@ lsp_zero.configure('gopls', {
 lsp_zero.configure('html', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "css", "javascript", "typescript", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "html", "templ" },
 })
 
 lsp_zero.configure('htmx', {
@@ -287,7 +287,7 @@ lsp_zero.configure('htmx', {
 lsp_zero.configure('tailwindcss', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "css", "javascript", "typescript", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "html", "javascript", "typescript", "typescriptreact", "typescript.tsx", "templ" },
   settings = {
     tailwindCSS = {
       includeLanguages = {
@@ -300,7 +300,7 @@ lsp_zero.configure('tailwindcss', {
 lsp_zero.configure('emmet_language_server', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
+  filetypes = { "eruby", "html", "javascript", "javascriptreact", "pug", "typescriptreact", "templ" },
 })
 
 lsp_zero.configure('jdtls', {

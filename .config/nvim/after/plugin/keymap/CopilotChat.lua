@@ -3,6 +3,10 @@ if (not status) then
   return
 end
 
+if not package.loaded["CopilotChat"] then
+  return
+end
+
 whichkey.add(
   { "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Open copilot chat", mode = { "n", "v" } }
 )

@@ -1,41 +1,28 @@
-local status, whichKey = pcall(require, "which-key")
+local status, whichkey = pcall(require, "which-key")
 if not status then
   return
 end
 
-local keymap = {
-  f = {
-    name = "Flutter",
-    e = { "<cmd>FlutterEmulators<cr>", "Emulators" },
-    d = { "<cmd>FlutterDevices<cr>", "Devices" },
-    c = { "<cmd>FlutterCopyProfilerUrl<cr>", "Run" },
-    l = { "<cmd>FlutterLogClear<cr>", "Logs" },
-    q = { "<cmd>FlutterQuit<cr>", "Quit" },
-    o = { "<cmd>FlutterOutlineToggle<cr>", "Flutter outline" }
-  }
-}
+whichkey.add({
+  -- Group registrations
+  { "<leader>f",  group = "Flutter" },
+  { "<leader>h",  group = "Hot" },
 
-whichKey.register(keymap, {
-  prefix = '<leader>',
-  mode = 'n',
-  buffer = nil,
+  -- Flutter commands
+  { "<leader>fe", "<cmd>FlutterEmulators<cr>",       desc = "Emulators" },
+  { "<leader>fd", "<cmd>FlutterDevices<cr>",         desc = "Devices" },
+  { "<leader>fc", "<cmd>FlutterCopyProfilerUrl<cr>", desc = "Run" },
+  { "<leader>fl", "<cmd>FlutterLogClear<cr>",        desc = "Logs" },
+  { "<leader>fq", "<cmd>FlutterQuit<cr>",            desc = "Quit" },
+  { "<leader>fo", "<cmd>FlutterOutlineToggle<cr>",   desc = "Flutter outline" },
+
+  -- Hot reload/restart
+  { "<leader>hr", "<cmd>FlutterReload<cr>",          desc = "Hot Reload" },
+  { "<leader>hR", "<cmd>FlutterRestart<cr>",         desc = "Hot Restart" },
+}, {
+  mode = "n",
   silent = true,
   noremap = true,
   nowait = true,
 })
 
-keymap = {
-  h = {
-    r = { "<cmd>FlutterReload<cr>", "Hot Reload" },
-    R = { "<cmd>FlutterRestart<cr>", "Hot Restart" },
-  }
-}
-
-whichKey.register(keymap, {
-  mode = 'n',
-  prefix = '<leader>',
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = true,
-})

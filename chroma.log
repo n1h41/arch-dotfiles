@@ -1,0 +1,238 @@
+INFO:     [16-04-2025 19:24:18] Set chroma_server_nofile to 65535
+DEBUG:    [16-04-2025 19:24:18] Starting component System
+DEBUG:    [16-04-2025 19:24:18] Starting component OpenTelemetryClient
+DEBUG:    [16-04-2025 19:24:18] Starting component SqliteDB
+DEBUG:    [16-04-2025 19:24:18] Starting component SimpleQuotaEnforcer
+DEBUG:    [16-04-2025 19:24:18] Starting component Posthog
+DEBUG:    [16-04-2025 19:24:18] Starting component SimpleRateLimitEnforcer
+DEBUG:    [16-04-2025 19:24:18] Starting component LocalSegmentManager
+DEBUG:    [16-04-2025 19:24:18] Starting component LocalExecutor
+DEBUG:    [16-04-2025 19:24:18] Starting component SegmentAPI
+DEBUG:    [16-04-2025 19:24:18] Starting component SimpleAsyncRateLimitEnforcer
+INFO:     [16-04-2025 19:24:18] Started server process [43231]
+INFO:     [16-04-2025 19:24:18] Waiting for application startup.
+INFO:     [16-04-2025 19:24:18] Application startup complete.
+INFO:     [16-04-2025 19:24:18] Uvicorn running on http://localhost:43209 (Press CTRL+C to quit)
+INFO:     [16-04-2025 19:24:18] 127.0.0.1:47092 - "GET /api/v1/heartbeat HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:18] 127.0.0.1:47094 - "GET /api/v2/auth/identity HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:18] 127.0.0.1:47094 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:18] 127.0.0.1:47094 - "GET /api/v2/tenants/default_tenant/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "GET /api/v2/pre-flight-checks HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+DEBUG:    [16-04-2025 19:24:45] Starting component PersistentLocalHnswSegment
+INFO:     [16-04-2025 19:24:45] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:46] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:47] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:48] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:49] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:50] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:51] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:52] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:52] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:52] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/add HTTP/1.1" 201
+INFO:     [16-04-2025 19:24:52] 127.0.0.1:59848 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/07284cda-2c28-4b93-a1c7-b34476d5ab97/get HTTP/1.1" 200
+INFO:     [16-04-2025 19:24:52] Shutting down
+INFO:     [16-04-2025 19:24:52] Waiting for application shutdown.
+DEBUG:    [16-04-2025 19:24:52] Stopping component System
+DEBUG:    [16-04-2025 19:24:52] Stopping component SegmentAPI
+DEBUG:    [16-04-2025 19:24:52] Stopping component LocalExecutor
+DEBUG:    [16-04-2025 19:24:52] Stopping component PersistentLocalHnswSegment
+DEBUG:    [16-04-2025 19:24:52] Stopping component LocalSegmentManager
+DEBUG:    [16-04-2025 19:24:52] Stopping component SimpleAsyncRateLimitEnforcer
+DEBUG:    [16-04-2025 19:24:52] Stopping component SimpleRateLimitEnforcer
+DEBUG:    [16-04-2025 19:24:52] Stopping component Posthog
+DEBUG:    [16-04-2025 19:24:52] Stopping component SimpleQuotaEnforcer
+DEBUG:    [16-04-2025 19:24:52] Stopping component SqliteDB
+DEBUG:    [16-04-2025 19:24:52] Stopping component OpenTelemetryClient
+INFO:     [16-04-2025 19:24:52] Application shutdown complete.
+INFO:     [16-04-2025 19:24:52] Finished server process [43231]
+INFO:     [16-04-2025 19:28:31] Set chroma_server_nofile to 65535
+DEBUG:    [16-04-2025 19:28:31] Starting component System
+DEBUG:    [16-04-2025 19:28:31] Starting component OpenTelemetryClient
+DEBUG:    [16-04-2025 19:28:31] Starting component SqliteDB
+DEBUG:    [16-04-2025 19:28:31] Starting component SimpleQuotaEnforcer
+DEBUG:    [16-04-2025 19:28:31] Starting component Posthog
+DEBUG:    [16-04-2025 19:28:31] Starting component SimpleRateLimitEnforcer
+DEBUG:    [16-04-2025 19:28:31] Starting component LocalSegmentManager
+DEBUG:    [16-04-2025 19:28:31] Starting component LocalExecutor
+DEBUG:    [16-04-2025 19:28:31] Starting component SegmentAPI
+DEBUG:    [16-04-2025 19:28:31] Starting component SimpleAsyncRateLimitEnforcer
+INFO:     [16-04-2025 19:28:31] Started server process [47903]
+INFO:     [16-04-2025 19:28:31] Waiting for application startup.
+INFO:     [16-04-2025 19:28:31] Application startup complete.
+INFO:     [16-04-2025 19:28:31] Uvicorn running on http://localhost:60229 (Press CTRL+C to quit)
+INFO:     [16-04-2025 19:28:31] 127.0.0.1:49856 - "GET /api/v1/heartbeat HTTP/1.1" 200
+INFO:     [16-04-2025 19:28:32] 127.0.0.1:49858 - "GET /api/v2/auth/identity HTTP/1.1" 200
+INFO:     [16-04-2025 19:28:32] 127.0.0.1:49858 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+INFO:     [16-04-2025 19:28:32] 127.0.0.1:49858 - "GET /api/v2/tenants/default_tenant/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+INFO:     [16-04-2025 19:28:36] 127.0.0.1:49858 - "GET /api/v2/tenants/default_tenant/databases/default_database/collections/f3d479cdc742fab3de196a99ce6430e0a656bab94766d3c7b0e9bd43d78e0fd HTTP/1.1" 200
+INFO:     [16-04-2025 19:28:36] 127.0.0.1:49858 - "DELETE /api/v2/tenants/default_tenant/databases/default_database/collections/f3d479cdc742fab3de196a99ce6430e0a656bab94766d3c7b0e9bd43d78e0fd HTTP/1.1" 200
+INFO:     [16-04-2025 19:28:36] Shutting down
+INFO:     [16-04-2025 19:28:37] Waiting for application shutdown.
+DEBUG:    [16-04-2025 19:28:37] Stopping component System
+DEBUG:    [16-04-2025 19:28:37] Stopping component SegmentAPI
+DEBUG:    [16-04-2025 19:28:37] Stopping component LocalExecutor
+DEBUG:    [16-04-2025 19:28:37] Stopping component LocalSegmentManager
+DEBUG:    [16-04-2025 19:28:37] Stopping component SimpleAsyncRateLimitEnforcer
+DEBUG:    [16-04-2025 19:28:37] Stopping component SimpleRateLimitEnforcer
+DEBUG:    [16-04-2025 19:28:37] Stopping component Posthog
+DEBUG:    [16-04-2025 19:28:37] Stopping component SimpleQuotaEnforcer
+DEBUG:    [16-04-2025 19:28:37] Stopping component SqliteDB
+DEBUG:    [16-04-2025 19:28:37] Stopping component OpenTelemetryClient
+INFO:     [16-04-2025 19:28:37] Application shutdown complete.
+INFO:     [16-04-2025 19:28:37] Finished server process [47903]
+INFO:     [17-04-2025 04:10:30] Set chroma_server_nofile to 65535
+DEBUG:    [17-04-2025 04:10:30] Starting component System
+DEBUG:    [17-04-2025 04:10:30] Starting component OpenTelemetryClient
+DEBUG:    [17-04-2025 04:10:30] Starting component SqliteDB
+DEBUG:    [17-04-2025 04:10:30] Starting component SimpleQuotaEnforcer
+DEBUG:    [17-04-2025 04:10:30] Starting component Posthog
+DEBUG:    [17-04-2025 04:10:30] Starting component SimpleRateLimitEnforcer
+DEBUG:    [17-04-2025 04:10:30] Starting component LocalSegmentManager
+DEBUG:    [17-04-2025 04:10:30] Starting component LocalExecutor
+DEBUG:    [17-04-2025 04:10:30] Starting component SegmentAPI
+DEBUG:    [17-04-2025 04:10:30] Starting component SimpleAsyncRateLimitEnforcer
+INFO:     [17-04-2025 04:10:31] Started server process [4667]
+INFO:     [17-04-2025 04:10:31] Waiting for application startup.
+INFO:     [17-04-2025 04:10:31] Application startup complete.
+INFO:     [17-04-2025 04:10:31] Uvicorn running on http://localhost:45123 (Press CTRL+C to quit)
+INFO:     [17-04-2025 04:10:31] 127.0.0.1:37286 - "GET /api/v1/heartbeat HTTP/1.1" 200
+INFO:     [17-04-2025 04:10:31] 127.0.0.1:37290 - "GET /api/v2/auth/identity HTTP/1.1" 200
+INFO:     [17-04-2025 04:10:31] 127.0.0.1:37290 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+INFO:     [17-04-2025 04:10:31] 127.0.0.1:37290 - "GET /api/v2/tenants/default_tenant/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+INFO:     [17-04-2025 04:10:32] Shutting down
+INFO:     [17-04-2025 04:10:32] Waiting for application shutdown.
+DEBUG:    [17-04-2025 04:10:32] Stopping component System
+DEBUG:    [17-04-2025 04:10:32] Stopping component SegmentAPI
+DEBUG:    [17-04-2025 04:10:32] Stopping component LocalExecutor
+DEBUG:    [17-04-2025 04:10:32] Stopping component LocalSegmentManager
+DEBUG:    [17-04-2025 04:10:32] Stopping component SimpleAsyncRateLimitEnforcer
+DEBUG:    [17-04-2025 04:10:32] Stopping component SimpleRateLimitEnforcer
+DEBUG:    [17-04-2025 04:10:32] Stopping component Posthog
+DEBUG:    [17-04-2025 04:10:32] Stopping component SimpleQuotaEnforcer
+DEBUG:    [17-04-2025 04:10:32] Stopping component SqliteDB
+DEBUG:    [17-04-2025 04:10:32] Stopping component OpenTelemetryClient
+INFO:     [17-04-2025 04:10:32] Application shutdown complete.
+INFO:     [17-04-2025 04:10:32] Finished server process [4667]

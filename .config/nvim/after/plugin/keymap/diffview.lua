@@ -3,23 +3,21 @@ if (not status) then
   return
 end
 
-local keymap = {
-  d = {
-    v = { "<cmd>DiffviewOpen<cr>", "Open Diffview" },
-    q = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
-  },
-  t = {
-    h = { "<cmd>DiffviewFileHistory<cr>", "Toggle all File History" },
-  },
-  f = {
-    h = { "<cmd>DiffviewFileHistory %<cr>", "Current File History" },
-  }
-}
+whichkey.add({
+  -- Group registrations
+  { "d",  group = "Diffview" },
+  { "t",  group = "Toggle" },
+  { "f",  group = "File" },
 
-whichkey.register(keymap, {
+  -- Diffview commands
+  { "dv", "<cmd>DiffviewOpen<cr>",          desc = "Open Diffview" },
+  { "dq", "<cmd>DiffviewClose<cr>",         desc = "Close Diffview" },
+  { "th", "<cmd>DiffviewFileHistory<cr>",   desc = "Toggle all File History" },
+  { "fh", "<cmd>DiffviewFileHistory %<cr>", desc = "Current File History" },
+}, {
   mode = "n",
-  buffer = nil,
   silent = true,
   noremap = true,
   nowait = false,
 })
+
