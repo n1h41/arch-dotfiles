@@ -1,15 +1,18 @@
-local status, whichkey = pcall(require, "which-key")
+local status, wk = pcall(require, "which-key")
 if (not status) then
   return
 end
 
-local keymap = {
-  c = {
-    n = { "<cmd>lua require('notify').dismiss()<cr>", "Close all notifications" },
-  }
-}
-
-whichkey.register(keymap, {
+-- Using the new which-key API format for v3
+wk.add({
+  -- Define group name
+  { "c", group = "Close" },
+  -- Notification dismiss command
+  { "cn", "<cmd>lua require('notify').dismiss()<cr>", desc = "Close all notifications" }
+}, {
+  -- These options apply to all mappings
+  mode = "n", -- Adding default mode since it wasn't specified in original
   silent = true,
   noremap = true,
 })
+

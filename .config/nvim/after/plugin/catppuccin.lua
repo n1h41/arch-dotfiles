@@ -3,10 +3,10 @@ if (not status) then
   return
 end
 
-catppuccin.setup({
+--[[ catppuccin.setup({
   flavour = 'mocha',
   term_colors = true,
-  transparent_background = true,
+  transparent_background = false,
   styles = {
     comments = {},
     conditionals = {},
@@ -37,6 +37,6 @@ catppuccin.setup({
       color_mode = true,
     },
   }
-})
+}) ]]
 
 -- vim.cmd.colorscheme("catppuccin")

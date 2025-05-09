@@ -5,9 +5,9 @@ saga.setup({
   ui = {
     winblend = 0,
     border = 'rounded',
-    colors = {
+    --[[ colors = {
       normal_bg = '#002b36'
-    }
+    } ]]
   },
   definition = {
     keys = {

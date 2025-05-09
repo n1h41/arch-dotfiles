@@ -3,32 +3,37 @@ if (not status) then
   return
 end
 
-local keymap = {
-  r = {
-    name = "Rest",
-    r = {
-      "<cmd>Rest run<CR>", "Run request"
-    }
-  },
-  d = {
-    g = {
-      t = {
+-- Use the new add() method for proper mapping specifications
+whichkey.add({
+  -- Define leader key as the root prefix
+  {
+    -- Required lhs field
+    "<leader>d",
+    -- Group definition
+    group = "Debug",
+    -- Create nested group
+    {
+      -- Required lhs field for nested group
+      "<leader>dg",
+      group = "Go Debug",
+      -- Nested commands
+      {
+        "<leader>dgt",
         function()
           require("dap-go").debug_test()
         end,
-        "Debug test",
+        desc = "Debug test",
       },
-      l = {
+      {
+        "<leader>dgl",
         function()
           require("dap-go").debug_last()
         end,
-        "Debug last",
+        desc = "Debug last",
       }
     }
   }
-}
-
-whichkey.register(keymap, {
+}, {
   mode = "n",
   buffer = nil,
   silent = true,

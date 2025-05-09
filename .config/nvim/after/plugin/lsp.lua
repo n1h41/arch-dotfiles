@@ -6,8 +6,7 @@ end
 
 lsp_zero.preset('recommended')
 
-lsp_zero.ensure_installed({ 'ts_ls', 'lua_ls', "gopls", "html", "graphql", "emmet_language_server", "tailwindcss",
-  "htmx", "templ" })
+lsp_zero.ensure_installed({ 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "htmx", "templ"})
 
 local cmp = require('cmp')
 
@@ -213,8 +212,8 @@ flutter.setup {
       showTodos = false,
       completeFunctionCalls = true,
       analysisExcludedFolders = {
-        "/home/n1h41/.pub-cache/hosted/",
-        "/home/n1h41/development/flutter/",
+        "/home/nihal/.pub-cache/hosted/",
+        "/home/nihal/flutter/",
       },
       renameFilesWithClasses = "prompt", -- "always"
       enableSnippets = true,
@@ -261,7 +260,7 @@ lsp_zero.configure('lua_ls', {
 lsp_zero.configure('tsserver', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "templ", "javascript" },
   cmd = { "typescript-language-server", "--stdio" }
 })
 
@@ -275,7 +274,7 @@ lsp_zero.configure('gopls', {
 lsp_zero.configure('html', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "css", "javascript", "typescript", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "html", "css", "typescriptreact", "typescript.tsx", "templ" },
 })
 
 lsp_zero.configure('htmx', {
@@ -287,7 +286,7 @@ lsp_zero.configure('htmx', {
 lsp_zero.configure('tailwindcss', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "css", "javascript", "typescript", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "html", "css", "typescriptreact", "typescript.tsx", "templ" },
   settings = {
     tailwindCSS = {
       includeLanguages = {
@@ -300,12 +299,36 @@ lsp_zero.configure('tailwindcss', {
 lsp_zero.configure('emmet_language_server', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
+  filetypes = { "css", "eruby", "html", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
 })
 
-lsp_zero.configure('jdtls', {
+lsp_zero.configure("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
+  filetypes = { "c", "cpp", "objc", "objcpp", "h" },
+  -- cmd = { "/home/nihal/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clangd", "--background-index", "--query-driver=**", }
+  -- cmd = { "/home/nihal/tools/lsp/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
+  cmd = { "/home/nihal/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
 })
 
+--[[ require('ccls').setup({
+  filetypes = { "c", "cpp", "objc", "objcpp", "h" },
+  lsp = {
+    use_defaults = true,
+    codelens = {
+      enable = true,
+      events = { "BufWritePost", "InsertLeave" }
+    }
+  }
+})
+
+lsp_zero.configure("ccls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "c", "cpp", "objc", "objcpp", "h" },
+  cmd = { "/usr/bin/ccls", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
+}) ]]
+
 lsp_zero.setup()
+
+-- require("fidget").setup({})

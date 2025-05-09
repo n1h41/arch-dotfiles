@@ -4,8 +4,10 @@ if (not status) then
   return
 end
 
+return
+
 ---@diagnostic disable-next-line: missing-fields
-local git_dashboard = require('git-dashboard-nvim').setup {}
+-- local git_dashboard = require('git-dashboard-nvim').setup {}
 
 -- INFO: Code to add image to dashboard
 
@@ -79,6 +81,42 @@ dashboard.setup({
         key_hl = 'group',
         action = 'Telescope oldfiles',
       },
-    },
+      {
+        icon = '  ',
+        icon_hl = 'group',
+        desc = 'New File',
+        desc_hl = 'group',
+        key = 'd',
+        key_hl = 'group',
+        action = 'enew',
+      },
+      {
+        icon = '󰒲  ',
+        icon_hl = 'group',
+        desc = 'Settings',
+        desc_hl = 'group',
+        key = 'e',
+        key_hl = 'group',
+        action = ':e ~/.config/nvim/init.lua',
+      },
+      {
+        icon = '󰅚  ',
+        icon_hl = 'group',
+        desc = 'Quit Neovim',
+        desc_hl = 'group',
+        key = 'f',
+        key_hl = 'group',
+        action = ':qa!',
+      },
+      {
+        icon = '󰈙  ',
+        icon_hl = 'group',
+        desc = 'Projects',
+        desc_hl = 'group',
+        key = 'g',
+        key_hl = 'group',
+        action = ':Telescope project',
+      },
+    }
   }
 })

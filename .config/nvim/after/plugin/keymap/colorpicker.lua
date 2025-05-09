@@ -1,15 +1,12 @@
-local status, whichkey = pcall(require, "which-key")
-if (not status) then
-  return
-end
+local status, wk = pcall(require, "which-key")
+if (not status) then return end
 
-local keymap = {
-  c = {
-    p = { "<cmd>PickColor<cr>", "Pick color" },
-  }
-}
-
-whichkey.add(keymap, {
+wk.add({
+  { "<leader>cp", "<cmd>PickColor<cr>", desc = "Color Picker", mode = "n" },
+  { "<leader>cP", "<cmd>PickColorInsert<cr>", desc = "Color Picker Insert", mode = "n" },
+}, {
   silent = true,
   noremap = true,
+  nowait = false,
+  buffer = nil,
 })

@@ -1,17 +1,16 @@
-local status, whichkey = pcall(require, "which-key")
+local status, wk = pcall(require, "which-key")
 if (not status) then
   return
 end
 
-local keymap = {
-  u = { vim.cmd.UndotreeToggle, "Toggle Undotree" },
-}
-
-whichkey.register(keymap, {
+-- Using the new which-key API format for v3
+wk.add({
+  -- Define the undotree command with function reference
+  { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle Undotree" },
+}, {
   mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
   silent = true,
   noremap = true,
   nowait = false,
 })
+

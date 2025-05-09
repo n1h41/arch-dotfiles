@@ -1,20 +1,14 @@
-local status, whichkey = pcall(require, "which-key")
-if (not status) then
-  return
-end
+local status, wk = pcall(require, "which-key")
+if (not status) then return end
 
-local keymap = {
-  c = {
-    d = { "<cmd>Copilot disable<CR>", "Disable copilot" },
-    e = { "<cmd>Copilot enable<CR>", "Enable copilot" }
-  }
-}
-
-whichkey.register(keymap, {
-  mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
+wk.add({
+  { "<leader>ce", "<cmd>Copilot enable<CR>",  desc = "Enable Copilot",  mode = "n" },
+  { "<leader>cd", "<cmd>Copilot disable<CR>", desc = "Disable Copilot", mode = "n" },
+  { "<leader>cs", "<cmd>Copilot status<CR>",  desc = "Status Copilot",  mode = "n" },
+  { "<leader>cp", "<cmd>Copilot panel<CR>",   desc = "Copilot panel",   mode = "n" },
+}, {
   silent = true,
   noremap = true,
   nowait = false,
+  buffer = nil,
 })

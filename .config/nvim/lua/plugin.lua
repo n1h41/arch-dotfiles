@@ -9,6 +9,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  rocks = {
+    hererocks = true
+  },
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
@@ -249,25 +252,23 @@ local plugins = {
       vim.o.timeoutlen = 300
     end,
     opts = {
-      notify = false
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     }
   },
   -- Dashboard
-  {
+  --[[ {
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
     dependencies = {
       { 'juansalvatore/git-dashboard-nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
       { 'nvim-tree/nvim-web-devicons' },
     }
-  },
+  }, ]]
   -- Flutter
   {
     'akinsho/flutter-tools.nvim',
-    commit = "5aa227fa083fd740184b55b5220dfabc24a25cc7",
     lazy = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -289,6 +290,18 @@ local plugins = {
   -- Golang Debugger
   {
     "leoluz/nvim-dap-go",
+    config = function()
+      require('dap-go').setup({
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Attach remote",
+            mode = "remote",
+            request = "attach",
+          },
+        },
+      })
+    end
   },
   --[[ {
     "ray-x/go.nvim",
@@ -350,6 +363,7 @@ local plugins = {
       "antoinemadec/FixCursorHold.nvim",
       'sidlatau/neotest-dart',
       "nvim-neotest/neotest-go",
+      "nvim-neotest/neotest-plenary",
     }
   },
   -- DiffView
@@ -362,19 +376,6 @@ local plugins = {
   {
     "mbbill/undotree",
   },
-  -- Rest client
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000,
-    config = true,
-    opts = {
-      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-    }
-  },
-  {
-    "rest-nvim/rest.nvim",
-    ft = "http",
-  },
   {
     "ziontee113/color-picker.nvim",
   },
@@ -384,10 +385,11 @@ local plugins = {
     -- tag = "v2.15", -- uncomment to pin to a specific release
     init = function()
       -- VimTeX configuration goes here
+      -- vim.g.vimtex_view_method = "zathura"
     end
   },
   { "nvim-neotest/nvim-nio" },
-  {
+  --[[ {
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
@@ -403,7 +405,7 @@ local plugins = {
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       -- { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
-  },
+  }, ]]
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -423,14 +425,31 @@ local plugins = {
   {
     "nvim-neorg/neorg",
   },
-  {
+  --[[ {
     "vhyrro/luarocks.nvim",
     priority = 1001, -- this plugin needs to run before anything else
     opts = {
       rocks = { "magick" },
     },
-  },
+  }, ]]
+  -- lazy.nvim
   {
+    "folke/snacks.nvim",
+    ---@diagnostic disable-next-line: undefined-doc-name
+    ---@type snacks.Config
+    opts = {
+      dashboard = {
+        example = "github",
+        enabled = true,
+      },
+      image = {
+        -- your image configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    }
+  },
+  --[[ {
     "3rd/image.nvim",
     opts = {
       backend = "kitty",
@@ -440,7 +459,7 @@ local plugins = {
         }
       }
     },
-  },
+  }, ]]
   -- Git integration (fugitive alternative)
   {
     "NeogitOrg/neogit",
@@ -512,192 +531,139 @@ local plugins = {
       workspaces = {
         {
           name = "personal",
-          path = "/home/n1h41/Documents/obsidian-vault",
+          path = "/home/n1h41/Documents/obsidian-vault/",
         },
       },
 
       -- see below for full list of options 👇
     },
   },
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    opts = {},
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-  },
-  { "nvzone/showkeys",      cmd = "ShowkeysToggle" },
-  -- Custom Parameters (with defaults)
   --[[ {
-    "David-Kunz/gen.nvim",
-    opts = {
-      model = "llama3.2",     -- The default model to use.
-      quit_map = "q",         -- set keymap to close the response window
-      retry_map = "<c-r>",    -- set keymap to re-send the current prompt
-      accept_map = "<c-cr>",  -- set keymap to replace the previous selection with the last result
-      host = "localhost",     -- The host running the Ollama service.
-      port = "11434",         -- The port on which the Ollama service is listening.
-      display_mode = "split", -- The display mode. Can be "float" or "split" or "horizontal-split".
-      show_prompt = true,     -- Shows the prompt submitted to Ollama.
-      show_model = true,      -- Displays which model you are using at the beginning of your chat session.
-      no_auto_close = false,  -- Never closes the window automatically.
-      file = false,           -- Write the payload to a temporary file to keep the command short.
-      hidden = false,         -- Hide the generation window (if true, will implicitly set `prompt.replace = true`), requires Neovim >= 0.10
-      init = function(_) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
-      -- Function to initialize Ollama
-      command = function(options)
-        local body = { model = options.model, stream = true }
-        return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/chat -d $body"
-      end,
-      -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
-      -- This can also be a command string.
-      -- The executed command must return a JSON object with { response, context }
-      -- (context property is optional).
-      -- list_models = '<omitted lua function>', -- Retrieves a list of model names
-      debug = false -- Prints errors and the command which is run.
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
     }
   }, ]]
-  --[[ {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-    opts = {
-      -- add any opts here
-      -- for example
-      -- provider = "openai",
-      -- openai = {
-      --   endpoint = "https://api.openai.com/v1",
-      --   model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-      --   timeout = 30000,  -- timeout in milliseconds
-      --   temperature = 0,  -- adjust if needed
-      --   max_tokens = 4096,
-      -- },
-      provider = "ollama",
-      vendors = {
-        ollama = {
-          __inherited_from = "openai",
-          api_key_name = "",
-          endpoint = "http://127.0.0.1:11434/api",
-          model = "qwen2.5-coder:7b",
-          parse_curl_args = function(opts, code_opts)
-            return {
-              url = opts.endpoint .. "/chat",
-              headers = {
-                ["Accept"] = "application/json",
-                ["Content-Type"] = "application/json",
-              },
-              body = {
-                model = opts.model,
-                options = {
-                  num_ctx = 16384,
-                },
-                messages = require("avante.providers").copilot.parse_messages(code_opts), -- you can make your own message, but this is very advanced
-                stream = true,
-              },
-            }
-          end,
-          parse_stream_data = function(data, handler_opts)
-            -- Parse the JSON data
-            local json_data = vim.fn.json_decode(data)
-            -- Check for stream completion marker first
-            if json_data and json_data.done then
-              handler_opts.on_complete(nil) -- Properly terminate the stream
-              return
-            end
-            -- Process normal message content
-            if json_data and json_data.message and json_data.message.content then
-              -- Extract the content from the message
-              local content = json_data.message.content
-              -- Call the handler with the content
-              handler_opts.on_chunk(content)
-            end
-          end,
-        }
-      },
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-  }, ]]
   {
-    "benlubas/molten-nvim",
-    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-    build = ":UpdateRemotePlugins",
-    init = function()
-      -- this is an example, not a default. Please see the readme for more configuration options
-      vim.g.molten_output_win_max_height = 12
+    -- lazy = true,
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {},
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  },
+  {
+    "rest-nvim/rest.nvim",
+  },
+  {
+    "kndndrj/nvim-dbee",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    build = function()
+      -- Install tries to automatically detect the install method.
+      -- if it fails, try calling it with one of these parameters:
+      --    "curl", "wget", "bitsadmin", "go"
+      require("dbee").install()
+    end,
+    config = function()
+      require("dbee").setup( --[[optional config]])
     end,
   },
   {
-    'goerz/jupytext.nvim',
-    version = '0.1',
-    opts = {}, -- see Options
+    'anurag3301/nvim-platformio.lua',
+    requires = {
+      { 'akinsho/nvim-toggleterm.lua' },
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    }
   },
   {
-    'nvim-java/nvim-java',
-    config = function()
-      require('java').setup()
+    "ranjithshegde/ccls.nvim",
+  },
+  {
+    enabled = false,
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",                          -- Only on MacOS or Linux
+    --[[ opts = {
+      }, ]]
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    init = function()
+      require("user.lualine.codecompanion_fidget_spinner"):init()
     end
   },
   {
-    'wthollingsworth/pomodoro.nvim',
+    "Davidyz/VectorCode",
+    version = "*",                     -- optional, depending on whether you're on nightly or release
+    build = "pipx upgrade vectorcode", -- optional but recommended if you set `version = "*"`
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "ravitemer/mcphub.nvim",
     dependencies = {
-      'MunifTanjim/nui.nvim'
-    }
-  }
-  --[[ {
-    "jackplus-xyz/player-one.nvim",
-  } ]]
-  -- { "folke/neoconf.nvim" },
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    },
+    -- comment the following line to ensure hub will be ready at the earliest
+    cmd = "MCPHub",                          -- lazy load by default
+    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
+    -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+    --[[ config = function()
+      require("mcphub").setup()
+    end, ]]
+  },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+  },
+  -- Using Lazy
+  {
+    "webhooked/kanso.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    'nvim-telescope/telescope-project.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+  },
   -- LOCAL PLUGIN DEVELOPMENT
   --[[ {
-    dir = "~/dev/nvim/n1h41-nvim",
+    dir = "/home/nihal/dev/nvim/n1h41",
     config = function()
       require('n1h41').setup()
     end
   }, ]]
   --[[ {
-    dir = "~/dev/nvim/whether",
-    config = function()
-      -- require('whether').setup()
-    end
+    dir = "/home/n1h41/dev/nvim/codecompanion_speech",
   }, ]]
+  {
+    dir = "/home/n1h41/dev/nvim/speech_to_text/",
+  },
 }
 
 require('lazy').setup(plugins, {})

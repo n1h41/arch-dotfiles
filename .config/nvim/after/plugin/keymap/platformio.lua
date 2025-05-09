@@ -6,10 +6,11 @@ end
 -- Using the new which-key API format for v3
 wk.add({
   -- Define group name
-  { "<leader>r",  group = "REST" },
+  { "<leader>p",  group = "PlatformIO" },
 
-  -- REST command
-  { "<leader>rr", "<cmd>Rest run<cr>", desc = "Run request" },
+  -- PlatformIO commands
+  { "<leader>pr", "<cmd>Piorun<cr>",   desc = "PlatformIO Run" },
+  { "<leader>pm", "<cmd>Piomon<cr>",   desc = "PlatformIO Monitor" },
 }, {
   mode = 'n',
   silent = true,

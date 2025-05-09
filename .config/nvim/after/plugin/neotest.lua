@@ -12,5 +12,6 @@ neotest.setup({
       custom_test_method_names = {},
     }),
     require("neotest-go"),
+    require("neotest-plenary"),
   }
 })

@@ -36,7 +36,7 @@ vim.opt.splitbelow = true
 
 vim.opt.clipboard:append { 'unnamedplus' }
 
-vim.opt_local.conceallevel = 2
+vim.opt_local.conceallevel = 3
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -51,6 +51,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
 
+-- Colorscheme custom (gruvbox)
 vim.o.background = "dark"
 
 vim.o.autoread = true
@@ -59,8 +60,13 @@ vim.g.neovide_scale_factor = 0.7
 vim.g.neovide_fullscreen = true
 vim.g.neovide_scroll_animation_length = 0.3
 vim.g.neovide_cursor_trail_size = 0.3
+vim.g.neovide_padding_top = 10
+vim.g.neovide_padding_bottom = 10
+vim.g.neovide_padding_right = 10
+vim.g.neovide_padding_left = 10
 
 -- copilot
+
 vim.g.copilot_filetypes = {
   TelescopePrompt = false,
 }
@@ -93,24 +99,41 @@ vim.filetype.add({ extension = { templ = "templ" } })
 
 -- Vimtex (Latex)
 vim.cmd([[filetype plugin indent on]])
-vim.cmd([[syntax enable]])
+-- vim.cmd([[syntax enable]])
 
 vim.g.vimtex_compiler_enabled = true
 vim.cmd([[let g:tex_flavor = 'latex']])
 
 vim.cmd([[let g:vimtex_view_method = 'zathura']])
 
--- vim.cmd([[let g:vimtex_view_general_viewer = 'zathura']])
--- vim.cmd([[let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex']])
+vim.cmd([[let g:vimtex_view_general_viewer = 'zathura']])
+vim.cmd([[let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex']])
 
 vim.cmd([[let g:vimtex_compiler_method = 'latexmk']])
+
+vim.cmd([[let maplocalleader = ',']])
+
+
+-- Hyprlang LSP
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+  pattern = { "*.hl", "hypr*.conf" },
+  callback = function(event)
+    print(string.format("starting hyprls for %s", vim.inspect(event)))
+    vim.lsp.start {
+      name = "hyprlang",
+      cmd = { "hyprls" },
+      root_dir = vim.fn.getcwd(),
+    }
+  end
+})
+
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
 
 -- Noevide only configs
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMono Nerd Font"
-  vim.g.neovide_transparency = 0.5
-  vim.g.transparency = 0.5
-  vim.g.neovide_background_color = "0D1118"
 end
 
 -- Custom symbols for diagnostics
@@ -121,5 +144,13 @@ for name, icon in pairs(symbols) do
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
 
--- Molten configuration
-vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python3'
+vim.g.rest_nvim = {}
+
+vim.g.codecompanion_auto_tool_mode = true
+vim.g.mcphub_auto_approve = true
+
+-- Turn off signcolumn for Markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = 'markdown',
+  command = "set signcolumn=no"
+})

@@ -1,11 +1,18 @@
 local status, lualine = pcall(require, "lualine")
 if (not status) then return end
 
+local function date()
+  -- return os.date("%Y-%m-%d")  -- Format: YYYY-MM-DD
+  -- Alternatives:
+  return os.date("%d/%m/%Y") -- Format: DD/MM/YYYY
+  -- return os.date("%B %d, %Y")  -- Format: Month Day, Year
+end
+
 lualine.setup {
   options = {
     icons_enabled = true,
     -- theme = 'solarized_dark',
-    theme = 'onedark',
+    theme = 'auto',
     section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
     disabled_filetypes = {
@@ -21,6 +28,7 @@ lualine.setup {
       path = 0            -- 0 = just filename, 1 = relative path, 2 = absolute path
     } },
     lualine_x = {
+      { require("mcphub.extensions.lualine") },
       {
         'diagnostics',
         sources = { "nvim_diagnostic" },
@@ -31,6 +39,7 @@ lualine.setup {
           hint = ' '
         }
       },
+      { date },
       'encoding',
       'filetype'
     },
@@ -46,7 +55,11 @@ lualine.setup {
       path = 1            -- 0 = just filename, 1 = relative path, 2 = absolute path
     } },
     lualine_x = { 'location' },
-    lualine_y = {},
+    lualine_y = {
+      require('vectorcode.integrations').lualine({
+        show_job_count = true,
+      })
+    },
     lualine_z = {}
   },
   tabline = {},

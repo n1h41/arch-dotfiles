@@ -30,7 +30,7 @@ dap.adapters.codelldb = {
     args = { "--port", "${port}" },
 
     -- On windows you may have to uncomment this:
-    -- detached = true,
+    -- detached = false,
   }
 }
 
@@ -57,12 +57,25 @@ dap.configurations.dart = {
     type = "dart",
     request = "launch",
     name = "Launch flutter",
-    dartSdkPath = "/home/n1h41/development/flutter/bin/cache/dart-sdk/",
-    flutterSdkPath = "/home/n1h41/development/flutter/",
+    dartSdkPath = "/home/nihal/flutter/bin/cache/dart-sdk/",
+    flutterSdkPath = "/home/nihal/flutter/",
     program = "${workspaceFolder}/lib/main.dart",
     cwd = "${workspaceFolder}",
-    console = 'console',
+    console = 'terminal',
   }
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
 }
 
 dap.configurations.c = {
@@ -75,11 +88,8 @@ dap.configurations.c = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
-    console = 'internalConsole',
   },
 }
-
-dap.configurations.cpp = dap.configurations.c
 
 local dap_breakpoint = {
   error = {

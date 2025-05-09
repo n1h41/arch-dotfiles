@@ -1,19 +1,19 @@
-local status, whichKey = pcall(require, "which-key")
+local status, wk = pcall(require, "which-key")
 if not status then
   return
 end
 
-local keymap = {
-  d = {
-    b = { "<cmd>DBUI<cr>", "Database UI" },
-  }
-}
+-- Using the new which-key API format for v3
+wk.add({
+  -- Define group name
+  { "<leader>d",  group = "Database" },
 
-whichKey.register(keymap, {
-  prefix = '<leader>',
+  -- Database UI command
+  { "<leader>db", "<cmd>DBUI<cr>",   desc = "Database UI" },
+}, {
   mode = 'n',
-  buffer = nil,
   silent = true,
   noremap = true,
   nowait = true,
 })
+
