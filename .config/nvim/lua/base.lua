@@ -146,9 +146,6 @@ end
 
 vim.g.rest_nvim = {}
 
-vim.g.codecompanion_auto_tool_mode = true
-vim.g.mcphub_auto_approve = true
-
 -- Turn off signcolumn for Markdown files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = 'markdown',

@@ -3,6 +3,8 @@ if (not status) then
   return
 end
 
+-- return
+
 dap_go.setup {
   delve = {
     -- the path to the executable dlv which will be used for debugging.
@@ -39,6 +41,7 @@ dap_go.setup {
     {
       type = "go",
       name = "Attach remote",
+      host = "localhost",
       mode = "remote",
       request = "attach",
     },

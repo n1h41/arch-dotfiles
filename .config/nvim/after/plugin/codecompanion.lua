@@ -280,6 +280,21 @@ local theme_migration_workflow = create_workflow(
 --------------------------------------------------------
 
 codecompanion.setup({
+  extensions = {
+    mcphub = {
+      callback = "mcphub.extensions.codecompanion",
+      opts = {
+        show_result_in_chat = true, -- Show mcp tool results in chat
+        make_vars = true,           -- Convert resources to #variables
+        make_slash_commands = true, -- Add prompts as /slash commands
+      }
+    },
+    vectorcode = {
+      opts = {
+        add_tool = true,
+      }
+    }
+  },
   prompt_library = {
     ["Innsof Project Refactoring Workflow --> Convert Dimens to ISizes"] = dart_refactor_workflow,
     ["Flutter Format Workflow"] = flutter_format_workflow,
@@ -292,15 +307,9 @@ codecompanion.setup({
         codebase = require("vectorcode.integrations").codecompanion.chat.make_slash_command(),
       },
       tools = {
-        ["mcp"] = {
-          callback = function()
-            return require("mcphub.extensions.codecompanion")
-          end,
-          description = "Call tools and resources from the MCP server"
-        },
-        vectorcode = {
-          description = "Run VectorCode to retrieve the project context.",
-          callback = require("vectorcode.integrations").codecompanion.chat.make_tool(),
+        opts = {
+          auto_submit_errors = true,  -- Send any errors to the LLM automatically?
+          auto_submit_success = true, -- Send any successful output to the LLM automatically?
         }
       }
     }

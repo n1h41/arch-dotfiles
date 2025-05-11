@@ -3,6 +3,11 @@ if (not status) then return end
 local actions = require('telescope.actions')
 
 telescope.setup {
+  pickers = {
+    find_files = {
+      hidden = true
+    },
+  },
   defaults = {
     sorting_strategy = "ascending",
     dynamic_preview_title = true,

@@ -4,7 +4,7 @@ if not status then
 end
 
 -- Using the new which-key API format for v3
-wk.add({
+--[[ wk.add({
   -- Define group name
   { "<leader>d",  group = "Database" },
 
@@ -15,5 +15,5 @@ wk.add({
   silent = true,
   noremap = true,
   nowait = true,
-})
+}) ]]
 
