@@ -652,6 +652,13 @@ local plugins = {
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   },
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      --other plugins
+      "ravitemer/codecompanion-history.nvim"
+    }
+  },
   -- LOCAL PLUGIN DEVELOPMENT
   --[[ {
     dir = "/home/nihal/dev/nvim/n1h41",

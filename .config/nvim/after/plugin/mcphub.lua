@@ -3,7 +3,7 @@ require("mcphub").setup({
   config = vim.fn.expand("~/.config/mcphub/servers.json"), -- Absolute path to config file location (will create if not exists)
   native_servers = {},                                     -- add your native servers here
 
-  auto_approve = true,                                     -- Auto approve mcp tool calls
+  auto_approve = false,                                    -- Auto approve mcp tool calls
   auto_toggle_mcp_servers = true,                          -- Let LLMs start and stop MCP servers automatically
   -- Extensions configuration
   extensions = {
@@ -11,8 +11,6 @@ require("mcphub").setup({
       make_slash_commands = true, -- make /slash commands from MCP server prompts
     },
     codecompanion = {
-      -- Show the mcp tool result in the chat buffer
-      -- NOTE:if the result is markdown with headers, content after the headers wont be sent by codecompanion
       show_result_in_chat = false,
       make_vars = true,           -- make chat #variables from MCP server resources
       make_slash_commands = true, -- make /slash commands from MCP server prompts
