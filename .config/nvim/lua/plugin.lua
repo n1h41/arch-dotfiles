@@ -226,6 +226,7 @@ local plugins = {
     lazy = true,
     'mfussenegger/nvim-dap',
     dependencies = {
+      "jbyuki/one-small-step-for-vimkind",
       'nvim-telescope/telescope-dap.nvim',
       'rcarriga/nvim-dap-ui',
       { "mxsdev/nvim-dap-vscode-js", module = { "dap-vscode-js" } },

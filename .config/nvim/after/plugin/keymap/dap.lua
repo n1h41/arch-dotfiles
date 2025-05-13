@@ -30,14 +30,19 @@ wk.add({
     mode = "n",
     group = "Debug UI"
   },
-  { "<leader>dx",  "<cmd>lua require'dap'.terminate()<cr>",       desc = "Terminate",          mode = "n", group = "Debug" },
+  { "<leader>dx",  "<cmd>lua require'dap'.terminate()<cr>",               desc = "Terminate",          mode = "n", group = "Debug" },
 
   -- Go debug commands
-  { "<leader>gdt", function() require("dap-go").debug_test() end, desc = "Debug Go test",      mode = "n", group = "Go Debug" },
-  { "<leader>gdl", function() require("dap-go").debug_last() end, desc = "Debug Last Go test", mode = "n", group = "Go Debug" },
+  { "<leader>gdt", function() require("dap-go").debug_test() end,         desc = "Debug Go test",      mode = "n", group = "Go Debug" },
+  { "<leader>gdl", function() require("dap-go").debug_last() end,         desc = "Debug Last Go test", mode = "n", group = "Go Debug" },
 
   -- Visual mode debug commands
-  { "<leader>de",  "<cmd>lua require'dapui'.eval()<cr>",          desc = "Evaluate",           mode = "v", group = "Debug" },
+  { "<leader>de",  "<cmd>lua require'dapui'.eval()<cr>",                  desc = "Evaluate",           mode = "v", group = "Debug" },
+
+  -- osv
+  { "<leader>dl",  function() require("osv").launch({ port = 8086 }) end, desc = "Launch osv",         mode = "n", group = "NIVM Debug" },
+  { "<leader>dts", function() require("osv").start_trace() end,           desc = "OSV Start trace",    mode = "n", group = "NIVM Debug" },
+  { "<leader>dtS", function() require("osv").stop_trace() end,            desc = "OSV Stop strace",    mode = "n", group = "NIVM Debug" },
 }, {
   silent = true,  -- Don't echo commands
   noremap = true, -- Non-recursive mapping
