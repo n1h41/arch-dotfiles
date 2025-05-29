@@ -37,7 +37,19 @@ local plugins = {
       { 'onsails/lspkind-nvim' },            -- vscode like pictograms
       { 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
+      {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+          {
+            "MattiasMTS/cmp-dbee",
+            dependencies = {
+              { "kndndrj/nvim-dbee" }
+            },
+            ft = "sql", -- optional but good to have
+            opts = {},  -- needed
+          },
+        },
+      },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
@@ -660,16 +672,13 @@ local plugins = {
       "ravitemer/codecompanion-history.nvim"
     }
   },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
+  { 'echasnovski/mini.nvim', version = '*' },
   -- LOCAL PLUGIN DEVELOPMENT
-  --[[ {
-    dir = "/home/nihal/dev/nvim/n1h41",
-    config = function()
-      require('n1h41').setup()
-    end
-  }, ]]
-  --[[ {
-    dir = "/home/n1h41/dev/nvim/codecompanion_speech",
-  }, ]]
   {
     dir = "/home/n1h41/dev/nvim/speech_to_text/",
   },

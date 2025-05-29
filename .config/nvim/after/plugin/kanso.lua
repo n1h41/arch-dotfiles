@@ -26,4 +26,4 @@ require('kanso').setup({
 })
 
 -- setup must be called before loading
-vim.cmd("colorscheme kanso-zen")
+-- vim.cmd("colorscheme kanso-zen")

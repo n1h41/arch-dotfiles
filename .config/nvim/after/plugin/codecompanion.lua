@@ -295,19 +295,19 @@ codecompanion.setup({
         -- Keymap to open history from chat buffer (default: gh)
         keymap = "gh",
         -- Automatically generate titles for new chats
-        auto_generate_title = false,
+        auto_generate_title = true,
         ---On exiting and entering neovim, loads the last chat on opening chat
         continue_last_chat = false,
         ---When chat is cleared with `gx` delete the chat from history
-        delete_on_clearing_chat = false,
+        delete_on_clearing_chat = true,
         -- Picker interface ("telescope" or "snacks" or "default")
-        picker = "telescope",
+        picker = "snacks",
         ---Enable detailed logging for history extension
-        enable_logging = false,
+        enable_logging = true,
         ---Directory path to save the chats
         dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
         -- Save all chats by default
-        auto_save = false,
+        auto_save = true,
         -- Keymap to save the current chat manually
         save_chat_keymap = "sc",
       }
@@ -321,6 +321,14 @@ codecompanion.setup({
   strategies = {
     chat = {
       adapter = "copilot",
+      roles = {
+        llm = function(adapter)
+          return string.format("  %s%s", adapter.formatted_name,
+            adapter.paramters and (adapter.paramters.model and " (" .. adapter.paramters.model .. ")" or "")
+            or ""
+          )
+        end,
+      },
       slash_commands = {
         codebase = require("vectorcode.integrations").codecompanion.chat.make_slash_command(),
       },

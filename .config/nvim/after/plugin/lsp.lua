@@ -6,7 +6,7 @@ end
 
 lsp_zero.preset('recommended')
 
-lsp_zero.ensure_installed({ 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "htmx", "templ"})
+lsp_zero.ensure_installed({ 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "htmx", "templ" })
 
 local cmp = require('cmp')
 
@@ -68,6 +68,9 @@ lsp_zero.setup_nvim_cmp({
     },
     {
       name = 'luasnip'
+    },
+    {
+      name = 'cmp-dbee'
     },
     {
       name = 'buffer',
@@ -257,12 +260,12 @@ lsp_zero.configure('lua_ls', {
   }
 })
 
-lsp_zero.configure('tsserver', {
+--[[ lsp_zero.configure('tsserver', {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "templ", "javascript" },
   cmd = { "typescript-language-server", "--stdio" }
-})
+}) ]]
 
 lsp_zero.configure('gopls', {
   on_attach = on_attach,
@@ -274,7 +277,7 @@ lsp_zero.configure('gopls', {
 lsp_zero.configure('html', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "css", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "html", "templ" },
 })
 
 lsp_zero.configure('htmx', {
@@ -286,7 +289,7 @@ lsp_zero.configure('htmx', {
 lsp_zero.configure('tailwindcss', {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "css", "typescriptreact", "typescript.tsx", "templ" },
+  filetypes = { "html", "typescriptreact", "typescript.tsx", "templ" },
   settings = {
     tailwindCSS = {
       includeLanguages = {
@@ -296,19 +299,21 @@ lsp_zero.configure('tailwindcss', {
   }
 })
 
-lsp_zero.configure('emmet_language_server', {
+--[[ lsp_zero.configure('emmet_language_server', {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "css", "eruby", "html", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
-})
+}){
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  opts = {},
+} ]]
 
 lsp_zero.configure("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "h" },
-  -- cmd = { "/home/nihal/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clangd", "--background-index", "--query-driver=**", }
-  -- cmd = { "/home/nihal/tools/lsp/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
-  cmd = { "/home/nihal/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
+  cmd = { "/home/n1h41/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
 })
 
 --[[ require('ccls').setup({
@@ -330,5 +335,3 @@ lsp_zero.configure("ccls", {
 }) ]]
 
 lsp_zero.setup()
-
--- require("fidget").setup({})
