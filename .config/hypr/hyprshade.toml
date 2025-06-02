@@ -1,0 +1,7 @@
+[[shades]]
+name = "vibrance"
+
+[[shades]]
+name = "~/dev/hyprshade/greyscale.glsl.mustache"
+start_time = "22:00"
+end_time = "06:00"
