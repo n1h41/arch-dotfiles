@@ -402,7 +402,7 @@ local plugins = {
     end
   },
   { "nvim-neotest/nvim-nio" },
-  --[[ {
+  {
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
@@ -418,7 +418,7 @@ local plugins = {
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       -- { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
-  }, ]]
+  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",

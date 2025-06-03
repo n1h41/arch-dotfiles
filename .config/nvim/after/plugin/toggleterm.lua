@@ -4,7 +4,7 @@ if (not status) then return end
 
 terminal.setup({
   size = 15,
-  open_mapping = [[<C-\>]],
+  open_mapping = [[<C-t>]],
   hide_numbers = true,
   shade_filetypes = {},
   shade_terminals = true,
