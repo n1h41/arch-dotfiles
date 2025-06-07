@@ -316,6 +316,12 @@ lsp_zero.configure("clangd", {
   cmd = { "/home/n1h41/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
 })
 
+--[[ lsp_zero.configure("asm_lsp", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "asm", "nasm" },
+}) ]]
+
 --[[ require('ccls').setup({
   filetypes = { "c", "cpp", "objc", "objcpp", "h" },
   lsp = {

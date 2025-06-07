@@ -151,3 +151,15 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = 'markdown',
   command = "set signcolumn=no"
 })
+
+vim.filetype.add({
+  extension = {
+    nasm = 'nasm',
+    s = 'nasm',
+    S = 'nasm',
+  },
+  filename = {
+    ['*.nasm'] = 'nasm',
+    ['*.inc'] = 'nasm',
+  },
+})

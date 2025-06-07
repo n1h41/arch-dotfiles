@@ -630,8 +630,6 @@ local plugins = {
   },
   {
     'stevearc/oil.nvim',
-    ---@module 'oil'
-    ---@type oil.SetupOpts
     opts = {},
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
@@ -678,6 +676,10 @@ local plugins = {
     opts = {},
   },
   { 'echasnovski/mini.nvim', version = '*' },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
   -- LOCAL PLUGIN DEVELOPMENT
   {
     dir = "/home/n1h41/dev/nvim/speech_to_text/",
