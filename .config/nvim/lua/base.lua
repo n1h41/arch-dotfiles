@@ -17,7 +17,7 @@ vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.scrolloff = 22
 vim.opt.shell = 'zsh'
 vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
@@ -44,8 +44,8 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = '*',
-  command = "set nopaste"
+	pattern = '*',
+	command = "set nopaste"
 })
 
 -- Add asterisks in block comments
@@ -68,25 +68,25 @@ vim.g.neovide_padding_left = 10
 -- copilot
 
 vim.g.copilot_filetypes = {
-  TelescopePrompt = false,
+	TelescopePrompt = false,
 }
 
 -- Remove tilde character
 vim.opt.fillchars = {
-  -- fold = ' ',
-  -- vert = '|',
-  eob = ' ',
-  msgsep = '‾',
+	-- fold = ' ',
+	-- vert = '|',
+	eob = ' ',
+	msgsep = '‾',
 
 }
 
 -- custom indentation for csharp files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = 'cs',
-  callback = function()
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.tabstop = 4
-  end
+	pattern = 'cs',
+	callback = function()
+		vim.opt_local.shiftwidth = 4
+		vim.opt_local.tabstop = 4
+	end
 })
 
 -- octo
@@ -116,50 +116,57 @@ vim.cmd([[let maplocalleader = ',']])
 
 -- Hyprlang LSP
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-  pattern = { "*.hl", "hypr*.conf" },
-  callback = function(event)
-    print(string.format("starting hyprls for %s", vim.inspect(event)))
-    vim.lsp.start {
-      name = "hyprlang",
-      cmd = { "hyprls" },
-      root_dir = vim.fn.getcwd(),
-    }
-  end
+	pattern = { "*.hl", "hypr*.conf" },
+	callback = function(event)
+		print(string.format("starting hyprls for %s", vim.inspect(event)))
+		vim.lsp.start {
+			name = "hyprlang",
+			cmd = { "hyprls" },
+			root_dir = vim.fn.getcwd(),
+		}
+	end
 })
 
 vim.filetype.add({
-  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
 
 -- Noevide only configs
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMono Nerd Font"
+	vim.o.guifont = "JetBrainsMono Nerd Font"
 end
 
 -- Custom symbols for diagnostics
 local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
 
 for name, icon in pairs(symbols) do
-  local hl = "DiagnosticSign" .. name
-  vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+	local hl = "DiagnosticSign" .. name
+	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
 
 vim.g.rest_nvim = {}
 
 -- Turn off signcolumn for Markdown files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = 'markdown',
-  command = "set signcolumn=no"
+	pattern = 'markdown',
+	command = "set signcolumn=no"
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	command = "set wrap"
 })
 
 vim.filetype.add({
-  extension = {
-    nasm = 'nasm',
-    s = 'nasm',
-    S = 'nasm',
-  },
-  filename = {
-    ['*.nasm'] = 'nasm',
-    ['*.inc'] = 'nasm',
-  },
+	extension = {
+		nasm = 'nasm',
+		s = 'nasm',
+		S = 'nasm',
+	},
+	filename = {
+		['*.nasm'] = 'nasm',
+		['*.inc'] = 'nasm',
+	},
 })
+
+vim.g.codecompanion_auto_tool_mode = true

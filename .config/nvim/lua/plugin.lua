@@ -675,14 +675,20 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
-  { 'echasnovski/mini.nvim', version = '*' },
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+    config = function()
+      require("mini.ai").setup()
+    end
+  },
   {
     'stevearc/conform.nvim',
     opts = {},
   },
   -- LOCAL PLUGIN DEVELOPMENT
   {
-    dir = "/home/n1h41/dev/nvim/speech_to_text/",
+    dir = "/home/n1h41/dev/nvim/speech_to_text/"
   },
 }
 

@@ -299,22 +299,28 @@ lsp_zero.configure('tailwindcss', {
   }
 })
 
---[[ lsp_zero.configure('emmet_language_server', {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "css", "eruby", "html", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
-}){
-  "pmizio/typescript-tools.nvim",
-  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  opts = {},
-} ]]
-
 lsp_zero.configure("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "h" },
   cmd = { "/home/n1h41/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
 })
+
+lsp_zero.configure("qmlls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "qml" },
+  -- cmd = { "/home/n1h41/tools/qt6/6.8.0/gcc_64/bin/qmlls", "--log-file=/tmp/qmlls.log" }
+})
+
+lsp_zero.configure("omnisharp", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+})
+
+
+lsp_zero.setup()
 
 --[[ lsp_zero.configure("asm_lsp", {
   on_attach = on_attach,
@@ -340,4 +346,12 @@ lsp_zero.configure("ccls", {
   cmd = { "/usr/bin/ccls", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
 }) ]]
 
-lsp_zero.setup()
+--[[ lsp_zero.configure('emmet_language_server', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "css", "eruby", "html", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
+}){
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  opts = {},
+} ]]
