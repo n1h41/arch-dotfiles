@@ -532,9 +532,6 @@ codecompanion.setup({
 					)
 				end,
 			},
-			slash_commands = {
-				codebase = require("vectorcode.integrations").codecompanion.chat.make_slash_command(),
-			},
 			tools = {
 				opts = {
 					auto_submit_errors = true, -- Send any errors to the LLM automatically?
@@ -562,20 +559,6 @@ codecompanion.setup({
 					}
 				}
 			})
-		end,
-		openrouter = function()
-			return require("codecompanion.adapters").extend("openai_compatible", {
-				env = {
-					url = "https://openrouter.ai/api",
-					api_key = "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",
-					chat_url = "/v1/chat/completions",
-				},
-				schema = {
-					model = {
-						default = "qwen/qwen3-coder",
-					}
-				}
-			})
-		end,
+		end
 	}
 })
