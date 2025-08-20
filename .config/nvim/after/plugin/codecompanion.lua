@@ -51,12 +51,12 @@ codecompanion.setup({
 			},
 			tools = {
 				opts = {
-					default_tools = {
+					--[[ default_tools = {
 						"neovim",
 						"filesystem",
 						"fetch_webpage",
 						"cmd_runner",
-					},
+					}, ]]
 					auto_submit_errors = true, -- Send any errors to the LLM automatically?
 					auto_submit_success = true, -- Send any successful output to the LLM automatically?
 				}
@@ -68,7 +68,8 @@ codecompanion.setup({
 			return require("codecompanion.adapters").extend("copilot", {
 				schema = {
 					model = {
-						default = "gpt-4.1"
+						-- default = "gpt-4.1"
+						default = "claude-3.7-sonnet"
 					}
 				}
 			})
