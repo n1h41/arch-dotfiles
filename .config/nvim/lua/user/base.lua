@@ -25,22 +25,22 @@ vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
-vim.opt.expandtab = false -- Use tabs, not spaces
-vim.opt.scrolloff = 22 -- Keep 22 lines above/below cursor
-vim.opt.shell = 'zsh' -- Use zsh as shell
+vim.opt.expandtab = false    -- Use tabs, not spaces
+vim.opt.scrolloff = 22       -- Keep 22 lines above/below cursor
+vim.opt.shell = 'zsh'        -- Use zsh as shell
 vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
 vim.opt.inccommand = 'split' -- Live preview of :s/:substitute
-vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.ignorecase = true    -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.smarttab = true
 vim.opt.breakindent = true
-vim.opt.shiftwidth = 2 -- Indent width
-vim.opt.tabstop = 2 -- Tab width
-vim.opt.wrap = false         -- No Wrap lines
+vim.opt.shiftwidth = 2                           -- Indent width
+vim.opt.tabstop = 2                              -- Tab width
+vim.opt.wrap = false                             -- No Wrap lines
 vim.opt.backspace = { 'start', 'eol', 'indent' }
-vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
+vim.opt.path:append { '**' }                     -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' } -- Ignore node_modules in file search
-vim.opt.splitright = true -- Vertical splits open right
-vim.opt.splitbelow = true -- Horizontal splits open below
+vim.opt.splitright = true                        -- Vertical splits open right
+vim.opt.splitbelow = true                        -- Horizontal splits open below
 
 -- Use system clipboard
 vim.opt.clipboard:append { 'unnamedplus' }
@@ -177,3 +177,5 @@ vim.filetype.add({
 
 -- CodeCompanion: enable auto tool mode
 vim.g.codecompanion_auto_tool_mode = true
+
+vim.g.copilot_enabled = false

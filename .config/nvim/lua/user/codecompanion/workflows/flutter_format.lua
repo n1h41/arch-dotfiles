@@ -1,7 +1,7 @@
 local utils = require("user.codecompanion.utils")
 
 local flutter_format_content = function()
-  return [[### Flutter Code Formatting
+	return [[### Flutter Code Formatting
 
 Please help me format my Flutter code according to best practices. When formatting the code, please:
 
@@ -28,42 +28,45 @@ Let me know you're ready, and I'll share my Flutter code with you.]]
 end
 
 return utils.create_workflow(
-  "Format Flutter/Dart code according to best practices",
-  51,
-  "flutterformat",
-  {
-    {
-      utils.create_system_message(
-        "You are an expert Flutter developer with deep knowledge of Dart style guides, Flutter best practices, and code optimization techniques. You'll help the user format and optimize their Flutter code to follow industry best practices and Flutter team's official style guidelines."
-      ),
-      {
-        role = "user",
-        content = utils.with_auto_tool_mode(flutter_format_content),
-        opts = {
-          auto_submit = true,
-        },
-      },
-    },
-    {
-      {
-        role = "user",
-        content = function(context)
-          local filetype = context and context.filetype or "dart"
-          return "Please analyze the code in #buffer{watch} and format it according to Flutter best practices using the @editor tool. The file is a " .. filetype .. " file. Please provide a brief explanation of the formatting changes you've made."
-        end,
-        opts = {
-          auto_submit = true,
-        },
-      },
-    },
-    {
-      {
-        role = "user",
-        content = "Thank you. Could you also explain any non-obvious formatting choices you made and why they align with Flutter best practices?",
-        opts = {
-          auto_submit = false,
-        },
-      },
-    }
-  }
+	"Format Flutter/Dart code according to best practices",
+	51,
+	"flutterformat",
+	{
+		{
+			utils.create_system_message(
+				"You are an expert Flutter developer with deep knowledge of Dart style guides, Flutter best practices, and code optimization techniques. You'll help the user format and optimize their Flutter code to follow industry best practices and Flutter team's official style guidelines."
+			),
+			{
+				role = "user",
+				content = utils.with_auto_tool_mode(flutter_format_content),
+				opts = {
+					auto_submit = true,
+				},
+			},
+		},
+		{
+			{
+				role = "user",
+				content = function(context)
+					local filetype = context and context.filetype or "dart"
+					return
+							"Please analyze the code in #{buffer} and format it according to Flutter best practices using the @{neovim} tool. The file is a " ..
+							filetype .. " file. Please provide a brief explanation of the formatting changes you've made."
+				end,
+				opts = {
+					auto_submit = true,
+				},
+			},
+		},
+		{
+			{
+				role = "user",
+				content =
+				"Thank you. Could you also explain any non-obvious formatting choices you made and why they align with Flutter best practices?",
+				opts = {
+					auto_submit = false,
+				},
+			},
+		}
+	}
 )
