@@ -2,31 +2,31 @@ local status, saga = pcall(require, "lspsaga")
 if (not status) then return end
 
 saga.setup({
-  ui = {
-    winblend = 0,
-    border = 'rounded',
-    --[[ colors = {
+	ui = {
+		winblend = 0,
+		border = 'rounded',
+		--[[ colors = {
       normal_bg = '#002b36'
     } ]]
-  },
-  definition = {
-    keys = {
-      vsplit = "sv",
-      split = 'ss',
-      tabe = 't',
-    },
-  },
-  implement = {
-    enable = true,
-  },
-  lightbulb = {
-    enable = false,
-    enable_in_insert = false
-  }
+	},
+	definition = {
+		keys = {
+			vsplit = "sv",
+			split = 'ss',
+			tabe = 't',
+		},
+	},
+	implement = {
+		enable = true,
+	},
+	lightbulb = {
+		enable = false,
+		enable_in_insert = false
+	}
 })
 
 vim.diagnostic.config({
-  virtual_text = true,
+	virtual_text = true,
 })
 
 local opts = { noremap = true, silent = true }
@@ -89,14 +89,14 @@ keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
 -- Diagnostic jump with filters such as only jumping to an error
 keymap("n", "[E", function()
-  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, opts)
 keymap("n", "]E", function()
-  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end, opts)
 
 -- Toggle outline
-keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
+-- keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
 
 -- Hover Doc
 -- If there is no hover doc,

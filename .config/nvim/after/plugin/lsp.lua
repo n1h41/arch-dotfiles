@@ -135,9 +135,9 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 
-	if client.server_capabilities.colorProvider then
+	--[[ if client.server_capabilities.colorProvider then
 		require("document-color").buf_attach(bufnr)
-	end
+	end ]]
 
 	---@diagnostic disable-next-line: redefined-local
 	local opts = { buffer = bufnr, remap = false }
@@ -180,10 +180,13 @@ flutter.setup {
 	debugger = {        -- integrate with nvim dap + install dart code debugger
 		enabled = true,
 		run_via_dap = true, -- use dap instead of a plenary job to run flutter apps
-		exception_breakpoints = { "always" }
+		exception_breakpoints = { "uncaught" }
 	},
 	flutter_path = "/home/n1h41/development/flutter/bin/flutter",
 	fvm = false, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+	default_run_args = {
+		flutter = "--print-dtd"
+	},
 	widget_guides = {
 		enabled = true,
 	},
@@ -202,9 +205,8 @@ flutter.setup {
 	},
 	lsp = {
 		color = { -- show the derived colours for dart variables
-			enabled = true, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
+			enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
 			background = true, -- highlight the background
-			background_color = { r = 19, g = 17, b = 24 }, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
 			foreground = true, -- highlight the foreground
 			virtual_text = true, -- show the highlight using virtual text
 			virtual_text_str = "■", -- the virtual text character to highlight
@@ -246,12 +248,7 @@ lsp_zero.configure('lua_ls', {
 				checkThirdParty = false,
 				library = {
 					vim.env.VIMRUNTIME
-					-- Depending on the usage, you might want to add additional paths here.
-					-- "${3rd}/luv/library"
-					-- "${3rd}/busted/library",
 				}
-				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-				-- library = vim.api.nvim_get_runtime_file("", true)
 			}
 		})
 	end,
@@ -259,13 +256,6 @@ lsp_zero.configure('lua_ls', {
 		Lua = {}
 	}
 })
-
---[[ lsp_zero.configure('tsserver', {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "templ", "javascript" },
-  cmd = { "typescript-language-server", "--stdio" }
-}) ]]
 
 lsp_zero.configure('gopls', {
 	on_attach = on_attach,
@@ -319,39 +309,4 @@ lsp_zero.configure("omnisharp", {
 	cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 })
 
-
 lsp_zero.setup()
-
---[[ lsp_zero.configure("asm_lsp", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "asm", "nasm" },
-}) ]]
-
---[[ require('ccls').setup({
-  filetypes = { "c", "cpp", "objc", "objcpp", "h" },
-  lsp = {
-    use_defaults = true,
-    codelens = {
-      enable = true,
-      events = { "BufWritePost", "InsertLeave" }
-    }
-  }
-})
-
-lsp_zero.configure("ccls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "c", "cpp", "objc", "objcpp", "h" },
-  cmd = { "/usr/bin/ccls", "--background-index", "--query-driver=**", "--offset-encoding=utf-16", }
-}) ]]
-
---[[ lsp_zero.configure('emmet_language_server', {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "css", "eruby", "html", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "templ" },
-}){
-  "pmizio/typescript-tools.nvim",
-  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  opts = {},
-} ]]

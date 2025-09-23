@@ -69,13 +69,19 @@ vim.o.autoread = true
 
 -- Neovide GUI settings (only applies if running in Neovide)
 vim.g.neovide_scale_factor = 0.7
-vim.g.neovide_fullscreen = true
+vim.g.neovide_fullscreen = false
 vim.g.neovide_scroll_animation_length = 0.3
 vim.g.neovide_cursor_trail_size = 0.3
 vim.g.neovide_padding_top = 10
 vim.g.neovide_padding_bottom = 10
 vim.g.neovide_padding_right = 10
 vim.g.neovide_padding_left = 10
+vim.g.neovide_hide_mouse_when_typing = false
+
+if vim.g.neovide == true then
+	vim.keymap.set({ "n", "x" }, "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+	vim.keymap.set({ "n", "x" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
+end
 
 -- GitHub Copilot: disable in TelescopePrompt
 vim.g.copilot_filetypes = {
@@ -157,10 +163,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = 'markdown',
 	command = "set signcolumn=no"
 })
-vim.api.nvim_create_autocmd("FileType", {
+
+--[[ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	command = "set wrap"
-})
+}) ]]
 
 -- Add filetype for NASM assembly files
 vim.filetype.add({

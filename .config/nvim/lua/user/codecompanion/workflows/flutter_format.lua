@@ -5,8 +5,8 @@ local flutter_format_content = function()
 
 Please help me format my Flutter code according to best practices. When formatting the code, please:
 
-1. Follow the official Dart Style Guide
-2. Apply Flutter-specific formatting conventions:
+#### Follow the official Dart Style Guide
+1. Apply Flutter-specific formatting conventions:
    - Use proper widget structure with consistent indentation
    - Format widget trees for readability (one widget per line for complex widgets)
    - Properly align parameters and trailing commas for enhanced readability
@@ -17,12 +17,13 @@ Please help me format my Flutter code according to best practices. When formatti
    - Organize import statements according to best practices
    - Add proper documentation for public APIs
 
-3. WITHOUT changing any functional behavior, improve code:
+2. WITHOUT changing any functional behavior, improve code:
    - Remove redundant code
    - Fix any style issues
    - Improve naming if unclear
    - Simplify complex expressions
    - Apply proper nullable handling practices
+	 - Lift large handler funcitons as separate functions
 
 Let me know you're ready, and I'll share my Flutter code with you.]]
 end
@@ -50,7 +51,7 @@ return utils.create_workflow(
 				content = function(context)
 					local filetype = context and context.filetype or "dart"
 					return
-							"Please analyze the code in #{buffer} and format it according to Flutter best practices using the @{neovim} tool. The file is a " ..
+							"Please analyze the code in #{buffer} and format it according to Flutter best practices. Use @{neovim} tool apply format edits to file in buffer. The file is a " ..
 							filetype .. " file. Please provide a brief explanation of the formatting changes you've made."
 				end,
 				opts = {

@@ -67,12 +67,6 @@ local plugins = {
 			{ 'rafamadriz/friendly-snippets' },
 		}
 	},
-	-- Theme
-	{
-		'svrana/neosolarized.nvim',
-		dependencies = { 'tjdevries/colorbuddy.nvim' },
-		lazy = true
-	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
@@ -232,14 +226,6 @@ local plugins = {
 			require('colorizer').setup()
 		end,
 	},
-	-- Live Server
-	{
-		lazy = true,
-		'barrett-ruth/live-server.nvim',
-		config = function()
-			require('live-server').setup()
-		end,
-	},
 	-- Debugger
 	{
 		lazy = true,
@@ -289,15 +275,6 @@ local plugins = {
 	},                         -- Flutter Snippets
 	"RobertBrunhage/flutter-riverpod-snippets",
 	"Neevash/awesome-flutter-snippets",
-	-- Color highlight in files
-	{
-		"mrshmllow/document-color.nvim",
-		config = function()
-			require("document-color").setup {
-				mode = "background", -- background | foreground | single
-			}
-		end
-	},
 	-- Golang Debugger
 	{
 		"leoluz/nvim-dap-go",
@@ -315,13 +292,13 @@ local plugins = {
 		end
 	},
 	-- Database Management
-	{
+	--[[ {
 		"tpope/vim-dadbod",
 		dependencies = {
 			"kristijanhusak/vim-dadbod-ui",
 			"kristijanhusak/vim-dadbod-completion",
 		},
-	},
+	}, ]]
 	{
 		'navarasu/onedark.nvim'
 	},
@@ -368,7 +345,7 @@ local plugins = {
 	{
 		"ziontee113/color-picker.nvim",
 	},
-	{
+	--[[ {
 		"lervag/vimtex",
 		lazy = false, -- we don't want to lazy load VimTeX
 		-- tag = "v2.15", -- uncomment to pin to a specific release
@@ -376,7 +353,7 @@ local plugins = {
 			-- VimTeX configuration goes here
 			-- vim.g.vimtex_view_method = "zathura"
 		end
-	},
+	}, ]]
 	{ "nvim-neotest/nvim-nio" },
 	{
 		"christoomey/vim-tmux-navigator",
@@ -412,10 +389,6 @@ local plugins = {
 		}
 	},
 	{
-		"nvim-neorg/neorg",
-		ft = "norg",
-	}, -- lazy.nvim
-	{
 		"folke/snacks.nvim",
 	},
 	-- Git integration (fugitive alternative)
@@ -431,38 +404,7 @@ local plugins = {
 		},
 		config = true
 	},
-	---@module "neominimap.config.meta"
-	{
-		"Isrothy/neominimap.nvim",
-		enabled = true,
-		cmd = { "Neominimap" },
-		-- Optional
-		keys = { { "<leader>nt", "<cmd>Neominimap toggle<cr>", desc = "Toggle minimap" },
-			{ "<leader>no",  "<cmd>Neominimap on<cr>",          desc = "Enable minimap" },
-			{ "<leader>nc",  "<cmd>Neominimap off<cr>",         desc = "Disable minimap" },
-			{ "<leader>nf",  "<cmd>Neominimap focus<cr>",       desc = "Focus on minimap" },
-			{ "<leader>nu",  "<cmd>Neominimap unfocus<cr>",     desc = "Unfocus minimap" },
-			{ "<leader>ns",  "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
-			{ "<leader>nwt", "<cmd>Neominimap winToggle<cr>",   desc = "Toggle minimap for current window" },
-			{ "<leader>nwr", "<cmd>Neominimap winRefresh<cr>",  desc = "Refresh minimap for current window" },
-			{ "<leader>nwo", "<cmd>Neominimap winOn<cr>",       desc = "Enable minimap for current window" },
-			{ "<leader>nwc", "<cmd>Neominimap winOff<cr>",      desc = "Disable minimap for current window" },
-			{ "<leader>nbt", "<cmd>Neominimap bufToggle<cr>",   desc = "Toggle minimap for current buffer" },
-			{ "<leader>nbr", "<cmd>Neominimap bufRefresh<cr>",  desc = "Refresh minimap for current buffer" },
-			{ "<leader>nbo", "<cmd>Neominimap bufOn<cr>",       desc = "Enable minimap for current buffer" },
-			{ "<leader>nbc", "<cmd>Neominimap bufOff<cr>",      desc = "Disable minimap for current buffer" },
-		},
-		init = function()
-			vim.opt.wrap = false    -- Recommended
-			vim.opt.sidescrolloff = 36 -- It's recommended to set a large value
-			---@diagnostic disable-next-line: undefined-doc-name
-			---@type Neominimap.UserConfig
-			vim.g.neominimap = {
-				auto_enable = false,
-			}
-		end,
-	},
-	{
+	--[[ {
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
@@ -494,11 +436,11 @@ local plugins = {
 
 			-- see below for full list of options 👇
 		},
-	},
+	}, ]]
 	{
 		-- lazy = true,
 		'MeanderingProgrammer/render-markdown.nvim',
-		opts = {},
+		opts = { latex = { enabled = false } },
 		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
 		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
@@ -538,6 +480,8 @@ local plugins = {
 		opts = {},
 		dependencies = { "nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			--other plugins
+			"ravitemer/codecompanion-history.nvim"
 		},
 		init = function()
 			require("user.lualine.codecompanion_fidget_spinner"):init()
@@ -581,27 +525,6 @@ local plugins = {
 		},
 	},
 	{
-		"ray-x/go.nvim",
-		dependencies = { -- optional packages
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", 'gomod' },
-		build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-	},
-	{
-		"olimorris/codecompanion.nvim",
-		dependencies = {
-			--other plugins
-			"ravitemer/codecompanion-history.nvim"
-		}
-	},
-	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
@@ -627,7 +550,36 @@ local plugins = {
 			-- `opencode.nvim` passes options via a global variable instead of `setup()` for faster startup
 			---@type opencode.Opts
 			vim.g.opencode_opts = {
-				-- Your configuration, if any — see `lua/opencode/config.lua`
+				prompts = {
+					flutter_format = {
+						description = "Format Flutter code",
+						prompt = [[
+### Flutter Code Formatting
+
+Please help me format my Flutter code at @buffer according to best practices. When formatting the code, please:
+
+#### Follow the official Dart Style Guide
+1. Apply Flutter-specific formatting conventions:
+   - Use proper widget structure with consistent indentation.
+   - Format widget trees for readability (one widget per line for complex widgets).
+   - Properly align parameters and trailing commas for enhanced readability.
+   - Extract repeated widgets into reusable variables or methods.
+   - Use const constructors where appropriate.
+   - Format string interpolation consistently.
+   - Apply proper spacing around operators, brackets, and parentheses.
+   - Organize import statements according to best practices.
+   - Add proper documentation for public APIs.
+
+2. WITHOUT changing any functional behavior, improve code:
+   - Remove redundant code.
+   - Fix any style issues.
+   - Improve naming if unclear.
+   - Simplify complex expressions.
+   - Apply proper nullable handling practices.
+	 - Extract long inline methods to separate methods to improve readability.
+			]],
+					},
+				}
 			}
 
 			-- Required for `opts.auto_reload`
@@ -635,8 +587,8 @@ local plugins = {
 
 			-- Recommended keymaps
 			vim.keymap.set('n', '<leader>ot', function() require('opencode').toggle() end, { desc = 'Toggle opencode' })
-			vim.keymap.set('n', '<leader>oA', function() require('opencode').ask() end, { desc = 'Ask opencode' })
-			vim.keymap.set('n', '<leader>oa', function() require('opencode').ask('@cursor: ') end,
+			vim.keymap.set('n', '<leader>oa', function() require('opencode').ask() end, { desc = 'Ask opencode' })
+			vim.keymap.set('n', '<leader>oA', function() require('opencode').ask('@cursor: ') end,
 				{ desc = 'Ask opencode about this' })
 			vim.keymap.set('v', '<leader>oa', function() require('opencode').ask('@selection: ') end,
 				{ desc = 'Ask opencode about selection' })
@@ -656,9 +608,19 @@ local plugins = {
 				{ desc = 'Explain this code' })
 		end,
 	},
+	{
+		"karb94/neoscroll.nvim",
+		opts = {},
+	},
 	-- LOCAL PLUGIN DEVELOPMENT
 	{
-		dir = "/home/n1h41/dev/nvim/speech_to_text/"
+		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
+	},
+	{
+		dir = "/home/n1h41/dev/nvim/personal/n1h41-nvim/",
+		config = function()
+			require("n1h41").setup()
+		end
 	},
 }
 
