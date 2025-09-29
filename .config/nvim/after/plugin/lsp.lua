@@ -217,8 +217,8 @@ flutter.setup {
 			showTodos = false,
 			completeFunctionCalls = true,
 			analysisExcludedFolders = {
-				"/home/nihal/.pub-cache/hosted/",
-				"/home/nihal/flutter/",
+				"/home/n1h41/.pub-cache/hosted/",
+				"/home/n1h41/flutter/",
 			},
 			renameFilesWithClasses = "prompt", -- "always"
 			enableSnippets = true,
