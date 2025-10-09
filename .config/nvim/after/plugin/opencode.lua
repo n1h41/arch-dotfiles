@@ -20,6 +20,9 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
    - Apply proper spacing around operators, brackets, and parentheses
    - Organize import statements according to best practices
    - Add proper documentation for public APIs
+	 - Replace fixed sizes with MediaQuery
+		- Use appropriate MediaQuery Methods
+			- For size and height, user MediaQuery.sizeOf(context).width/height insted of MediaQuery.of(context).size.height/width
 
 2. WITHOUT changing any functional behavior, improve code:
    - Remove redundant code

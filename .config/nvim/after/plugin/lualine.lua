@@ -57,11 +57,7 @@ lualine.setup {
       path = 1            -- 0 = just filename, 1 = relative path, 2 = absolute path
     } },
     lualine_x = { 'location' },
-    lualine_y = {
-      require('vectorcode.integrations').lualine({
-        show_job_count = true,
-      })
-    },
+    lualine_y = { },
     lualine_z = {}
   },
   tabline = {},

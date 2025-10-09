@@ -441,8 +441,6 @@ local plugins = {
 		-- lazy = true,
 		'MeanderingProgrammer/render-markdown.nvim',
 		opts = { latex = { enabled = false } },
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
 	{
@@ -486,12 +484,6 @@ local plugins = {
 		init = function()
 			require("user.lualine.codecompanion_fidget_spinner"):init()
 		end
-	},
-	{
-		"Davidyz/VectorCode",
-		version = "*",                   -- optional, depending on whether you're on nightly or release
-		build = "pipx upgrade vectorcode", -- optional but recommended if you set `version = "*"`
-		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
 		"ravitemer/mcphub.nvim",

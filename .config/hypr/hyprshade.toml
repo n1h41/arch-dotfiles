@@ -1,6 +1,6 @@
 [[shades]]
 name = "vibrance"
-default = true  # will be activated when no other shader is scheduled
+default = false  # will be activated when no other shader is scheduled
 
 [[shades]]
 name = "greyscale.glsl.mustache"
