@@ -81,26 +81,28 @@ codecompanion.setup({
 		}
 	},
 	adapters = {
-		ollama = function()
-			return require("codecompanion.adapters").extend("openai_compatible", {
-				schema = {
-					model = {
-						default = "claude-sonnet-4",
+		http = {
+			ollama = function()
+				return require("codecompanion.adapters").extend("openai_compatible", {
+					schema = {
+						model = {
+							default = "claude-sonnet-4",
+						},
 					},
-				},
-				env = {
-					url = "http://localhost:4000",
-				},
-			})
-		end,
-		copilot = function()
-			return require("codecompanion.adapters").extend("copilot", {
-				schema = {
-					model = {
-						default = "gpt-4.1"
+					env = {
+						url = "http://localhost:4000",
+					},
+				})
+			end,
+			copilot = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					schema = {
+						model = {
+							default = "gpt-4.1"
+						}
 					}
-				}
-			})
-		end,
+				})
+			end,
+		}
 	}
 })

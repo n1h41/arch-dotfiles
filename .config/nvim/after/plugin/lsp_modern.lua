@@ -1,18 +1,12 @@
 -- Modern LSP configuration using vim.lsp.config (nvim 0.11+)
--- This replaces the deprecated require('lspconfig') setup
+-- This replaces the deprecated lspconfig framework
 
--- Setup mason for automatic LSP server installation
-local mason_status, mason = pcall(require, "mason")
-if mason_status then
-	mason.setup()
+-- Check if vim.lsp.config is available (Neovim 0.11+)
+if not vim.lsp.config then
+	-- Fallback to old configuration for older Neovim versions
+	return
 end
 
-local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
-if mason_lspconfig_status then
-	mason_lspconfig.setup({
-		ensure_installed = { 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "htmx", "templ" }
-	})
-end
 local cmp = require('cmp')
 
 -- LSP completion capabilities
@@ -21,27 +15,8 @@ capabilities.textDocument.colorProvider = {
 	dynamicRegistration = true
 }
 
--- Templ format function
-local templ_format = function()
-	if vim.bo.filetype == "templ" then
-		local bufnr = vim.api.nvim_get_current_buf()
-		local filename = vim.api.nvim_buf_get_name(bufnr)
-		local cmd = "templ fmt " .. vim.fn.shellescape(filename)
-
-		vim.fn.jobstart(cmd, {
-			on_exit = function()
-				if vim.api.nvim_get_current_buf() == bufnr then
-					vim.cmd('e!')
-				end
-			end,
-		})
-	else
-		vim.lsp.buf.format()
-	end
-end
-
 -- LSP on_attach function
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
 	-- Mappings
@@ -50,12 +25,33 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 
+	-- Format function for templ files
+	local templ_format = function()
+		if vim.bo.filetype == "templ" then
+			local bufnr_local = vim.api.nvim_get_current_buf()
+			local filename = vim.api.nvim_buf_get_name(bufnr_local)
+			local cmd = "templ fmt " .. vim.fn.shellescape(filename)
+
+			vim.fn.jobstart(cmd, {
+				on_exit = function()
+					if vim.api.nvim_get_current_buf() == bufnr_local then
+						vim.cmd('e!')
+					end
+				end,
+			})
+		else
+			vim.lsp.buf.format()
+		end
+	end
+
 	local format_opts = { buffer = bufnr, remap = false }
 	vim.keymap.set("n", "<S-A-f>", templ_format, format_opts)
 end
 
 -- Configure LSP servers using vim.lsp.config
 vim.lsp.config.lua_ls = {
+	cmd = { 'lua-language-server' },
+	filetypes = { 'lua' },
 	on_attach = on_attach,
 	capabilities = capabilities,
 	on_init = function(client)
@@ -64,7 +60,7 @@ vim.lsp.config.lua_ls = {
 			return
 		end
 
-		--[[ client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua or {}, {
 			runtime = {
 				version = 'LuaJIT'
 			},
@@ -74,40 +70,40 @@ vim.lsp.config.lua_ls = {
 					vim.env.VIMRUNTIME
 				}
 			}
-		}) ]]
+		})
 	end,
 	settings = {
-		Lua = {
-			runtime = {
-				version = 'LuaJIT',
-			}
-		}
+		Lua = {}
 	}
 }
 
 vim.lsp.config.gopls = {
+	cmd = { 'gopls' },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "go", "gomod", "gowork", "gotmpl" },
-	root_dir = vim.fs.root(0, { "go.mod", ".git" }),
+	root_markers = { "go.mod", ".git" },
 }
 
 vim.lsp.config.html = {
+	cmd = { 'vscode-html-language-server', '--stdio' },
+	filetypes = { "html", "templ" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "html", "templ" },
 }
 
 vim.lsp.config.htmx = {
+	cmd = { 'htmx-lsp' },
+	filetypes = { "html", "templ" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "html", "templ" },
 }
 
 vim.lsp.config.tailwindcss = {
+	cmd = { 'tailwindcss-language-server', '--stdio' },
+	filetypes = { "html", "typescriptreact", "typescript.tsx", "templ" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "html", "typescriptreact", "typescript.tsx", "templ" },
 	settings = {
 		tailwindCSS = {
 			includeLanguages = {
@@ -118,22 +114,23 @@ vim.lsp.config.tailwindcss = {
 }
 
 vim.lsp.config.clangd = {
+	cmd = { "/home/n1h41/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16" },
+	filetypes = { "c", "cpp", "objc", "objcpp", "h" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "c", "cpp", "objc", "objcpp", "h" },
-	cmd = { "/home/n1h41/tools/esp-clang/bin/clangd", "--background-index", "--query-driver=**", "--offset-encoding=utf-16" },
 }
 
 vim.lsp.config.qmlls = {
+	cmd = { 'qmlls' },
+	filetypes = { "qml" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "qml" },
 }
 
 vim.lsp.config.omnisharp = {
+	cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 }
 
 -- Setup CMP with protocol icons
@@ -171,7 +168,7 @@ local lspkind = require('lspkind')
 
 -- CMP setup
 cmp.setup({
-	mapping = cmp.mapping.preset.insert({
+	mapping = {
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-y>"] = cmp.mapping.complete(),
@@ -179,17 +176,32 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({
 			select = false
 		})
-	}),
-	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-		{ name = 'path' },
-		{ name = 'lazydev', group_index = 0 },
-	}, {
-		{ name = 'buffer',               keyword_length = 5 },
-		{ name = 'cmp-dbee' },
-		{ name = 'vim-dadbod-completion' },
-	}),
+	},
+	sources = {
+		{
+			name = 'nvim_lsp'
+		},
+		{
+			name = 'path'
+		},
+		{
+			name = 'luasnip'
+		},
+		{
+			name = 'cmp-dbee'
+		},
+		{
+			name = 'buffer',
+			keyword_length = 5
+		},
+		{
+			name = 'vim-dadbod-completion',
+		},
+		{
+			name = 'lazydev',
+			group_index = 0,
+		},
+	},
 	formatting = {
 		fields = { 'abbr', 'kind', 'menu' },
 		format = lspkind.cmp_format({
@@ -210,28 +222,32 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 -- Templ file auto-format
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	pattern = { "*.templ" },
-	callback = templ_format
+vim.api.nvim_create_autocmd({ "BufWritePre" }, { 
+	pattern = { "*.templ" }, 
+	callback = function()
+		if vim.bo.filetype == "templ" then
+			local bufnr = vim.api.nvim_get_current_buf()
+			local filename = vim.api.nvim_buf_get_name(bufnr)
+			local cmd = "templ fmt " .. vim.fn.shellescape(filename)
+
+			vim.fn.jobstart(cmd, {
+				on_exit = function()
+					if vim.api.nvim_get_current_buf() == bufnr then
+						vim.cmd('e!')
+					end
+				end,
+			})
+		end
+	end
 })
 
--- Diagnostic configuration using modern vim.diagnostic.config (nvim 0.11+)
+-- Diagnostic configuration
 vim.diagnostic.config({
 	virtual_text = true,
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "󰅙", -- Error icon
-			[vim.diagnostic.severity.WARN] = "", -- Warning icon
-			[vim.diagnostic.severity.HINT] = "󰌵", -- Hint icon
-			[vim.diagnostic.severity.INFO] = "󰋼", -- Info icon
-		},
-	},
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
+	signs = true,
 })
 
--- Flutter tools setup
+-- Flutter tools setup (still uses old API for now)
 local flutter = require('flutter-tools')
 
 flutter.setup {

@@ -148,12 +148,8 @@ if vim.g.neovide then
 	vim.o.guifont = "JetBrainsMono Nerd Font"
 end
 
--- Custom diagnostic symbols in signcolumn
-local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
-for name, icon in pairs(symbols) do
-	local hl = "DiagnosticSign" .. name
-	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-end
+-- Diagnostic symbols are now configured in after/plugin/lsp.lua using vim.diagnostic.config()
+-- This replaces the deprecated vim.fn.sign_define() method
 
 -- rest.nvim plugin global (empty table for config)
 vim.g.rest_nvim = {}

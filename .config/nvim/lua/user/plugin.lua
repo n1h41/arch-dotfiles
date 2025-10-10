@@ -32,41 +32,42 @@ local plugins = {
 	},
 	{ "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings,
 	-- LSP
-	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v1.x',
+	-- LSP Support
+	{ 'neovim/nvim-lspconfig' },
+	{ 'williamboman/mason.nvim' },
+	{ 'williamboman/mason-lspconfig.nvim' },
+	{ 
+		'glepnir/lspsaga.nvim',
+		branch = "main",
 		dependencies = {
-			-- LSP Support
-			{ 'neovim/nvim-lspconfig' },
-			{ 'williamboman/mason.nvim' },
-			{ 'williamboman/mason-lspconfig.nvim' },
-			{ 'glepnir/lspsaga.nvim' },         -- lsp ui
-			{ 'onsails/lspkind-nvim' },         -- vscode like pictograms
-			{ 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-			-- Autocompletion
-			{
-				'hrsh7th/nvim-cmp',
-				dependencies = {
-					{
-						"MattiasMTS/cmp-dbee",
-						dependencies = {
-							{ "kndndrj/nvim-dbee" }
-						},
-						ft = "sql", -- optional but good to have
-						opts = {}, -- needed
-					},
-				},
-			},
-			{ 'hrsh7th/cmp-buffer' },
-			{ 'hrsh7th/cmp-path' },
-			{ 'saadparwaiz1/cmp_luasnip' },
-			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'hrsh7th/cmp-nvim-lua' },
-			-- Snippets
-			{ 'L3MON4D3/LuaSnip' },
-			{ 'rafamadriz/friendly-snippets' },
+			{ 'nvim-tree/nvim-web-devicons' },
+			{ 'nvim-treesitter/nvim-treesitter' }
 		}
+	}, -- lsp ui
+	{ 'onsails/lspkind-nvim' },         -- vscode like pictograms
+	{ 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+	-- Autocompletion
+	{
+		'hrsh7th/nvim-cmp',
+		dependencies = {
+			{
+				"MattiasMTS/cmp-dbee",
+				dependencies = {
+					{ "kndndrj/nvim-dbee" }
+				},
+				ft = "sql", -- optional but good to have
+				opts = {}, -- needed
+			},
+		},
 	},
+	{ 'hrsh7th/cmp-buffer' },
+	{ 'hrsh7th/cmp-path' },
+	{ 'saadparwaiz1/cmp_luasnip' },
+	{ 'hrsh7th/cmp-nvim-lsp' },
+	{ 'hrsh7th/cmp-nvim-lua' },
+	-- Snippets
+	{ 'L3MON4D3/LuaSnip' },
+	{ 'rafamadriz/friendly-snippets' },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
@@ -219,11 +220,29 @@ local plugins = {
 			require("nvim-autopairs").setup()
 		end,
 	},
-	-- Highligt Color Codes
+	-- Highlight Color Codes
 	{
-		'norcalli/nvim-colorizer.lua',
+		'NvChad/nvim-colorizer.lua',
 		config = function()
-			require('colorizer').setup()
+			require('colorizer').setup({
+				filetypes = { "*" },
+				user_default_options = {
+					RGB = true,
+					RRGGBB = true,
+					names = true,
+					RRGGBBAA = true,
+					AARRGGBB = true,
+					rgb_fn = false,
+					hsl_fn = false,
+					css = false,
+					css_fn = false,
+					mode = "background",
+					tailwind = false,
+					sass = { enable = false, parsers = { "css" } },
+					virtualtext = "■",
+				},
+				buftypes = {},
+			})
 		end,
 	},
 	-- Debugger
@@ -448,6 +467,7 @@ local plugins = {
 	},
 	{
 		"kndndrj/nvim-dbee",
+		branch = "master",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
@@ -474,11 +494,12 @@ local plugins = {
 	},
 	{
 		"olimorris/codecompanion.nvim",
+		branch = "main",
 		cmd = { "CodeCompanion" },
 		opts = {},
-		dependencies = { "nvim-lua/plenary.nvim",
+		dependencies = { 
+			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			--other plugins
 			"ravitemer/codecompanion-history.nvim"
 		},
 		init = function()
