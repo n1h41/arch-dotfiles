@@ -604,6 +604,15 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
 		"karb94/neoscroll.nvim",
 		opts = {},
 	},
+	{
+		"greggh/claude-code.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- Required for git operations
+		},
+		config = function()
+			require("claude-code").setup()
+		end
+	},
 	-- LOCAL PLUGIN DEVELOPMENT
 	{
 		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"

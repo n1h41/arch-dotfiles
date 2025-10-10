@@ -39,6 +39,12 @@ wk.add({
 	-- Visual mode debug commands
 	{ "<leader>de",  "<cmd>lua require'dapui'.eval()<cr>",                  desc = "Evaluate",           mode = "v", group = "Debug" },
 
+	-- F-key bindings (VSCode-style)
+	{ "<F5>",        "<cmd>lua require'dap'.continue()<cr>",                 desc = "Continue",           mode = "n" },
+	{ "<F10>",       "<cmd>lua require'dap'.step_over()<cr>",               desc = "Step Over",          mode = "n" },
+	{ "<F11>",       "<cmd>lua require'dap'.step_into()<cr>",               desc = "Step Into",          mode = "n" },
+	{ "<F9>",        "<cmd>lua require'dap'.toggle_breakpoint()<cr>",       desc = "Toggle Breakpoint",  mode = "n" },
+
 	-- osv
 	{ "<leader>dl",  function() require("osv").launch({ port = 8086 }) end, desc = "Launch osv",         mode = "n", group = "NIVM Debug" },
 	{ "<leader>dts", function() require("osv").start_trace() end,           desc = "OSV Start trace",    mode = "n", group = "NIVM Debug" },
