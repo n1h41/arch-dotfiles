@@ -41,17 +41,46 @@ local templ_format = function()
 end
 
 -- LSP on_attach function
-local on_attach = function(_, bufnr)
-	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local on_attach = function(client, bufnr)
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings
-	local opts = { noremap = true, silent = true }
+	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	-- Basic LSP navigation (some will be overridden by glance.nvim)
+	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 
+	-- Workspace management
+	vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+	vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+	vim.keymap.set('n', '<leader>wl', function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, opts)
+
+	-- Type definition (will be overridden by glance)
+	vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+
+	-- Format buffer
 	local format_opts = { buffer = bufnr, remap = false }
 	vim.keymap.set("n", "<S-A-f>", templ_format, format_opts)
+
+	-- Document highlight - highlight references under cursor
+	if client.server_capabilities.documentHighlightProvider then
+		local highlight_group = vim.api.nvim_create_augroup("LSPDocumentHighlight", { clear = true })
+		vim.api.nvim_create_autocmd("CursorHold", {
+			group = highlight_group,
+			buffer = bufnr,
+			callback = vim.lsp.buf.document_highlight,
+		})
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			group = highlight_group,
+			buffer = bufnr,
+			callback = vim.lsp.buf.clear_references,
+		})
+	end
 end
 
 -- Configure LSP servers using vim.lsp.config
@@ -59,12 +88,16 @@ vim.lsp.config.lua_ls = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	on_init = function(client)
+		if not client.workspace_folders or #client.workspace_folders == 0 then
+			return
+		end
+
 		local path = client.workspace_folders[1].name
 		if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
 			return
 		end
 
-		--[[ client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua or {}, {
 			runtime = {
 				version = 'LuaJIT'
 			},
@@ -74,7 +107,7 @@ vim.lsp.config.lua_ls = {
 					vim.env.VIMRUNTIME
 				}
 			}
-		}) ]]
+		})
 	end,
 	settings = {
 		Lua = {
@@ -275,7 +308,7 @@ flutter.setup {
 	},
 	lsp = {
 		color = {
-			enabled = false,
+			enabled = true,
 			background = true,
 			foreground = true,
 			virtual_text = true,
