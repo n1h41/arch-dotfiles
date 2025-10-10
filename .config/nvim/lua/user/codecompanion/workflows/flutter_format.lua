@@ -58,16 +58,6 @@ return utils.create_workflow(
 					auto_submit = true,
 				},
 			},
-		},
-		{
-			{
-				role = "user",
-				content =
-				"Thank you. Could you also explain any non-obvious formatting choices you made and why they align with Flutter best practices?",
-				opts = {
-					auto_submit = false,
-				},
-			},
 		}
 	}
 )
