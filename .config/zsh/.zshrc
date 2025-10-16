@@ -17,7 +17,7 @@ setopt autocd notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/n1h41/.zshrc'
+zstyle :compinstall filename '/home/nihal/.config/zsh/.zshrc'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -48,16 +48,6 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# myenv wrapper
-# ----------------start----------------
-
-# include following in .bashrc / .bash_profile / .zshrc
-# usage
-# $ mkvenv myvirtualenv # creates venv under ~/.virtualenvs/
-# $ venv myvirtualenv   # activates venv
-# $ deactivate          # deactivates venv
-# $ rmvenv myvirtualenv # removes venv
 
 export VENV_HOME="$HOME/.virtualenvs"
 [[ -d $VENV_HOME ]] || mkdir $VENV_HOME
@@ -118,7 +108,7 @@ alias mk="make"
 alias tx="tmux"
 
 
-# source /home/n1h41/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /home/nihal/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -126,8 +116,8 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Update path with flutter binaries
-export PATH="$PATH:/home/n1h41/development/flutter/bin"
-export PATH="$PATH:/home/n1h41/Android/Sdk/platform-tools"
+export PATH="$PATH:/home/nihal/development/flutter/bin"
+export PATH="$PATH:/home/nihal/Android/Sdk/platform-tools"
 
 # Go path
 # export PATH="$PATH:/usr/local/go/bin"
@@ -140,10 +130,10 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$PATH:/opt/mssql-tools/bin"
 
 # cargo installed apps path
-export PATH="$PATH:/home/n1h41/.cargo/bin"
+export PATH="$PATH:/home/nihal/.cargo/bin"
 
 # Android Studio Emulator
-export PATH="$PATH:/home/n1h41/Android/Sdk/emulator"
+export PATH="$PATH:/home/nihal/Android/Sdk/emulator"
 
 # initialise zoxide
 eval "$(zoxide init zsh)"
@@ -156,22 +146,11 @@ export EDITOR="nvim"
 
 export CHROME_EXECUTABLE="/opt/google/chrome/chrome"
 
-#Howdy exports
-export OPENCV_LOG_LEVEL=0
-export OPENCV_VIDEOIO_PRIORITY_INTEL_MFX=0
-
 #Display Pokemon
 # pokemon-colorscripts --no-title -r 1,3,6
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
-
-# Setup keychain
-# eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
-
-# Ollama Aliases
-alias orz="docker exec -it ollama ollama run zephyr"
-alias orl="docker exec -it ollama ollama run llama3.2"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

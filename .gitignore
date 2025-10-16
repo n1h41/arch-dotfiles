@@ -2,3 +2,4 @@
 .config/nvim/.luarc.json
 .aider*
 .config/tmux/opencodetmp
+.config/zsh/.zcompdump

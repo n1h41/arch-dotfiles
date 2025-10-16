@@ -40,8 +40,7 @@ codecompanion.setup({
 	prompt_library = workflows,
 	strategies = {
 		chat = {
-			adapter = "ollama",
-			-- adapter = "copilot",
+			adapter = "copilot",
 			roles = {
 				llm = function(adapter)
 					return string.format("  %s%s", adapter.formatted_name,

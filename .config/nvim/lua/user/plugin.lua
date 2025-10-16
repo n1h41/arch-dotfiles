@@ -30,7 +30,7 @@ local plugins = {
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings,
+	{ "Bilal2453/luvit-meta",             lazy = true }, -- optional `vim.uv` typings,
 	-- LSP
 	-- LSP Support
 	{ 'neovim/nvim-lspconfig' },
@@ -41,8 +41,8 @@ local plugins = {
 		config = function()
 			require('glance').setup()
 		end,
-	}, -- Modern LSP UI replacement for lspsaga
-	{ 'onsails/lspkind-nvim' },         -- vscode like pictograms
+	},                                    -- Modern LSP UI replacement for lspsaga
+	{ 'onsails/lspkind-nvim' },           -- vscode like pictograms
 	{ 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 	-- Autocompletion
 	{
@@ -460,9 +460,9 @@ local plugins = {
 		opts = { latex = { enabled = false } },
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
-	{
+	--[[ {
 		"rest-nvim/rest.nvim",
-	},
+	}, ]]
 	{
 		"kndndrj/nvim-dbee",
 		branch = "master",
@@ -495,7 +495,7 @@ local plugins = {
 		branch = "main",
 		cmd = { "CodeCompanion" },
 		opts = {},
-		dependencies = { 
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"ravitemer/codecompanion-history.nvim"
@@ -634,14 +634,14 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
 	},
 	-- LOCAL PLUGIN DEVELOPMENT
 	{
-		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
+		dir = "/home/nihal/dev/nvim/personal/speech_to_text/"
 	},
-	{
+	--[[ {
 		dir = "/home/n1h41/dev/nvim/personal/n1h41-nvim/",
 		config = function()
 			require("n1h41").setup()
 		end
-	},
+	}, ]]
 }
 
 local ok, lazy = pcall(require, 'lazy')

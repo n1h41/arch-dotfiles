@@ -285,7 +285,7 @@ flutter.setup {
 		run_via_dap = true,
 		exception_breakpoints = { "uncaught" }
 	},
-	flutter_path = "/home/n1h41/development/flutter/bin/flutter",
+	flutter_path = "/home/nihal/development/flutter/bin/flutter",
 	fvm = false,
 	default_run_args = {
 		flutter = "--print-dtd"
