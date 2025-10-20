@@ -9,15 +9,12 @@ plug "zsh-users/zsh-syntax-highlighting"
 autoload -Uz compinit
 compinit
 
-# Initialisations
-eval "$(starship init zsh)"
-
 # Lines configured by zsh-newuser-install
 setopt autocd notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/nihal/.config/zsh/.zshrc'
+zstyle :compinstall filename '/home/n1h41/.config/zsh/.zshrc'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -89,7 +86,7 @@ rmvenv() {
 ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
 bindkey '^ ' autosuggest-accept
 
-# INFO: Personal aliases
+#  INFO: Personal aliases
 alias cls="clear"
 alias vim="nvim"
 alias lg="lazygit"
@@ -108,16 +105,17 @@ alias mk="make"
 alias tx="tmux"
 
 
-# source /home/nihal/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /home/n1h41/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+source /usr/share/nvm/init-nvm.sh
 
 # Update path with flutter binaries
-export PATH="$PATH:/home/nihal/development/flutter/bin"
-export PATH="$PATH:/home/nihal/Android/Sdk/platform-tools"
+export PATH="$PATH:/home/n1h41/develop/flutter/bin"
+export PATH="$PATH:/home/n1h41/Android/Sdk/platform-tools"
 
 # Go path
 # export PATH="$PATH:/usr/local/go/bin"
@@ -130,10 +128,10 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$PATH:/opt/mssql-tools/bin"
 
 # cargo installed apps path
-export PATH="$PATH:/home/nihal/.cargo/bin"
+export PATH="$PATH:/home/n1h41/.cargo/bin"
 
 # Android Studio Emulator
-export PATH="$PATH:/home/nihal/Android/Sdk/emulator"
+export PATH="$PATH:/home/n1h41/Android/Sdk/emulator"
 
 # initialise zoxide
 eval "$(zoxide init zsh)"
@@ -154,3 +152,7 @@ fpath+=~/.zfunc
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Claude Code - Litellm
+export ANTHROPIC_BASE_URL="http://localhost:4000"
+export ANTHROPIC_AUTH_TOKEN="sk-1234"

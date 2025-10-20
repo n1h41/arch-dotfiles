@@ -10,7 +10,7 @@ end
 local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
 if mason_lspconfig_status then
 	mason_lspconfig.setup({
-		ensure_installed = { 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "htmx", "templ" }
+		ensure_installed = { 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "templ" }
 	})
 end
 local cmp = require('cmp')
@@ -285,7 +285,7 @@ flutter.setup {
 		run_via_dap = true,
 		exception_breakpoints = { "uncaught" }
 	},
-	flutter_path = "/home/nihal/development/flutter/bin/flutter",
+	flutter_path = "/home/n1h41/develop/flutter/bin/flutter",
 	fvm = false,
 	default_run_args = {
 		flutter = "--print-dtd"

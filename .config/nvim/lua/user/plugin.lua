@@ -634,7 +634,7 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
 	},
 	-- LOCAL PLUGIN DEVELOPMENT
 	{
-		dir = "/home/nihal/dev/nvim/personal/speech_to_text/"
+		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
 	},
 	--[[ {
 		dir = "/home/n1h41/dev/nvim/personal/n1h41-nvim/",
