@@ -131,7 +131,8 @@ export PATH="$PATH:/opt/mssql-tools/bin"
 export PATH="$PATH:/home/n1h41/.cargo/bin"
 
 # Android Studio Emulator
-export PATH="$PATH:/home/n1h41/Android/Sdk/emulator"
+export ANDROID_SDK_HOME=$HOME/.config/.android
+export PATH="$PATH:$HOME/Android/Sdk/emulator"
 
 # initialise zoxide
 eval "$(zoxide init zsh)"
@@ -153,6 +154,17 @@ fpath+=~/.zfunc
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+eval "$(starship init zsh)"
+
 # Claude Code - Litellm
 export ANTHROPIC_BASE_URL="http://localhost:4000"
 export ANTHROPIC_AUTH_TOKEN="sk-1234"
+
+export GOOGLE_GEMINI_BASE_URL="http://localhost:4000"
+export GEMINI_API_KEY="sk-1234"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/n1h41/google-cloud-sdk/path.zsh.inc' ]; then . '/home/n1h41/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/n1h41/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/n1h41/google-cloud-sdk/completion.zsh.inc'; fi
