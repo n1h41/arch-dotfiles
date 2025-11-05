@@ -7,6 +7,13 @@ tools:
   write: true
   edit: true
   bash: true
+  list: true
+  glob: true
+  grep: true
+  webfetch: true
+  task: true
+  todowrite: true
+  todoread: true
 ---
 # Beast Mode 3.1
 

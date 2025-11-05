@@ -460,9 +460,16 @@ local plugins = {
 		opts = { latex = { enabled = false } },
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
-	--[[ {
+	{
 		"rest-nvim/rest.nvim",
-	}, ]]
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			opts = function(_, opts)
+				opts.ensure_installed = opts.ensure_installed or {}
+				table.insert(opts.ensure_installed, "http")
+			end,
+		}
+	},
 	{
 		"kndndrj/nvim-dbee",
 		branch = "master",
@@ -636,12 +643,12 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
 	{
 		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
 	},
-	--[[ {
-		dir = "/home/n1h41/dev/nvim/personal/n1h41-nvim/",
+	{
+		dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
 		config = function()
 			require("n1h41").setup()
 		end
-	}, ]]
+	},
 }
 
 local ok, lazy = pcall(require, 'lazy')

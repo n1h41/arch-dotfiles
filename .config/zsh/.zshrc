@@ -25,7 +25,7 @@ alias lzd="lazydocker"
 alias mk="make"
 alias tx="tmux"
 
-bindkey '^ ' autosuggest-accept
+bindkey '^@' autosuggest-accept
 
 # # Directory navigation shortcuts
 # alias ..='cd ..'
@@ -47,9 +47,8 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export PATH="$PATH:/home/n1h41/develop/flutter/bin"
 
 # Android Studio
-export PATH="$PATH:/home/n1h41/Android/Sdk/platform-tools"
-export PATH="$PATH:$HOME/Android/Sdk/emulator"
-export ANDROID_SDK_HOME=$HOME/.config/.android
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/emulator"
+export ANDROID_AVD_HOME=$HOME/.config/.android/avd/
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
