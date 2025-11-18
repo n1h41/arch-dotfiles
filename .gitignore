@@ -3,3 +3,4 @@
 .aider*
 .config/tmux/opencodetmp
 .config/zsh/.zcompdump
+.config/zsh/.zsh_history

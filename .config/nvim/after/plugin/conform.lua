@@ -1,4 +1,4 @@
-local confirm = require("conform")
+--[[ local confirm = require("conform")
 
 confirm.setup({
   formatters_by_ft = {
@@ -8,4 +8,4 @@ confirm.setup({
     timeout_ms = 500,
     lsp_format = "fallback",
   },
-})
+}) ]]

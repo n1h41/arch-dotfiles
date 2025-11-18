@@ -36,12 +36,12 @@ local plugins = {
 	{ 'neovim/nvim-lspconfig' },
 	{ 'williamboman/mason.nvim' },
 	{ 'williamboman/mason-lspconfig.nvim' },
-	{
+	--[[ {
 		'dnlhc/glance.nvim',
 		config = function()
 			require('glance').setup()
 		end,
-	},                                    -- Modern LSP UI replacement for lspsaga
+	}, ]]                                  -- Modern LSP UI replacement for lspsaga
 	{ 'onsails/lspkind-nvim' },           -- vscode like pictograms
 	{ 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 	-- Autocompletion
@@ -295,18 +295,6 @@ local plugins = {
 	-- Golang Debugger
 	{
 		"leoluz/nvim-dap-go",
-		config = function()
-			require('dap-go').setup({
-				dap_configurations = {
-					{
-						type = "go",
-						name = "Attach remote",
-						mode = "remote",
-						request = "attach",
-					},
-				},
-			})
-		end
 	},
 	-- Database Management
 	--[[ {
@@ -555,9 +543,19 @@ local plugins = {
 		end
 	},
 	{
+		'nvimdev/lspsaga.nvim',
+		config = function()
+			require('lspsaga').setup({})
+		end,
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter', -- optional
+			'nvim-tree/nvim-web-devicons',  -- optional
+		}
+	},
+	--[[ {
 		'stevearc/conform.nvim',
 		opts = {},
-	},
+	}, ]]
 	{
 		'NickvanDyke/opencode.nvim',
 		dependencies = {

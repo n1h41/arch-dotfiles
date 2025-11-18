@@ -23,5 +23,12 @@
         "bash": false
       }
     }
+	},
+	"mcp": {
+    "fileserver": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "~/dev/"],
+      "enabled": true
+    }
 	}
 }
