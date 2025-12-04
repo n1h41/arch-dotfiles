@@ -4,3 +4,6 @@
 .config/tmux/opencodetmp
 .config/zsh/.zcompdump
 .config/zsh/.zsh_history
+.config/hypr/workflows.conf
+.config/zsh/.zcompdump-archlinux-5.9
+.config/zsh/.zcompdump-archlinux-5.9.zwc

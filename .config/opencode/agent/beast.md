@@ -3,17 +3,6 @@ description: Beast Mode 3.1
 mode: primary
 model: github-copilot/gpt-4.1
 temperature: 0.1
-tools:
-  write: true
-  edit: true
-  bash: true
-  list: true
-  glob: true
-  grep: true
-  webfetch: true
-  task: true
-  todowrite: true
-  todoread: true
 ---
 # Beast Mode 3.1
 
