@@ -44,7 +44,7 @@ export EDITOR=nvim
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 # Flutter
-export PATH="$PATH:/home/n1h41/develop/flutter/bin"
+export PATH="$PATH:$HOME/develop/flutter/bin:$HOME/.pub-cache/bin"
 
 # Android Studio
 export PATH="$PATH:$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/emulator"
