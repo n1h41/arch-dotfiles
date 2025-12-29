@@ -2,9 +2,9 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "opencode",
   "model": "github-copilot/claude-opus-4.5",
-	"small_model": "github-copilot/gpt-4.1",
+  "small_model": "github-copilot/gpt-4.1",
   "autoupdate": true,
-	"agent": {
+  "agent": {
     "build": {
       "mode": "primary",
       "model": "github-copilot/claude-opus-4.5",
@@ -14,7 +14,7 @@
         "bash": true
       }
     },
-		"plan": {
+    "plan": {
       "mode": "primary",
       "model": "github-copilot/gpt-4.1",
       "tools": {
@@ -23,12 +23,21 @@
         "bash": false
       }
     }
-	},
-	"mcp": {
+  },
+  "mcp": {
     "fileserver": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "~/dev/"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "~/dev/"
+      ],
       "enabled": true
     }
-	}
+  },
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    "oh-my-opencode"
+  ]
 }

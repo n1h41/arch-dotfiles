@@ -92,3 +92,10 @@ eval "$(zoxide init zsh)"
 unset -f command_not_found_handler # Uncomment to prevent searching for commands not found in package manager
 
 source /usr/share/nvm/init-nvm.sh
+
+# bun completions
+[ -s "/home/n1h41/.bun/_bun" ] && source "/home/n1h41/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
