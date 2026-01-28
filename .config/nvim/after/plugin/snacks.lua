@@ -49,6 +49,8 @@ require("snacks").setup({
 			}
 		},
 	},
+	input = {},
+	picker = {},
 	terminal = {},
 	image = {},
 	animate = {},

@@ -28,6 +28,6 @@
   },
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
-    "oh-my-opencode"
+    "oh-my-opencode@latest"
   ]
 }

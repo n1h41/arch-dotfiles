@@ -1,6 +1,15 @@
-vim.notify("Opencode loaded", vim.log.levels.INFO)
+local status, _ = pcall(require, "opencode")
+if not status then
+	return
+end
 
+vim.o.autoread = true
+
+---@type opencode.Opts
 vim.g.opencode_opts = {
+	provider = {
+		enabled = "snacks",
+	},
 	prompts = {
 		flutter_format = {
 			description = "Format Flutter code",
@@ -20,9 +29,9 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
    - Apply proper spacing around operators, brackets, and parentheses
    - Organize import statements according to best practices
    - Add proper documentation for public APIs
-	 - Replace fixed sizes with MediaQuery
-		- Use appropriate MediaQuery Methods
-			- For size and height, user MediaQuery.sizeOf(context).width/height insted of MediaQuery.of(context).size.height/width
+   - Replace fixed sizes with MediaQuery
+     - Use appropriate MediaQuery Methods
+       - For size and height, use MediaQuery.sizeOf(context).width/height instead of MediaQuery.of(context).size.height/width
 
 2. WITHOUT changing any functional behavior, improve code:
    - Remove redundant code
@@ -30,8 +39,9 @@ Please help me format my Flutter code at @buffer according to best practices. Wh
    - Improve naming if unclear
    - Simplify complex expressions
    - Apply proper nullable handling practices
-	 - Lift large handler funcitons as separate functions
-			]],
+   - Lift large handler functions as separate functions
+]],
+			submit = true,
 		},
-	}
+	},
 }

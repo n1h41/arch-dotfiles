@@ -522,70 +522,23 @@ local plugins = {
 	{
 		'NickvanDyke/opencode.nvim',
 		dependencies = {
-			-- Recommended for better prompt input, and required to use `opencode.nvim`'s embedded terminal — otherwise optional
-			{ 'folke/snacks.nvim' --[[ , opts = { input = { enabled = true } } ]] },
+			'folke/snacks.nvim',
 		},
-		config = function()
-			-- `opencode.nvim` passes options via a global variable instead of `setup()` for faster startup
-			---@type opencode.Opts
-			vim.g.opencode_opts = {
-				prompts = {
-					flutter_format = {
-						description = "Format Flutter code",
-						prompt = [[
-### Flutter Code Formatting
-
-Please help me format my Flutter code at @buffer according to best practices. When formatting the code, please:
-
-#### Follow the official Dart Style Guide
-1. Apply Flutter-specific formatting conventions:
-   - Use proper widget structure with consistent indentation.
-   - Format widget trees for readability (one widget per line for complex widgets).
-   - Properly align parameters and trailing commas for enhanced readability.
-   - Extract repeated widgets into reusable variables or methods.
-   - Use const constructors where appropriate.
-   - Format string interpolation consistently.
-   - Apply proper spacing around operators, brackets, and parentheses.
-   - Organize import statements according to best practices.
-   - Add proper documentation for public APIs.
-
-2. WITHOUT changing any functional behavior, improve code:
-   - Remove redundant code.
-   - Fix any style issues.
-   - Improve naming if unclear.
-   - Simplify complex expressions.
-   - Apply proper nullable handling practices.
-	 - Extract long inline methods to separate methods to improve readability.
-			]],
-					},
-				}
-			}
-
-			-- Required for `opts.auto_reload`
-			vim.opt.autoread = true
-
-			-- Recommended keymaps
-			vim.keymap.set('n', '<leader>ot', function() require('opencode').toggle() end, { desc = 'Toggle opencode' })
-			vim.keymap.set('n', '<leader>oa', function() require('opencode').ask() end, { desc = 'Ask opencode' })
-			vim.keymap.set('n', '<leader>oA', function() require('opencode').ask('@cursor: ') end,
-				{ desc = 'Ask opencode about this' })
-			vim.keymap.set('v', '<leader>oa', function() require('opencode').ask('@selection: ') end,
-				{ desc = 'Ask opencode about selection' })
-			vim.keymap.set('n', '<leader>on', function() require('opencode').command('session_new') end,
-				{ desc = 'New opencode session' })
-			vim.keymap.set('n', '<leader>oy', function() require('opencode').command('messages_copy') end,
-				{ desc = 'Copy last opencode response' })
-			vim.keymap.set('n', '<S-C-u>', function() require('opencode').command('messages_half_page_up') end,
-				{ desc = 'Messages half page up' })
-			vim.keymap.set('n', '<S-C-d>', function() require('opencode').command('messages_half_page_down') end,
-				{ desc = 'Messages half page down' })
-			vim.keymap.set({ 'n', 'v' }, '<leader>os', function() require('opencode').select() end,
-				{ desc = 'Select opencode prompt' })
-
-			-- Example: keymap for custom prompt
-			vim.keymap.set('n', '<leader>oe', function() require('opencode').prompt('Explain @cursor and its context') end,
-				{ desc = 'Explain this code' })
-		end,
+		-- Lazy-load on keymaps for faster startup
+		keys = {
+			{ '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle opencode', mode = { 'n', 't' } },
+			{ '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n' },
+			{ '<leader>oA', function() require('opencode').ask('@this: ', { submit = true }) end, desc = 'Ask opencode about this', mode = { 'n', 'x' } },
+			{ '<leader>oa', function() require('opencode').ask('@this: ') end, desc = 'Ask opencode about selection', mode = 'v' },
+			{ '<leader>on', function() require('opencode').command('session.new') end, desc = 'New opencode session', mode = 'n' },
+			{ '<leader>oy', function() require('opencode').command('messages.copy') end, desc = 'Copy last opencode response', mode = 'n' },
+			{ '<S-C-u>', function() require('opencode').command('session.half.page.up') end, desc = 'Scroll opencode up', mode = 'n' },
+			{ '<S-C-d>', function() require('opencode').command('session.half.page.down') end, desc = 'Scroll opencode down', mode = 'n' },
+			{ '<leader>os', function() require('opencode').select() end, desc = 'Select opencode action', mode = { 'n', 'v' } },
+			{ '<leader>oe', function() require('opencode').prompt('Explain @this and its context') end, desc = 'Explain this code', mode = 'n' },
+			{ 'go', function() return require('opencode').operator('@this ') end, desc = 'Add range to opencode', mode = { 'n', 'x' }, expr = true },
+			{ 'goo', function() return require('opencode').operator('@this ') .. '_' end, desc = 'Add line to opencode', mode = 'n', expr = true },
+		},
 	},
 	{
 		"karb94/neoscroll.nvim",
