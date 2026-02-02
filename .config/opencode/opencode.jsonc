@@ -25,6 +25,15 @@
     }
   },
   "mcp": {
+    "dart-mcp-server": {
+      "type": "local",
+      "command": [
+        "dart",
+        "mcp-server"
+      ],
+      "enabled": true,
+      "environment": {}
+    }
   },
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
