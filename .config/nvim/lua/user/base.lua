@@ -160,10 +160,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	command = "set signcolumn=no"
 })
 
---[[ vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	command = "set wrap"
-}) ]]
+})
 
 -- Add filetype for NASM assembly files
 vim.filetype.add({

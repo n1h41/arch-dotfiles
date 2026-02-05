@@ -4,9 +4,12 @@
 
 set $mod Mod4
 
-font pango:JetBrainsMono Nerd Font Bold 12
+# Include window rules configuration
+include ~/.config/i3/windowrules.conf
 
-set $browser /usr/bin/zen-brower
+font pango:JetBrainsMono Nerd Font Bold 16
+
+set $browser /usr/bin/zen-browser
 
 # picom
 exec_always --no-startup-id picom
@@ -19,6 +22,9 @@ exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpapers/
 
 # dunst
 exec --no-startup-id dunst
+
+# autotiling (automatic split direction like Hyprland)
+exec_always --no-startup-id autotiling-rs
 
 # start with numlock on
 exec --no-startup-id numlockx on
@@ -67,7 +73,7 @@ bindsym Shift+XF86MonBrightnessDown exec --no-startup-id ~/.local/bin/brightness
 bindsym Print       exec flameshot full -c -p ~/Pictures/Screenshots/
 bindsym Shift+Print exec flameshot gui  -c -p ~/Pictures/Screenshots/
 
-# start wezterm
+# start kitty
 bindsym $mod+Return exec kitty -e tmux
 
 # kill focused window
@@ -79,24 +85,27 @@ bindsym $mod+x exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
 # file explorer
 bindsym $mod+e exec --no-startup-id nautilus &
 
+# browser
+bindsym $mod+Shift+b exec --no-startup-id $browser
+
 # startup and workspace rules
 exec --no-startup-id $browser
 for_window [class="zen"] move to workspace $ws1
 
-exec --no-startup-id wezterm start --class wezmain -e tmux new -A -s dev
-for_window [class="wezmain"] move to workspace $ws2
+exec --no-startup-id kitty --class kittymain -e tmux new -A -s dev
+for_window [class="kittymain"] move to workspace $ws2
 
 exec --no-startup-id ticktick
 for_window [class="ticktick"] move to workspace $ws5
 
 # scratch pads
-exec --no-startup-id wezterm --config font_size=13 start --class wezbtop -e btop
-for_window     [class="wezbtop"] move scratchpad
-bindsym $mod+b [class="wezbtop"] scratchpad show; move position center
+exec --no-startup-id kitty -o font_size=13 --class kittybtop -e btop
+for_window     [class="kittybtop"] move scratchpad
+bindsym $mod+b [class="kittybtop"] scratchpad show; move position center
 
-exec --no-startup-id wezterm start --class wezscratch -e tmux new -A -s scratch
-for_window     [class="wezscratch"] move scratchpad
-bindsym $mod+o [class="wezscratch"] scratchpad show; move position center
+exec --no-startup-id kitty --class kittyscratch -e tmux new -A -s scratch
+for_window     [class="kittyscratch"] move scratchpad
+bindsym $mod+o [class="kittyscratch"] scratchpad show; move position center
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -147,6 +156,9 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# rofi window switcher (cycles through all windows including floating)
+bindsym $mod+Tab exec --no-startup-id rofi -modes "window" -show window
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -236,15 +248,6 @@ default_floating_border none
 for_window [class="copyq"] floating enable
 for_window [class="gnome-control-center"] floating enable
 for_window [class="Nautilus"] floating enable
-for_window [class="Ulauncher"] border pixel 0
-for_window [class="Localsend"] floating enable
-for_window [class="discord"] move to workspace $ws9
-for_window [class="ZapZap"] move to workspace $ws10
-
-set $pref_width 1132
-set $pref_height 806
-for_window [class="wezbtop"]    resize set 1182 828
-for_window [class="wezscratch"] resize set $pref_width $pref_height
 
 # to focus when opening links
 focus_on_window_activation focus
@@ -256,11 +259,12 @@ hide_edge_borders smart
 title_align center
 
 # set default layout
-workspace_layout tabbed
+workspace_layout default
 
 # Set inner/outer gaps
 gaps inner 6
 gaps outer 6
+smart_gaps off
 
 # catpuccin
 set $rosewater #f5e0dc
