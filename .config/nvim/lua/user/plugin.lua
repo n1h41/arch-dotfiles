@@ -564,7 +564,8 @@ local plugins = {
 		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
 	},
 	{
-		dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
+		-- dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
+		dir = "/home/n1h41/dev/nvim/personal/flutter-plugin/nvim/",
 		config = function()
 			require("n1h41").setup()
 		end

@@ -90,10 +90,10 @@ bindsym $mod+Shift+b exec --no-startup-id $browser
 
 # startup and workspace rules
 exec --no-startup-id $browser
-for_window [class="zen"] move to workspace $ws1
+for_window [class="zen"] move to workspace $ws2
 
 exec --no-startup-id kitty --class kittymain -e tmux new -A -s dev
-for_window [class="kittymain"] move to workspace $ws2
+for_window [class="kittymain"] move to workspace $ws1
 
 exec --no-startup-id ticktick
 for_window [class="ticktick"] move to workspace $ws5
