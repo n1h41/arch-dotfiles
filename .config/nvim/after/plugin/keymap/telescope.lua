@@ -16,7 +16,7 @@ wk.add({
 	{ "<leader>fr", function() telescope.live_grep({ no_ignore = false, hidden = true }) end,  desc = "Live Grep",      mode = "n" },
 	{ "<leader>aC", function() telescope.commands() end,                                       desc = "List commands",  mode = "n" },
 
-	-- LSP operations (alternatives/complements to glance.nvim)
+	-- LSP operations
 	{ "<leader>ls", function() telescope.lsp_document_symbols() end,                           desc = "Document Symbols",    mode = "n" },
 	{ "<leader>lw", function() telescope.lsp_dynamic_workspace_symbols() end,                  desc = "Workspace Symbols",   mode = "n" },
 	{ "<leader>lr", function() telescope.lsp_references() end,                                 desc = "LSP References",      mode = "n" },

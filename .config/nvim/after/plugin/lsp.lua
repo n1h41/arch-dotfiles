@@ -48,7 +48,7 @@ local on_attach = function(client, bufnr)
 	-- Mappings
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	-- Basic LSP navigation (some will be overridden by glance.nvim)
+	-- Basic LSP navigation
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
@@ -60,7 +60,7 @@ local on_attach = function(client, bufnr)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts)
 
-	-- Type definition (will be overridden by glance)
+	-- Type definition
 	vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
 
 	-- Format buffer
@@ -203,16 +203,23 @@ protocol.CompletionItemKind = {
 local lspkind = require('lspkind')
 
 -- CMP setup
+local cmp_mappings = cmp.mapping.preset.insert({
+	["<C-b>"] = cmp.mapping.scroll_docs(-4),
+	["<C-f>"] = cmp.mapping.scroll_docs(4),
+	["<C-y>"] = cmp.mapping.complete(),
+	["<C-e>"] = cmp.mapping.abort(),
+	["<CR>"] = cmp.mapping.confirm({
+		select = false
+	})
+})
+
+-- INFO: disable completion with tab
+-- this helps with copilot setup
+cmp_mappings['<Tab>'] = nil
+cmp_mappings['<S-Tab>'] = nil
+
 cmp.setup({
-	mapping = cmp.mapping.preset.insert({
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-y>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({
-			select = false
-		})
-	}),
+	mapping = cmp_mappings,
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },

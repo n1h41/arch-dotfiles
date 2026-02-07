@@ -36,12 +36,6 @@ local plugins = {
 	{ 'neovim/nvim-lspconfig' },
 	{ 'williamboman/mason.nvim' },
 	{ 'williamboman/mason-lspconfig.nvim' },
-	--[[ {
-		'dnlhc/glance.nvim',
-		config = function()
-			require('glance').setup()
-		end,
-	}, ]]                                  -- Modern LSP UI replacement for lspsaga
 	{ 'onsails/lspkind-nvim' },           -- vscode like pictograms
 	{ 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 	-- Autocompletion
