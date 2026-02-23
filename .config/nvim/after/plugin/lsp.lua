@@ -1,4 +1,4 @@
--- Modern LSP configuration using vim.lsp.config (nvim 0.11+)
+-- Modern LSP configuration using vim.lsp.config (nvim 0.11+)lsp
 -- This replaces the deprecated require('lspconfig') setup
 
 -- Setup mason for automatic LSP server installation
@@ -292,7 +292,7 @@ flutter.setup {
 		run_via_dap = true,
 		exception_breakpoints = { "uncaught" }
 	},
-	flutter_path = "/home/n1h41/develop/flutter/bin/flutter",
+	flutter_path = "/Users/tabaqtech/Documents/flutter/bin/flutter",
 	fvm = false,
 	default_run_args = {
 		flutter = "--print-dtd"
@@ -315,11 +315,7 @@ flutter.setup {
 	},
 	lsp = {
 		color = {
-			enabled = true,
-			background = true,
-			foreground = true,
-			virtual_text = true,
-			virtual_text_str = "■",
+			enabled = false,  -- dartls doesn't support textDocument/documentColor
 		},
 		on_attach = on_attach,
 		capabilities = capabilities,
@@ -327,8 +323,8 @@ flutter.setup {
 			showTodos = false,
 			completeFunctionCalls = true,
 			analysisExcludedFolders = {
-				"/home/n1h41/.pub-cache/hosted/",
-				"/home/n1h41/flutter/",
+				vim.fn.expand("$HOME/.pub-cache/hosted/"),
+				"/Users/tabaqtech/Documents/flutter/",
 			},
 			renameFilesWithClasses = "prompt",
 			enableSnippets = true,

@@ -284,8 +284,14 @@ local plugins = {
 			'stevearc/dressing.nvim', -- optional for vim.ui.select
 		},
 	},                         -- Flutter Snippets
-	"RobertBrunhage/flutter-riverpod-snippets",
-	"Neevash/awesome-flutter-snippets",
+	{
+		"RobertBrunhage/flutter-riverpod-snippets",
+		ft = "dart",
+	},
+	{
+		"Neevash/awesome-flutter-snippets",
+		ft = "dart",
+	},
 	-- Golang Debugger
 	{
 		"leoluz/nvim-dap-go",
@@ -409,16 +415,16 @@ local plugins = {
 		opts = { latex = { enabled = false } },
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
-	{
-		"rest-nvim/rest.nvim",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			opts = function(_, opts)
-				opts.ensure_installed = opts.ensure_installed or {}
-				table.insert(opts.ensure_installed, "http")
-			end,
-		}
-	},
+	-- {
+	-- 	"rest-nvim/rest.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 		opts = function(_, opts)
+	-- 			opts.ensure_installed = opts.ensure_installed or {}
+	-- 			table.insert(opts.ensure_installed, "http")
+	-- 		end,
+	-- 	}
+	-- },
 	{
 		"kndndrj/nvim-dbee",
 		branch = "master",
@@ -437,7 +443,8 @@ local plugins = {
 	},
 	{
 		'anurag3301/nvim-platformio.lua',
-		requires = {
+		enabled = false, -- Disabled: platformio CLI not installed
+		dependencies = {
 			{ 'akinsho/nvim-toggleterm.lua' },
 			{ 'nvim-telescope/telescope.nvim' },
 			{ 'nvim-lua/plenary.nvim' },
@@ -505,9 +512,6 @@ local plugins = {
 	},
 	{
 		'nvimdev/lspsaga.nvim',
-		config = function()
-			require('lspsaga').setup({})
-		end,
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter', -- optional
 			'nvim-tree/nvim-web-devicons',  -- optional
@@ -555,11 +559,11 @@ local plugins = {
 	{ 'andweeb/presence.nvim' },
 	-- LOCAL PLUGIN DEVELOPMENT
 	{
-		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
+		dir = "/Users/tabaqtech/dev/nvim/personal/speech_to_text/"
 	},
 	{
-		-- dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
-		dir = "/home/n1h41/dev/nvim/personal/flutter-plugin/nvim/",
+		-- dir = "/Users/tabaqtech/dev/nvim/personal/flutter-vm-service-nvim/",
+		dir = "/Users/tabaqtech/dev/nvim/personal/flutter-plugin/nvim/",
 		config = function()
 			require("n1h41").setup()
 		end

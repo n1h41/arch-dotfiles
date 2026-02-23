@@ -1,18 +1,17 @@
 local status, saga = pcall(require, "lspsaga")
-if (not status) then return end
+if (not status) then
+	return
+end
 
 saga.setup({
-	lightbulb = {
-		enable = false,
-		sign = false,
-	},
 	beacon = {
 		enable = false,
 	},
 	ui = {
-		winblend = 0,
+		winblend = 1,
 		border = 'rounded',
-		code_action = '',
+		devicon = true,
+		code_action = '*',
 	},
 	definition = {
 		keys = {
@@ -23,6 +22,11 @@ saga.setup({
 	},
 	implement = {
 		enable = true,
+	},
+	lightbulb = {
+		enable = false,
+		sign = false,
+		virtual_text = false,
 	},
 })
 
@@ -105,30 +109,6 @@ keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
 -- there is no information available.
 -- To disable it just use ":Lspsaga hover_doc ++quiet"
 -- Pressing the key twice will enter the hover window
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-
--- If you want to keep the hover window in the top right hand corner,
--- you can pass the ++keep argument
--- Note that if you use hover with ++keep, pressing this key again will
--- close the hover window. If you want to jump to the hover window
--- you should use the wincmd command "<C-w>w"
---keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts)
-
--- Call hierarchy
-keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
-keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-
--- If you want to keep the hover window in the top right hand corner,
--- you can pass the ++keep argument
--- Note that if you use hover with ++keep, pressing this key again will
--- close the hover window. If you want to jump to the hover window
--- you should use the wincmd command "<C-w>w"
---keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts)
-
--- Call hierarchy
-keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
-keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 
 -- If you want to keep the hover window in the top right hand corner,

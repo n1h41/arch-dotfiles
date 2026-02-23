@@ -1,16 +1,24 @@
 #!/usr/bin/env zsh
 
-#! ██████╗░░█████╗░  ███╗░░██╗░█████╗░████████╗  ███████╗██████╗░██╗████████╗
-#! ██╔══██╗██╔══██╗  ████╗░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██║╚══██╔══╝
-#! ██║░░██║██║░░██║  ██╔██╗██║██║░░██║░░░██║░░░  █████╗░░██║░░██║██║░░░██║░░░
-#! ██║░░██║██║░░██║  ██║╚████║██║░░██║░░░██║░░░  ██╔══╝░░██║░░██║██║░░░██║░░░
-#! ██████╔╝╚█████╔╝  ██║░╚███║╚█████╔╝░░░██║░░░  ███████╗██████╔╝██║░░░██║░░░
-#! ╚═════╝░░╚════╝░  ╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░  ╚══════╝╚═════╝░╚═╝░░░╚═╝░░░
+#! ██████╗░░█████╗░  ███╗░░██╗░█████╗░████████╗  ███████╗██████╗░██╗████████╗
+#! ██╔══██╗██╔══██╗  ████╗░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██║╚══██╔══╝
+#! ██║░░██║██║░░██║  ██╔██╗██║██║░░██║░░░██║░░░  █████╗░░██║░░██║██║░░░██║░░░
+#! ██║░░██║██║░░██║  ██║╚████║██║░░██║░░░██║░░░  ██╔══╝░░██║░░██║██║░░░██║░░░
+#! ██████╔╝╚█████╔╝  ██║░╚███║╚█████╔╝░░░██║░░░  ███████╗██████╔╝██║░░░██║░░░
+#! ╚═════╝░░╚════╝░  ╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░  ╚══════╝╚═════╝░╚═╝░░░╚═╝░░░
 
 # HyDE's ZSH env configuration
 # This file is sourced by ZSH on startup
 # And ensures that we have an obstruction-free .zshrc file
 # This also ensures that the proper HyDE $ENVs are loaded
+
+# Detect OS (reuse from env.zsh if already set)
+if [[ -z $IS_MACOS && -z $IS_LINUX ]]; then
+    case "$(uname -s)" in
+        Darwin) IS_MACOS=1 ;;
+        Linux)  IS_LINUX=1 ;;
+    esac
+fi
 
 function _load_functions() {
     # Load all custom function files // Directories are ignored
@@ -27,12 +35,20 @@ function _load_completions() {
 
 function _dedup_zsh_plugins {
     unset -f _dedup_zsh_plugins
-    # Oh-my-zsh installation path
-    zsh_paths=(
-        "/usr/share/oh-my-zsh"
-        "/usr/local/share/oh-my-zsh"
-        "$HOME/.oh-my-zsh"
-    )
+    # Oh-my-zsh installation path (OS-specific)
+    if [[ -n $IS_MACOS ]]; then
+        zsh_paths=(
+            "$HOME/.oh-my-zsh"
+            "/opt/homebrew/share/oh-my-zsh"
+            "/usr/local/share/oh-my-zsh"
+        )
+    else
+        zsh_paths=(
+            "/usr/share/oh-my-zsh"
+            "/usr/local/share/oh-my-zsh"
+            "$HOME/.oh-my-zsh"
+        )
+    fi
     for zsh_path in "${zsh_paths[@]}"; do [[ -d $zsh_path ]] && export ZSH=$zsh_path && break; done
     # Load Plugins
     hyde_plugins=(git zsh-256color zsh-autosuggestions zsh-syntax-highlighting)
@@ -179,8 +195,13 @@ SAVEHIST=10000
 
 export HISTFILE ZSH_AUTOSUGGEST_STRATEGY HISTSIZE SAVEHIST
 
-# HyDE Package Manager
-PM_COMMAND=(hyde-shell pm)
+# HyDE Package Manager (Linux only - hyde-shell pm doesn't exist on macOS)
+if [[ -n $IS_LINUX ]]; then
+    PM_COMMAND=(hyde-shell pm)
+else
+    # macOS: Use brew as the package manager
+    PM_COMMAND=(brew)
+fi
 
 # Optionally load user configuration // useful for customizing the shell without modifying the main file
 if [[ -f $HOME/.hyde.zshrc ]]; then
@@ -230,14 +251,26 @@ __package_manager () {
     ${PM_COMMAND[@]} "$@"
 }
 
+# OS-specific aliases
+if [[ -n $IS_LINUX ]]; then
+    # Linux: hyde-shell pm aliases
+    alias in='__package_manager install' \
+          un='__package_manager remove' \
+          up='__package_manager upgrade' \
+          pl='__package_manager search installed' \
+          pa='__package_manager search all'
+else
+    # macOS: brew aliases
+    alias in='brew install' \
+          un='brew uninstall' \
+          up='brew upgrade' \
+          pl='brew list' \
+          pa='brew search'
+fi
+
+# Common aliases (both platforms)
 alias c='clear' \
-    in='__package_manager install' \
-    un='__package_manager remove' \
-    up='__package_manager upgrade' \
-    pl='__package_manager search installed' \
-    pa='__package_manager search all' \
     vc='code' \
-    fastfetch='fastfetch --logo-type kitty' \
     ..='cd ..' \
     ...='cd ../..' \
     .3='cd ../../..' \
@@ -245,4 +278,12 @@ alias c='clear' \
     .5='cd ../../../../..' \
     mkdir='mkdir -p'
 
+# fastfetch alias (check if installed and adjust for terminal)
+if command -v fastfetch >/dev/null 2>&1; then
+    if [[ -n $IS_MACOS ]]; then
+        alias fastfetch='fastfetch'
+    else
+        alias fastfetch='fastfetch --logo-type kitty'
+    fi
+fi
 

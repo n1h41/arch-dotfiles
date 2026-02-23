@@ -3,10 +3,10 @@
 # we added a config file for you to customize HyDE before loading zshrc
 # Edit $ZDOTDIR/.user.zsh to customize HyDE before loading zshrc
 
-#  Plugins 
+#  Plugins 
 # oh-my-zsh plugins are loaded  in $ZDOTDIR/.user.zsh file, see the file for more information
 
-#  Aliases 
+#  Aliases 
 # Override aliases here in '$ZDOTDIR/.zshrc' (already set in .zshenv)
 
 # # Helpful aliases
@@ -37,18 +37,28 @@ bindkey '^@' autosuggest-accept
 # # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 alias mkdir='mkdir -p'
 
-#  This is your file 
+#  This is your file 
 # Add your configurations here
 export EDITOR=nvim
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-# Flutter
-export PATH="$PATH:$HOME/develop/flutter/bin:$HOME/.pub-cache/bin"
+# Flutter (OS-specific paths)
+if [[ -n $IS_MACOS ]]; then
+    export PATH="$PATH:/Users/tabaqtech/Documents/flutter/bin:$HOME/.pub-cache/bin"
+else
+    export PATH="$PATH:$HOME/develop/flutter/bin:$HOME/.pub-cache/bin"
+fi
 
-# Android Studio
-export PATH="$PATH:$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/emulator"
-export ANDROID_AVD_HOME=$HOME/.config/.android/avd/
+# Android Studio (OS-specific paths)
+if [[ -n $IS_MACOS ]]; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator"
+    export ANDROID_AVD_HOME="$HOME/.android/avd"
+else
+    export PATH="$PATH:$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/emulator"
+    export ANDROID_AVD_HOME=$HOME/.config/.android/avd/
+fi
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -91,14 +101,45 @@ eval "$(zoxide init zsh)"
 
 unset -f command_not_found_handler # Uncomment to prevent searching for commands not found in package manager
 
-source /usr/share/nvm/init-nvm.sh
+# NVM (OS-specific paths)
+if [[ -n $IS_MACOS ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    # Homebrew NVM (Apple Silicon)
+    if [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
+        source "/opt/homebrew/opt/nvm/nvm.sh"
+    # Homebrew NVM (Intel)
+    elif [[ -s "/usr/local/opt/nvm/nvm.sh" ]]; then
+        source "/usr/local/opt/nvm/nvm.sh"
+    # Manual install
+    elif [[ -s "$NVM_DIR/nvm.sh" ]]; then
+        source "$NVM_DIR/nvm.sh"
+    fi
+else
+    # Linux NVM path
+    [[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+fi
 
-# bun completions
-[ -s "/home/n1h41/.bun/_bun" ] && source "/home/n1h41/.bun/_bun"
+# bun completions (OS-agnostic path)
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# opencode
-export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
+# opencode (OS-specific binary)
+if [[ -n $IS_MACOS ]]; then
+    export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-darwin-arm64/bin:$PATH"
+else
+    export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
+fi
+
+# macOS-specific: Java (if needed)
+if [[ -n $IS_MACOS ]]; then
+    # Uncomment if you need Java 17
+    # export JAVA_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null)
+    
+    # Starship prompt (if installed via brew)
+    if command -v starship >/dev/null 2>&1; then
+        eval "$(starship init zsh)"
+    fi
+fi

@@ -12,8 +12,8 @@ wk.add({
 	-- Flutter commands
 	{ "<leader>fe", "<cmd>FlutterEmulators<cr>",       desc = "Emulators" },
 	{ "<leader>fd", "<cmd>FlutterDevices<cr>",         desc = "Devices" },
-	{ "<leader>fc", "<cmd>FlutterCopyProfilerUrl<cr>", desc = "Run" },
-	{ "<leader>fl", "<cmd>FlutterLogClear<cr>",        desc = "Logs" },
+	{ "<leader>fc", "<cmd>FlutterCopyProfilerUrl<cr>", desc = "Copy Profiler URL" },
+	{ "<leader>fl", "<cmd>FlutterLogClear<cr>",        desc = "Clear Logs" },
 	{ "<leader>fq", "<cmd>FlutterQuit<cr>",            desc = "Quit" },
 	{ "<leader>fo", "<cmd>FlutterOutlineToggle<cr>",   desc = "Flutter outline" },
 	{ "<leader>fO", "<cmd>FlutterLogToggle<cr>",       desc = "Flutter log" },
