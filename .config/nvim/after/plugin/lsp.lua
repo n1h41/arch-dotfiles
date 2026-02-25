@@ -73,7 +73,16 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_create_autocmd("CursorHold", {
 			group = highlight_group,
 			buffer = bufnr,
-			callback = vim.lsp.buf.document_highlight,
+			callback = function()
+				-- Re-check capability at runtime (handles LspRestart edge cases)
+				local clients = vim.lsp.get_clients({ bufnr = bufnr })
+				for _, c in ipairs(clients) do
+					if c.server_capabilities.documentHighlightProvider then
+						vim.lsp.buf.document_highlight()
+						return
+					end
+				end
+			end,
 		})
 		vim.api.nvim_create_autocmd("CursorMoved", {
 			group = highlight_group,
@@ -245,6 +254,23 @@ cmp.setup({
 	},
 })
 
+-- Refresh cmp sources when LSP attaches (fixes completion after LspRestart)
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(args)
+		vim.defer_fn(function()
+			local bufnr = args.buf
+			if vim.api.nvim_buf_is_valid(bufnr) then
+				-- Trigger cmp to re-register LSP source for this buffer
+				local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+				if ok then
+					-- Force cmp to refresh its source list
+					vim.cmd('doautocmd FileType ' .. vim.bo[bufnr].filetype)
+				end
+			end
+		end, 100) -- Small delay to ensure LSP is fully initialized
+	end,
+})
+
 -- CMP autopairs integration
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -272,6 +298,21 @@ vim.diagnostic.config({
 })
 
 -- Flutter tools setup
+-- Patch nvim_win_set_cursor to handle out-of-bounds gracefully
+local original_set_cursor = vim.api.nvim_win_set_cursor
+vim.api.nvim_win_set_cursor = function(win, pos)
+	local ok, err = pcall(function()
+		local buf = vim.api.nvim_win_get_buf(win)
+		local line_count = vim.api.nvim_buf_line_count(buf)
+		local line = math.min(pos[1], line_count)
+		local col = pos[2] or 0
+		original_set_cursor(win, { line, col })
+	end)
+	if not ok then
+		vim.notify('Cursor position error (suppressed): ' .. tostring(err), vim.log.levels.DEBUG)
+	end
+end
+
 local flutter = require('flutter-tools')
 
 flutter.setup {
