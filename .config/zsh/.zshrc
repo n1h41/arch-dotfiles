@@ -128,9 +128,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # opencode (OS-specific binary)
 if [[ -n $IS_MACOS ]]; then
-    export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-darwin-arm64/bin:$PATH"
+    export PATH="$HOME/dev/projects/opencode/packages/opencode/dist/opencode-darwin-arm64/bin:$PATH"
 else
-    export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
+    export PATH="$HOME/dev/projects/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
 fi
 
 # macOS-specific: Java (if needed)

@@ -16,8 +16,16 @@ case "$(uname -s)" in
     Linux)  IS_LINUX=1 ;;
 esac
 
-# Basic PATH prepending (user local bin)
-PATH="$HOME/.local/bin:$PATH"
+# Basic PATH prepending (user local bin + Homebrew)
+if [[ -d /opt/homebrew/bin ]]; then
+    # Apple Silicon Homebrew
+    PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$PATH"
+elif [[ -d /usr/local/Homebrew ]]; then
+    # Intel Mac Homebrew
+    PATH="/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH"
+else
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 # XDG Base Directory Specification variables with defaults
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
