@@ -96,9 +96,8 @@ source /usr/share/nvm/init-nvm.sh
 # bun completions
 [ -s "/home/n1h41/.bun/_bun" ] && source "/home/n1h41/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# opencode
+# export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
 
 # opencode
-export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
+export PATH=/home/n1h41/.opencode/bin:$PATH

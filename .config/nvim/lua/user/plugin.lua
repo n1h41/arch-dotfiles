@@ -232,6 +232,7 @@ local plugins = {
 					tailwind = false,
 					sass = { enable = false, parsers = { "css" } },
 					virtualtext = "■",
+					suppress_deprecation = true,
 				},
 				buftypes = {},
 			})
@@ -436,8 +437,9 @@ local plugins = {
 		end,
 	},
 	{
+		enabled = false,
 		'anurag3301/nvim-platformio.lua',
-		requires = {
+		dependencies = {
 			{ 'akinsho/nvim-toggleterm.lua' },
 			{ 'nvim-telescope/telescope.nvim' },
 			{ 'nvim-lua/plenary.nvim' },
@@ -465,8 +467,8 @@ local plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
 		},
-		-- comment the following line to ensure hub will be ready at the earliest
-		cmd = "MCPHub",                        -- lazy load by default
+		-- Load before codecompanion to avoid nil table error in variables.lua
+		lazy = false,
 		build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
 		-- uncomment this if you don't want mcp-hub to be available globally or can't use -g
 		-- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)

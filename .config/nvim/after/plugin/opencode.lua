@@ -7,9 +7,6 @@ vim.o.autoread = true
 
 ---@type opencode.Opts
 vim.g.opencode_opts = {
-	provider = {
-		enabled = "snacks",
-	},
 	prompts = {
 		flutter_format = {
 			description = "Format Flutter code",
