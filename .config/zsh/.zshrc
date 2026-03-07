@@ -25,7 +25,8 @@ alias lzd="lazydocker"
 alias mk="make"
 alias tx="tmux"
 
-bindkey '^@' autosuggest-accept
+bindkey '^@' autosuggest-accept        # Ctrl+Space - accept full suggestion
+bindkey '\e[Z' forward-word            # Shift+Tab - accept word-by-word
 
 # # Directory navigation shortcuts
 # alias ..='cd ..'

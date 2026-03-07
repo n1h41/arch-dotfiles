@@ -5,6 +5,7 @@ if pgrep -f "dev-tmux" > /dev/null && pgrep -f "emulator.*flutter_emulator" > /d
 	# Already running? Switch to workspace 1
 	hyprctl dispatch workspace 1
 	notify-send "Dev Workspace" "Already running, switching to workspace 1"
+	exit 0
 fi
 
 if ! pgrep -f "dev-tmux" > /dev/null; then
