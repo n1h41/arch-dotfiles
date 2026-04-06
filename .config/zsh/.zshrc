@@ -28,13 +28,6 @@ alias tx="tmux"
 bindkey '^@' autosuggest-accept        # Ctrl+Space - accept full suggestion
 bindkey '\e[Z' forward-word            # Shift+Tab - accept word-by-word
 
-# # Directory navigation shortcuts
-# alias ..='cd ..'
-# alias ...='cd ../..'
-# alias .3='cd ../../..'
-# alias .4='cd ../../../..'
-# alias .5='cd ../../../../..'
-
 # # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 alias mkdir='mkdir -p'
 
@@ -94,11 +87,11 @@ unset -f command_not_found_handler # Uncomment to prevent searching for commands
 
 source /usr/share/nvm/init-nvm.sh
 
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # bun completions
 [ -s "/home/n1h41/.bun/_bun" ] && source "/home/n1h41/.bun/_bun"
-
-# opencode
-# export PATH="$HOME/dev/typescript/reference/opencode/packages/opencode/dist/opencode-linux-x64/bin:$PATH"
 
 # opencode
 export PATH=/home/n1h41/.opencode/bin:$PATH

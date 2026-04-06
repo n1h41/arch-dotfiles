@@ -1,7 +1,7 @@
 ---
 description: Flutter
 mode: primary
-model: github-copilot/gemini-3-pro-preview
+model: github-copilot/gemini-3.1-pro-preview
 temperature: 0.1
 ---
 # AI rules for Flutter
