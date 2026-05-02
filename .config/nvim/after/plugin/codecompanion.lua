@@ -3,9 +3,7 @@ if not status then
 	return
 end
 
-local workflows = require("user.codecompanion.workflows")
-
-codecompanion.setup({
+--[[ codecompanion.setup({
 	extensions = {
 		mcphub = {
 			callback = "mcphub.extensions.codecompanion",
@@ -37,7 +35,6 @@ codecompanion.setup({
 			}
 		}
 	},
-	prompt_library = workflows,
 	strategies = {
 		chat = {
 			adapter = "copilot",
@@ -80,28 +77,26 @@ codecompanion.setup({
 		}
 	},
 	adapters = {
-		http = {
-			ollama = function()
-				return require("codecompanion.adapters").extend("openai_compatible", {
-					schema = {
-						model = {
-							default = "claude-sonnet-4",
-						},
+		ollama = function()
+			return require("codecompanion.adapters").extend("openai_compatible", {
+				schema = {
+					model = {
+						default = "claude-sonnet-4",
 					},
-					env = {
-						url = "http://localhost:4000",
-					},
-				})
-			end,
-			copilot = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					schema = {
-						model = {
-							default = "gpt-5-mini"
-						}
+				},
+				env = {
+					url = "http://localhost:4000",
+				},
+			})
+		end,
+		copilot = function()
+			return require("codecompanion.adapters").extend("copilot", {
+				schema = {
+					model = {
+						default = "gpt-5-mini"
 					}
-				})
-			end,
-		}
+				}
+			})
+		end,
 	}
-})
+}) ]]

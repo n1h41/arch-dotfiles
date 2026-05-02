@@ -1,8 +1,3 @@
-local status, _ = pcall(require, "opencode")
-if not status then
-	return
-end
-
 vim.o.autoread = true
 
 ---@type opencode.Opts

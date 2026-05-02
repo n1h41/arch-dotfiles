@@ -410,7 +410,7 @@ local plugins = {
 		opts = { latex = { enabled = false } },
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
-	{
+	--[[ {
 		"rest-nvim/rest.nvim",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -419,7 +419,7 @@ local plugins = {
 				table.insert(opts.ensure_installed, "http")
 			end,
 		}
-	},
+	}, ]]
 	{
 		"kndndrj/nvim-dbee",
 		branch = "master",
@@ -522,18 +522,18 @@ local plugins = {
 		},
 		-- Lazy-load on keymaps for faster startup
 		keys = {
-			{ '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle opencode', mode = { 'n', 't' } },
-			{ '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n' },
-			{ '<leader>oA', function() require('opencode').ask('@this: ', { submit = true }) end, desc = 'Ask opencode about this', mode = { 'n', 'x' } },
-			{ '<leader>oa', function() require('opencode').ask('@this: ') end, desc = 'Ask opencode about selection', mode = 'v' },
-			{ '<leader>on', function() require('opencode').command('session.new') end, desc = 'New opencode session', mode = 'n' },
-			{ '<leader>oy', function() require('opencode').command('messages.copy') end, desc = 'Copy last opencode response', mode = 'n' },
-			{ '<S-C-u>', function() require('opencode').command('session.half.page.up') end, desc = 'Scroll opencode up', mode = 'n' },
-			{ '<S-C-d>', function() require('opencode').command('session.half.page.down') end, desc = 'Scroll opencode down', mode = 'n' },
-			{ '<leader>os', function() require('opencode').select() end, desc = 'Select opencode action', mode = { 'n', 'v' } },
-			{ '<leader>oe', function() require('opencode').prompt('Explain @this and its context') end, desc = 'Explain this code', mode = 'n' },
-			{ 'go', function() return require('opencode').operator('@this ') end, desc = 'Add range to opencode', mode = { 'n', 'x' }, expr = true },
-			{ 'goo', function() return require('opencode').operator('@this ') .. '_' end, desc = 'Add line to opencode', mode = 'n', expr = true },
+			{ '<leader>ot', function() require('opencode').toggle() end,                                desc = 'Toggle opencode',              mode = { 'n', 't' } },
+			{ '<leader>oa', function() require('opencode').ask() end,                                   desc = 'Ask opencode',                 mode = 'n' },
+			{ '<leader>oA', function() require('opencode').ask('@this: ', { submit = true }) end,       desc = 'Ask opencode about this',      mode = { 'n', 'x' } },
+			{ '<leader>oa', function() require('opencode').ask('@this: ') end,                          desc = 'Ask opencode about selection', mode = 'v' },
+			{ '<leader>on', function() require('opencode').command('session.new') end,                  desc = 'New opencode session',         mode = 'n' },
+			{ '<leader>oy', function() require('opencode').command('messages.copy') end,                desc = 'Copy last opencode response',  mode = 'n' },
+			{ '<S-C-u>',    function() require('opencode').command('session.half.page.up') end,         desc = 'Scroll opencode up',           mode = 'n' },
+			{ '<S-C-d>',    function() require('opencode').command('session.half.page.down') end,       desc = 'Scroll opencode down',         mode = 'n' },
+			{ '<leader>os', function() require('opencode').select() end,                                desc = 'Select opencode action',       mode = { 'n', 'v' } },
+			{ '<leader>oe', function() require('opencode').prompt('Explain @this and its context') end, desc = 'Explain this code',            mode = 'n' },
+			{ 'go',         function() return require('opencode').operator('@this ') end,               desc = 'Add range to opencode',        mode = { 'n', 'x' }, expr = true },
+			{ 'goo',        function() return require('opencode').operator('@this ') .. '_' end,        desc = 'Add line to opencode',         mode = 'n',          expr = true },
 		},
 	},
 	{
@@ -554,9 +554,16 @@ local plugins = {
 		build = ':Cord update',
 		-- opts = {}
 	}, ]]
+	{
+		'nvim-java/nvim-java',
+		config = function()
+			require('java').setup()
+			vim.lsp.enable('jdtls')
+		end,
+	},
 	{ 'andweeb/presence.nvim' },
 	-- LOCAL PLUGIN DEVELOPMENT
-	{
+	--[[ {
 		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
 	},
 	{
@@ -565,7 +572,7 @@ local plugins = {
 		config = function()
 			require("n1h41").setup()
 		end
-	},
+	}, ]]
 }
 
 local ok, lazy = pcall(require, 'lazy')

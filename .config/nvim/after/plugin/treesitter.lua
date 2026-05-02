@@ -1,8 +1,8 @@
-local status, ts = pcall(require, "nvim-treesitter.configs")
-if (not status) then return end
+-- local status, ts = pcall(require, "nvim-treesitter.configs")
+-- if (not status) then return end
 
 ---@diagnostic disable-next-line: missing-fields
-ts.setup {
+--[[ ts.setup {
   highlight = {
     enable = true,
     disable = {},
@@ -43,4 +43,33 @@ ts.setup {
 }
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" } ]]
+
+require('nvim-treesitter').setup {
+	install_dir = vim.fn.stdpath('data') .. '/site'
+}
+
+require('nvim-treesitter').install { 
+	"markdown",
+	"markdown_inline",
+	"tsx",
+	"javascript",
+	"typescript",
+	"toml",
+	"json",
+	"yaml",
+	"lua",
+	"go",
+	"html",
+	"css",
+	"c_sharp",
+	"http",
+	"json",
+	"rust",
+	"c",
+	"cpp",
+	"dart",
+	"vimdoc",
+	"vim",
+	"regex",
+}
