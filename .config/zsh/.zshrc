@@ -143,3 +143,6 @@ if [[ -n $IS_MACOS ]]; then
         eval "$(starship init zsh)"
     fi
 fi
+
+# bun completions
+[ -s "/Users/tabaqtech/.bun/_bun" ] && source "/Users/tabaqtech/.bun/_bun"

@@ -11,24 +11,12 @@ local lazydocker = Terminal:new({
 	direction = 'float'
 })
 
-local opencode = Terminal:new(
-	{
-		cmd = "opencode",
-		hidden = true,
-		direction = 'float'
-	}
-)
-
 function Lazygit_toggle()
 	lazygit:toggle()
 end
 
 function Lazydocker_toggle()
 	lazydocker:toggle()
-end
-
-function Opencode_toggle()
-	opencode:toggle()
 end
 
 function _G.set_terminal_keymaps()
@@ -47,4 +35,3 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua Lazygit_toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ld", "<cmd>lua Lazydocker_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>lo", "<cmd>lua Opencode_toggle()<CR>", { noremap = true, silent = true })

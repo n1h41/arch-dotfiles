@@ -1,15 +1,10 @@
 local status, _ = pcall(require, "opencode")
-if not status then
-	return
-end
+if not status then return end
 
 vim.o.autoread = true
 
 ---@type opencode.Opts
 vim.g.opencode_opts = {
-	provider = {
-		enabled = "snacks",
-	},
 	prompts = {
 		flutter_format = {
 			description = "Format Flutter code",

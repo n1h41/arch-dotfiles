@@ -395,6 +395,62 @@ local plugins = {
 	},
 	{
 		"folke/snacks.nvim",
+		opts = {
+			dashboard = {
+				preset = {
+					keys = {
+						{
+							icon = "󰈢 ",
+							key = "f",
+							desc = "Find Files",
+							action = ":Telescope find_files"
+						},
+						{
+							icon = "󰥔 ",
+							key = "r",
+							desc = "Recent Files",
+							action = ":Telescope oldfiles"
+						},
+						{
+							icon = "󰍉 ",
+							key = "s",
+							desc = "Search Text",
+							action = ":Telescope live_grep"
+						},
+						{
+							icon = "󱎸 ",
+							key = "t",
+							desc = "Find Text",
+							action = ":Telescope grep_string"
+						},
+						{
+							icon = "󱂫 ",
+							key = "p",
+							desc = "Recent Projects",
+							action = function()
+								require("snacks.dashboard").pick("projects", {
+									limit = 10,
+									pick = true,
+									session = true
+								})
+							end
+						},
+					},
+				},
+				sections = {
+					{
+						{ section = "keys",    gap = 1,    padding = 1 },
+						{ section = "startup", padding = 1 },
+					}
+				},
+			},
+			input = {},
+			picker = {},
+			terminal = {},
+			image = {},
+			animate = {},
+			dim = {},
+		},
 	},
 	-- Git integration (fugitive alternative)
 	{
@@ -472,8 +528,8 @@ local plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
 		},
-		-- comment the following line to ensure hub will be ready at the earliest
-		cmd = "MCPHub",                        -- lazy load by default
+		-- Load before codecompanion to avoid nil table error in variables.lua
+		lazy = false,
 		build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
 		-- uncomment this if you don't want mcp-hub to be available globally or can't use -g
 		-- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
@@ -519,17 +575,45 @@ local plugins = {
 	},
 	{
 		'NickvanDyke/opencode.nvim',
+		version = '*',
 		dependencies = {
-			'folke/snacks.nvim',
+			{
+				'folke/snacks.nvim',
+				optional = true,
+				opts = {
+					input = {},
+					picker = {
+						actions = {
+							opencode_send = function(...) return require('opencode').snacks_picker_send(...) end,
+						},
+						win = {
+							input = {
+								keys = {
+									['<a-a>'] = { 'opencode_send', mode = { 'n', 'i' } },
+								},
+							},
+						},
+					},
+				},
+			},
 		},
-		-- Lazy-load on keymaps for faster startup
 		keys = {
 			{ '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle opencode', mode = { 'n', 't' } },
-			{ '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n' },
+			{
+				'<leader>oa',
+				function()
+					local mode = vim.fn.mode()
+					if mode == 'v' or mode == 'V' or mode == '\22' then
+						require('opencode').ask('@this: ')
+					else
+						require('opencode').ask()
+					end
+				end,
+				desc = 'Ask opencode',
+				mode = { 'n', 'v' },
+			},
 			{ '<leader>oA', function() require('opencode').ask('@this: ', { submit = true }) end, desc = 'Ask opencode about this', mode = { 'n', 'x' } },
-			{ '<leader>oa', function() require('opencode').ask('@this: ') end, desc = 'Ask opencode about selection', mode = 'v' },
 			{ '<leader>on', function() require('opencode').command('session.new') end, desc = 'New opencode session', mode = 'n' },
-			{ '<leader>oy', function() require('opencode').command('messages.copy') end, desc = 'Copy last opencode response', mode = 'n' },
 			{ '<S-C-u>', function() require('opencode').command('session.half.page.up') end, desc = 'Scroll opencode up', mode = 'n' },
 			{ '<S-C-d>', function() require('opencode').command('session.half.page.down') end, desc = 'Scroll opencode down', mode = 'n' },
 			{ '<leader>os', function() require('opencode').select() end, desc = 'Select opencode action', mode = { 'n', 'v' } },

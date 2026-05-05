@@ -1,0 +1,9 @@
+#!/bin/bash
+
+borders \
+  active_color=0xffca9ee6 \
+  inactive_color=0xff6c7086 \
+  width=4.0 \
+  style=round \
+  hidpi=on \
+  ax_focus=on

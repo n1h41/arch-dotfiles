@@ -51,8 +51,8 @@ return utils.create_workflow(
 				content = function(context)
 					local filetype = context and context.filetype or "dart"
 					return
-							"Please analyze the code in #{buffer} and format it according to Flutter best practices. Use @{neovim} tool apply format edits to file in buffer. The file is a " ..
-							filetype .. " file. Please provide a brief explanation of the formatting changes you've made."
+						"Please analyze the code in #{buffer} and format it according to Flutter best practices. Use the insert_edit_into_file tool to apply format edits to file in buffer. The file is a " ..
+						filetype .. " file. Please provide a brief explanation of the formatting changes you've made."
 				end,
 				opts = {
 					auto_submit = true,

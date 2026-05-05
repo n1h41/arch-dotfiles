@@ -17,7 +17,7 @@ function M.create_workflow(description, index, short_name, prompts, is_default)
 		description = description,
 		opts = {
 			index = index,
-			is_default = is_default or true,
+			is_default = (is_default == nil) and true or is_default,
 			short_name = short_name,
 			auto_submit = true,
 		},

@@ -1,0 +1,48 @@
+#!/bin/bash
+
+CONFIG_DIR="$HOME/dotfiles/.config/sketchybar"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
+
+source "$CONFIG_DIR/colors.sh"
+
+sketchybar --bar \
+  position=top \
+  height=35 \
+  color="$BAR_BG" \
+  corner_radius=10 \
+  border_width=0 \
+  shadow=off \
+  sticky=on \
+  topmost=window \
+  padding_left=10 \
+  padding_right=10 \
+  margin=8 \
+  y_offset=6
+
+sketchybar --default \
+  drawing=on \
+  updates=on \
+  icon.font="SF Pro:Semibold:13.0" \
+  icon.color="$ICON_COLOR" \
+  label.font="SF Pro:Semibold:12.0" \
+  label.color="$LABEL_COLOR" \
+  background.drawing=on \
+  background.color="$ITEM_BG" \
+  background.corner_radius=8 \
+  background.height=24 \
+  icon.padding_left=6 \
+  icon.padding_right=4 \
+  label.padding_left=4 \
+  label.padding_right=8 \
+  padding_left=2 \
+  padding_right=2
+
+sketchybar --add event aerospace_workspace_change
+
+source "$ITEM_DIR/apple.sh"
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/right.sh"
+
+sketchybar --update

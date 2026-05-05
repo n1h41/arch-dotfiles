@@ -1,0 +1,36 @@
+# skhd non-window-management keybindings
+# Main modifier from Hyprland mapping: alt
+
+### App launchers
+alt - t : open -a "WezTerm"
+alt - e : open -a "Finder"
+alt - c : open -a "Visual Studio Code"
+alt - b : open -a "Safari"
+ctrl + shift - escape : open -a "Activity Monitor"
+alt - a : open "raycast://"
+alt + shift - e : open "raycast://extensions/raycast/raycast/search-files"
+
+### Screenshots
+alt - p : ~/.config/skhd/scripts/screenshot.sh s
+alt + ctrl - p : ~/.config/skhd/scripts/screenshot.sh sf
+cmd + shift - 3 : screencapture -c
+alt + shift - 3 : ~/.config/skhd/scripts/screenshot.sh p
+
+### Color picker
+alt + shift - p : open -a "Digital Color Meter"
+
+### Scratchpad terminal
+alt + shift - t : ~/.config/skhd/scripts/scratchpad.sh
+
+### Clipboard
+alt - v : open "raycast://extensions/raycast/clipboard-history/clipboard-history"
+
+### Lock screen
+alt + shift - l : /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+
+### Optional media/brightness overrides (macOS already handles F-keys natively)
+# alt - m : osascript -e 'set volume output muted not (output muted of (get volume settings))'
+# alt - = : osascript -e 'set volume output volume ((output volume of (get volume settings)) + 6)'
+# alt - - : osascript -e 'set volume output volume ((output volume of (get volume settings)) - 6)'
+# alt + shift - = : brightness 0.1+
+# alt + shift - - : brightness 0.1-

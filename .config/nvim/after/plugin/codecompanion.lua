@@ -10,9 +10,9 @@ codecompanion.setup({
 		mcphub = {
 			callback = "mcphub.extensions.codecompanion",
 			opts = {
-				show_result_in_chat = true, -- Show mcp tool results in chat
-				make_vars = true,       -- Convert resources to #variables
-				make_slash_commands = true, -- Add prompts as /slash commands
+				show_result_in_chat = true,
+				make_vars = false,
+				make_slash_commands = true,
 			}
 		},
 		history = {
@@ -38,38 +38,38 @@ codecompanion.setup({
 		}
 	},
 	prompt_library = workflows,
-	strategies = {
+	interactions = {
 		chat = {
 			adapter = "copilot",
 			roles = {
 				llm = function(adapter)
 					return string.format("  %s%s", adapter.formatted_name,
-						adapter.paramters and (adapter.paramters.model and " (" .. adapter.paramters.model .. ")" or "")
+					adapter.parameters and (adapter.parameters.model and " (" .. adapter.parameters.model .. ")" or "")
 						or ""
 					)
 				end,
 			},
 			tools = {
 				groups = {
-					['beast_tools'] = {
-						tools = {
-							"neovim",
-							"filesystem",
-							"cmd_runner",
-							"fetch_webpage",
-							"file_search",
-							"get_changed_files",
-							"grep_search",
-							"insert_edit_into_file",
-							"list_code_usages",
-							"next_edit_suggestion",
-							"read_file",
-							"search_web",
-							"mcp",
-						},
-						prompt =
-						"You have access to the following tools. Use them wherever necessary and mention them in your code and workflow. For file and directory operations, always use Neovim tools first. If a Neovim tool fails or is unavailable, use the corresponding filesystem tool.",
-						collapse_tools = true,
+				['beast_tools'] = {
+					tools = {
+						"cmd_runner",
+						"create_file",
+						"delete_file",
+						"fetch_webpage",
+						"file_search",
+						"get_changed_files",
+						"grep_search",
+						"insert_edit_into_file",
+						"list_code_usages",
+						"next_edit_suggestion",
+						"read_file",
+						"web_search",
+						"mcp",
+					},
+					prompt =
+					"You have access to the following tools. Use them wherever necessary.",
+					collapse_tools = true,
 					}
 				},
 				opts = {
@@ -97,7 +97,7 @@ codecompanion.setup({
 				return require("codecompanion.adapters").extend("copilot", {
 					schema = {
 						model = {
-							default = "gpt-4.1"
+							default = "gpt-5-mini"
 						}
 					}
 				})
