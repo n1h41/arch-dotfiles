@@ -410,16 +410,30 @@ local plugins = {
 		opts = { latex = { enabled = false } },
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
-	--[[ {
+	{
 		"rest-nvim/rest.nvim",
+		ft = "http",
+		cmd = { "Rest" },
+		build = false, -- bypass broken luarocks chain (rest-nvim/rest.nvim#559)
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			opts = function(_, opts)
-				opts.ensure_installed = opts.ensure_installed or {}
-				table.insert(opts.ensure_installed, "http")
-			end,
-		}
-	}, ]]
+			"j-hui/fidget.nvim",
+			"nvim-neotest/nvim-nio",
+			"lunarmodules/lua-mimetypes",
+			{
+				"manoelcampos/xml2lua",
+				config = function(plugin)
+					package.path = package.path .. ";" .. plugin.dir .. "/?.lua"
+				end,
+			},
+			{
+				"nvim-treesitter/nvim-treesitter",
+				opts = function(_, opts)
+					opts.ensure_installed = opts.ensure_installed or {}
+					table.insert(opts.ensure_installed, "http")
+				end,
+			},
+		},
+	},
 	{
 		"kndndrj/nvim-dbee",
 		branch = "master",
@@ -493,11 +507,11 @@ local plugins = {
 			'nvim-telescope/telescope.nvim',
 		},
 	},
-	{
+	--[[ {
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
-	},
+	}, ]]
 	{
 		'echasnovski/mini.nvim',
 		version = '*',
@@ -507,9 +521,6 @@ local plugins = {
 	},
 	{
 		'nvimdev/lspsaga.nvim',
-		config = function()
-			require('lspsaga').setup({})
-		end,
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter', -- optional
 			'nvim-tree/nvim-web-devicons',  -- optional
@@ -565,14 +576,14 @@ local plugins = {
 	-- LOCAL PLUGIN DEVELOPMENT
 	--[[ {
 		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
-	},
+	}, ]]
 	{
-		-- dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
-		dir = "/home/n1h41/dev/nvim/personal/flutter-plugin/nvim/",
+		dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
+		-- dir = "/home/n1h41/dev/nvim/personal/flutter-plugin/nvim/",
 		config = function()
 			require("n1h41").setup()
 		end
-	}, ]]
+	},
 }
 
 local ok, lazy = pcall(require, 'lazy')

@@ -5,12 +5,13 @@ saga.setup({
 	lightbulb = {
 		enable = false,
 		sign = false,
+		virtual_text = false,
 	},
 	beacon = {
 		enable = false,
 	},
 	ui = {
-		winblend = 0,
+		winblend = 1,
 		border = 'rounded',
 		code_action = '',
 	},

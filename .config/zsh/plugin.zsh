@@ -39,7 +39,7 @@ zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
 # Plugin: z (rupa/z)
 # Enables quick directory jumping based on your usage history.
 # just like zoxide, but for zsh
-zinit light rupa/z
+# zinit light rupa/z
 
 # Plugin: zsh-completions
 # Adds many extra tab completions for Zsh, improving command-line productivity.
