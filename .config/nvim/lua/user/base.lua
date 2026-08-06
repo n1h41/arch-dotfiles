@@ -181,4 +181,4 @@ vim.filetype.add({
 -- CodeCompanion: enable auto tool mode
 vim.g.codecompanion_auto_tool_mode = true
 
-vim.g.copilot_enabled = false
+-- vim.g.copilot_enabled = false

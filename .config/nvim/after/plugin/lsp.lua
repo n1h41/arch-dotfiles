@@ -283,6 +283,9 @@ vim.diagnostic.config({
 -- Patch nvim_win_set_cursor to clamp out-of-bounds positions (prevents LSP-induced E315)
 local original_set_cursor = vim.api.nvim_win_set_cursor
 vim.api.nvim_win_set_cursor = function(win, pos)
+	if type(pos) ~= "table" or pos[1] == nil then
+		return
+	end
 	local ok, err = pcall(function()
 		local buf = vim.api.nvim_win_get_buf(win)
 		local line_count = vim.api.nvim_buf_line_count(buf)

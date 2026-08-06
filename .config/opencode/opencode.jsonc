@@ -1,12 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "github-copilot/claude-opus-4.7",
-  "small_model": "github-copilot/gpt-4.1",
-  "autoupdate": false,
+  "autoupdate": true,
   "agent": {
     "build": {
       "mode": "primary",
-      "model": "github-copilot/claude-opus-4.7",
       "tools": {
         "write": true,
         "edit": true,
@@ -15,7 +12,6 @@
     },
     "plan": {
       "mode": "primary",
-      "model": "github-copilot/claude-opus-4.7",
       "tools": {
         "write": false,
         "edit": false,
@@ -36,6 +32,5 @@
   },
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
-    "oh-my-openagent@latest"
   ]
 }

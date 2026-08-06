@@ -552,13 +552,10 @@ local plugins = {
 		opts = {},
 	},
 	{
-		"greggh/claude-code.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- Required for git operations
-		},
-		config = function()
-			require("claude-code").setup()
-		end
+		"nvzone/typr",
+		dependencies = "nvzone/volt",
+		opts = {},
+		cmd = { "Typr", "TyprStats" },
 	},
 	--[[ {
 		'vyfor/cord.nvim',

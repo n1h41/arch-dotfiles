@@ -40,9 +40,13 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Flutter
 export PATH="$PATH:$HOME/develop/flutter/bin:$HOME/.pub-cache/bin"
 
+# Shorebird
+export PATH="$PATH:$HOME/develop/shorebird/bin"
+
 # Android Studio
 export PATH="$PATH:$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/emulator"
-export ANDROID_AVD_HOME=$HOME/.config/.android/avd/
+#export ANDROID_AVD_HOME=$HOME/.config/.android/avd/
+export ANDROID_AVD_HOME=$HOME/.android/avd/
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -111,5 +115,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
+
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
 
 unalias gh 2>/dev/null
