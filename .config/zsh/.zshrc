@@ -120,4 +120,10 @@ autoload -Uz _zinit
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
+
+unalias go 2>/dev/null
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+
 unalias gh 2>/dev/null

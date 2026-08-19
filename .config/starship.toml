@@ -17,3 +17,10 @@ disabled = false
 [cmd_duration]
 min_time = 500
 format = 'underwent [$duration](bold yellow)'
+
+[kubernetes]
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+disabled = false
+contexts = [
+  { context_pattern = "dev.local.cluster.k8s", style = "green", symbol = "💔 " },
+]
