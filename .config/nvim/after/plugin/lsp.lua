@@ -341,13 +341,6 @@ flutter.setup {
 		auto_open = false
 	},
 	lsp = {
-		color = {
-			enabled = true,
-			background = true,
-			foreground = true,
-			virtual_text = true,
-			virtual_text_str = "■",
-		},
 		on_attach = on_attach,
 		capabilities = capabilities,
 		settings = {

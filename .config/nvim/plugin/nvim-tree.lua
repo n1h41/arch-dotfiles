@@ -49,6 +49,7 @@ nvim_tree.setup({
     enable = true,
   },
   view = {
+		adaptive_size = true,
     float = {
       enable = false,
     }

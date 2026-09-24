@@ -112,7 +112,9 @@ vim.g.octo_viewer = "n1h41"
 vim.o.exrc = true
 
 -- Add custom filetype for .templ files
-vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({
+	extension = { templ = "templ", log = "log", }
+})
 
 -- Vimtex (LaTeX) plugin configuration
 vim.cmd([[filetype plugin indent on]])
@@ -181,4 +183,4 @@ vim.filetype.add({
 -- CodeCompanion: enable auto tool mode
 vim.g.codecompanion_auto_tool_mode = true
 
--- vim.g.copilot_enabled = false
+vim.g.copilot_enabled = false

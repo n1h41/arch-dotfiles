@@ -28,9 +28,17 @@
       ],
       "enabled": true,
       "environment": {}
+    },
+		"jira": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/sse",
+      "enabled": true,
+      "oauth": {
+        "scope": "tools:read"
+      }
     }
   },
   "plugin": [
-    "@tarquinen/opencode-dcp@latest",
+    "@tarquinen/opencode-dcp@latest"
   ]
 }

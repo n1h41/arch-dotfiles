@@ -2,7 +2,8 @@ vim.opt.conceallevel = 3
 
 
 require('render-markdown').setup({
-  file_types = { 'markdown', 'vimwiki', 'codecompanion' },
+	file_types = { 'markdown', 'vimwiki', 'codecompanion' },
+	completions = { lsp = { enabled = true } }
 })
 
 vim.treesitter.language.register('markdown', 'vimwiki')
