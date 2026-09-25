@@ -10,7 +10,7 @@ end
 local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
 if mason_lspconfig_status then
 	mason_lspconfig.setup({
-		ensure_installed = { 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "templ" }
+		ensure_installed = { 'lua_ls', "gopls", "html", "emmet_language_server", "tailwindcss", "templ", "yamlls" }
 	})
 end
 local cmp = require('cmp')
@@ -178,6 +178,29 @@ vim.lsp.config.omnisharp = {
 	cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 }
 
+vim.lsp.config.yamlls = {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "yaml", "yml" },
+	root_dir = function(bufnr, on_dir)
+		local fname = vim.api.nvim_buf_get_name(bufnr)
+		on_dir(vim.fs.root(fname, { ".git", ".editorconfig", "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml" })
+			or vim.fs.dirname(fname))
+	end,
+	settings = {
+		yaml = {
+			schemas = {
+				kubernetes = "**/k8s/**/*.{yml,yaml}",
+				["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+				["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+				["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+				["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+				["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+			},
+		},
+	},
+}
+
 -- Setup CMP with protocol icons
 local protocol = require('vim.lsp.protocol')
 
@@ -215,7 +238,7 @@ local lspkind = require('lspkind')
 local cmp_mappings = cmp.mapping.preset.insert({
 	["<C-b>"] = cmp.mapping.scroll_docs(-4),
 	["<C-f>"] = cmp.mapping.scroll_docs(4),
-	["<C-y>"] = cmp.mapping.complete(),
+	["<C-Space>"] = cmp.mapping.complete(),
 	["<C-e>"] = cmp.mapping.abort(),
 	["<CR>"] = cmp.mapping.confirm({
 		select = false
@@ -279,6 +302,18 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	severity_sort = true,
 })
+
+-- Suppress yamlls "Matches multiple schemas" false positive (core k8s resources
+-- with apiVersion: v1 fall back to the all.json schema and warn spuriously)
+local on_publish_diagnostics = vim.lsp.diagnostic.on_publish_diagnostics
+vim.lsp.diagnostic.on_publish_diagnostics = function(_, result, ctx, config)
+	if result and result.diagnostics then
+		result.diagnostics = vim.tbl_filter(function(d)
+			return not (d.source and d.source:find('^yaml%-schema:') and d.message:find('Matches multiple schemas'))
+		end, result.diagnostics)
+	end
+	return on_publish_diagnostics(_, result, ctx, config)
+end
 
 -- Patch nvim_win_set_cursor to clamp out-of-bounds positions (prevents LSP-induced E315)
 local original_set_cursor = vim.api.nvim_win_set_cursor
