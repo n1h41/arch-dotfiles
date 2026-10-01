@@ -9,7 +9,7 @@
 #  Aliases 
 # Override aliases here in '$ZDOTDIR/.zshrc' (already set in .zshenv)
 
-# # Helpful aliases
+#  Helpful aliases 
 alias cls="clear"
 alias vim="nvim"
 alias lg="lazygit"
@@ -24,6 +24,21 @@ alias cat="bat"
 alias lzd="lazydocker"
 alias mk="make"
 alias tx="tmux"
+
+#  Kubernetes 
+alias k="kubectl"
+alias kgp="kubectl get pods"
+alias kgs="kubectl get svc"
+alias kga="kubectl get all"
+alias kgc="kubectl get configmap"
+alias kgvs="kubectl get virtualserver"
+alias kgi="kubectl get ingress"
+alias kgsc="kubectl get secret"
+alias kns="kubens"
+alias ktx="kubectx"
+alias kCreateDebugPod="k run debug-pod --image=busybox -n mysql-sprint --restart=Never -- /bin/sh -c \"sleep 3600\""
+alias kDeleteDebugPod="k delete pod debug-pod -n mysql-sprint"
+alias kExecDebugPod="k exec -it debug-pod -n mysql-sprint -- /bin/sh"
 
 bindkey '^@' autosuggest-accept        # Ctrl+Space - accept full suggestion
 bindkey '\e[Z' forward-word            # Shift+Tab - accept word-by-word
@@ -52,12 +67,12 @@ export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 # Claude Code - Litellm
-export ANTHROPIC_BASE_URL="http://localhost:4000"
-export ANTHROPIC_AUTH_TOKEN="sk-1234"
+#export ANTHROPIC_BASE_URL="http://localhost:4000"
+#export ANTHROPIC_AUTH_TOKEN="sk-1234"
 
 # Gemini
-export GOOGLE_GEMINI_BASE_URL="http://localhost:4000"
-export GEMINI_API_KEY="sk-1234"
+#export GOOGLE_GEMINI_BASE_URL="http://localhost:4000"
+#export GEMINI_API_KEY="sk-1234"
 
 # vi mode
 bindkey -v
@@ -127,3 +142,13 @@ unalias go 2>/dev/null
 export PATH=$PATH:/usr/local/go/bin
 
 unalias gh 2>/dev/null
+
+#OCI
+## Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export PATH=/home/n1h41/bin:$PATH
+
+export JIRA_API_TOKEN=ATATT3xFfGF02Wwn8FAjyoslj0af63XE646Sx_4TzOzDK3urn58-IyNks2IchSbAZ-Dn6D07h0i11Pmi_3P9OWwiCQR1VWkXHdLLdC0pVQ8engkK3rvus5Ar4H2bTC21-_fJ6VcUQJSs25HO0mwYlaZaUmpEI2LFhvl6aIjBDbQSvGJR1OBwxVg=418D912B
+
+[[ -e "/home/n1h41/lib/oracle-cli/lib/python3.14/site-packages/oci_cli/bin/oci_autocomplete.sh" ]] && source "/home/n1h41/lib/oracle-cli/lib/python3.14/site-packages/oci_cli/bin/oci_autocomplete.sh"
