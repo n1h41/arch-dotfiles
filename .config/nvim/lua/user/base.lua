@@ -45,8 +45,8 @@ vim.opt.splitbelow = true                        -- Horizontal splits open below
 -- Use system clipboard
 vim.opt.clipboard:append { 'unnamedplus' }
 
--- Conceal level for markdown, etc.
-vim.opt_local.conceallevel = 3
+-- Conceal level for markdown, etc. (moved to the markdown FileType autocmd below)
+-- NOTE: vim.opt_local is buffer-scoped and won't apply at global scope
 
 -- Undercurl support in terminal
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -156,15 +156,14 @@ end
 -- rest.nvim plugin global (empty table for config)
 vim.g.rest_nvim = {}
 
--- Markdown: turn off signcolumn and enable line wrap
+-- Markdown: turn off signcolumn, enable line wrap, and set conceal
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = 'markdown',
-	command = "set signcolumn=no"
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	command = "set wrap"
+	callback = function()
+		vim.opt_local.signcolumn = 'no'
+		vim.opt_local.wrap = true
+		vim.opt_local.conceallevel = 3
+	end,
 })
 
 -- Add filetype for NASM assembly files

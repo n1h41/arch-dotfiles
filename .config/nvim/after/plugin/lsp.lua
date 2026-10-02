@@ -43,7 +43,7 @@ end
 -- LSP on_attach function
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
 	-- Mappings
 	local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -51,7 +51,6 @@ local on_attach = function(client, bufnr)
 	-- Basic LSP navigation
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 
 	-- Workspace management
 	vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -262,6 +261,16 @@ cmp.setup({
 		{ name = 'cmp-dbee' },
 		{ name = 'vim-dadbod-completion' },
 	}),
+	window = {
+		completion = cmp.config.window.bordered({
+			border = 'rounded',
+			winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+		}),
+		documentation = cmp.config.window.bordered({
+			border = 'rounded',
+			winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder',
+		}),
+	},
 	formatting = {
 		fields = { 'abbr', 'kind', 'menu' },
 		format = lspkind.cmp_format({
