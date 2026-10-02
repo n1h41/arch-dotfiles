@@ -49,3 +49,13 @@ hl.monitor({
 	position = "auto",
 	scale = 1.6,
 })
+
+-- Invert scroll direction (natural scrolling)
+hl.config({
+	input = {
+		natural_scroll = true, -- invert mouse wheel
+		touchpad = {
+			natural_scroll = true, -- invert touchpad
+		},
+	},
+})
