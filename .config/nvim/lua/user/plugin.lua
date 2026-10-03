@@ -32,12 +32,10 @@ local plugins = {
 	},
 	{ "Bilal2453/luvit-meta",             lazy = true }, -- optional `vim.uv` typings,
 	-- LSP
-	-- LSP Support
-	{ 'neovim/nvim-lspconfig' },
+	-- LSP Support (servers configured via vim.lsp.config in after/plugin/lsp.lua)
 	{ 'williamboman/mason.nvim' },
 	{ 'williamboman/mason-lspconfig.nvim' },
 	{ 'onsails/lspkind-nvim' },           -- vscode like pictograms
-	{ 'jose-elias-alvarez/null-ls.nvim' }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 	-- Autocompletion
 	{
 		'hrsh7th/nvim-cmp',
@@ -56,7 +54,6 @@ local plugins = {
 	{ 'hrsh7th/cmp-path' },
 	{ 'saadparwaiz1/cmp_luasnip' },
 	{ 'hrsh7th/cmp-nvim-lsp' },
-	{ 'hrsh7th/cmp-nvim-lua' },
 	-- Snippets
 	{ 'L3MON4D3/LuaSnip' },
 	{ 'rafamadriz/friendly-snippets' },

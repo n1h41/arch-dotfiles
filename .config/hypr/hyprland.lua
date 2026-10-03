@@ -43,6 +43,23 @@ end
 --
 -- Other Lua files next to this one can be pulled in with require("name").
 
+-- Cycle fullscreen on ALT + Enter (override convenience bind)
+local _cycle_fullscreen = function()
+    local active_window = assert(hl.get_active_window(), "No active window to toggle fullscreen")
+    local current_state = tonumber(active_window.fullscreen) or 0
+    local next_state = (current_state + 1) % 3
+    hl.dispatch(
+        hl.dsp.window.fullscreen_state(
+            {
+                internal = next_state,
+                client = next_state,
+                window = active_window
+            }
+        )
+    )
+end
+hl.bind("ALT + Return", _cycle_fullscreen, { description = "[Window Management] cycle fullscreen" })
+
 hl.monitor({
 	output = "eDP-1",
 	mode = "2560x1600@60",

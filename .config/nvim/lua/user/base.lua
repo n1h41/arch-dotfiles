@@ -61,9 +61,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Add asterisks in block comments when pressing Enter
 vim.opt.formatoptions:append { 'r' }
 
--- Set dark background for colorschemes
-vim.o.background = "dark"
-
 -- Auto-reload files changed outside of Neovim
 vim.o.autoread = true
 
