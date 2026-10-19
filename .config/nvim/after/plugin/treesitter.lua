@@ -49,7 +49,7 @@ require('nvim-treesitter').setup {
 	install_dir = vim.fn.stdpath('data') .. '/site'
 }
 
-require('nvim-treesitter').install { 
+require('nvim-treesitter').install {
 	"markdown",
 	"markdown_inline",
 	"tsx",
@@ -72,4 +72,26 @@ require('nvim-treesitter').install {
 	"vimdoc",
 	"vim",
 	"regex",
+	-- DevOps
+	"helm",
+	"gotmpl",
+	"dockerfile",
+	"bash",
+	"hcl",
+	"terraform",
+	"ini",
+	"nginx",
+	"ssh_config",
+	"make",
 }
+
+-- Enable treesitter highlighting.
+-- The main-branch rewrite of nvim-treesitter no longer auto-starts the
+-- highlighter, so it must be started manually per buffer. Without this,
+-- plugins checking vim.treesitter.highlighter.active (e.g. kustomize.nvim)
+-- report "cannot load nvim-treesitter".
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function(args)
+		pcall(vim.treesitter.start, args.buf)
+	end,
+})

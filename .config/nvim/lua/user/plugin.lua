@@ -34,7 +34,9 @@ local plugins = {
 	-- LSP
 	-- LSP Support (servers configured via vim.lsp.config in after/plugin/lsp.lua)
 	{ 'williamboman/mason.nvim' },
+	{ 'neovim/nvim-lspconfig' },          -- default server configs (cmd/root_dir/filetypes) for vim.lsp.config
 	{ 'williamboman/mason-lspconfig.nvim' },
+	{ 'mfussenegger/nvim-lint' },         -- external linter integration (kube-linter, hadolint, ...)
 	{ 'onsails/lspkind-nvim' },           -- vscode like pictograms
 	-- Autocompletion
 	{
@@ -581,10 +583,20 @@ local plugins = {
 			})
 		end
 	},
+	-- Helm chart filetype detection (templates/*.yaml -> ft=helm)
+	{ "towolf/vim-helm" },
+	{
+		"allaman/kustomize.nvim",
+		dependencies = {
+			"nvim-neo-tree/neo-tree.nvim",
+			"A7Lavinraj/fyler.nvim",
+			"L3MON4d3/LuaSnip"
+		},
+		ft = "yaml",
+		---@type KustomizeConfig
+		opts = {}
+	},
 	-- LOCAL PLUGIN DEVELOPMENT
-	--[[ {
-		dir = "/home/n1h41/dev/nvim/personal/speech_to_text/"
-	}, ]]
 	{
 		dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
 		-- dir = "/home/n1h41/dev/nvim/personal/flutter-plugin/nvim/",

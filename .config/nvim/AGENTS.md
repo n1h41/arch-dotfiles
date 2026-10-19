@@ -238,9 +238,14 @@ end, { desc = "Command description" })
 
 ## LSP Servers (Mason-managed)
 
-Ensured installed: `lua_ls`, `gopls`, `html`, `emmet_language_server`, `tailwindcss`, `templ`
+Ensured installed: `lua_ls`, `gopls`, `html`, `emmet_language_server`, `tailwindcss`, `templ`, `yamlls`, `helm_ls`, `bashls`, `dockerls`, `docker_compose_language_service`, `terraformls`, `ansiblels`
 
 Additional configured: `clangd`, `qmlls`, `omnisharp`, Flutter/Dart
+
+DevOps notes:
+- `towolf/vim-helm` provides ft=helm detection (templates/ under a chart with Chart.yaml)
+- yamlls kubernetes schema is path-scoped (k8s/, kubernetes/, manifests/, deploy/ + kind filenames); kustomize `base/`/`overlays/` are excluded intentionally
+- Linting via nvim-lint (`after/plugin/lint.lua`): `kube-linter` (k8s manifest paths only), `hadolint` (dockerfile), `shellcheck` (sh)
 
 ## Important Files to Know
 
@@ -252,6 +257,7 @@ Additional configured: `clangd`, `qmlls`, `omnisharp`, Flutter/Dart
 ## Don't Do
 
 - Don't use `require('lspconfig')` - use `vim.lsp.config` (nvim 0.11+)
+- Don't remove `neovim/nvim-lspconfig` from plugin specs - it only supplies the default `lsp/*.lua` configs (cmd/root_dir/filetypes) that `vim.lsp.enable()` needs; without it no server starts
 - Don't use spaces for indentation - tabs only
 - Don't add plugins without lazy-loading strategy
 - Don't modify `lazy-lock.json` manually

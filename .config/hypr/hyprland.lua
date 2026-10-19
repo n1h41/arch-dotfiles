@@ -60,6 +60,43 @@ local _cycle_fullscreen = function()
 end
 hl.bind("ALT + Return", _cycle_fullscreen, { description = "[Window Management] cycle fullscreen" })
 
+-- Alt-Tab: cycle windows on the CURRENT WORKSPACE only (Hyprland's native
+-- cycle_next is workspace-local), replacing HyDE's global altab script.
+-- Flags must match HyDE's binds exactly for the override to replace them
+-- (see header above). The release binds are neutralized with no_op so they
+-- no longer spawn the altab script on every Alt release.
+hl.bind("ALT+TAB", hl.dsp.window.cycle_next(), {
+	transparent = true,
+	description = "[Window Management|alt-tab] cycle next window (current workspace)",
+})
+hl.bind("ALT+SHIFT+TAB", hl.dsp.window.cycle_next({ next = false }), {
+	transparent = true,
+	description = "[Window Management|alt-tab] cycle previous window (current workspace)",
+})
+hl.bind("ALT + ALT_R", hl.dsp.no_op(), { release = true, transparent = true, description = "[Window Management|alt-tab] noop" })
+hl.bind("ALT + ALT_L", hl.dsp.no_op(), { release = true, transparent = true, description = "[Window Management|alt-tab] noop" })
+
+-- Snap floating window to corners/edges: ALT + vim directional keys
+local _snap_float = function(hdir, vdir)
+	return function()
+		local win = hl.get_active_window()
+		if not win or not win.floating then
+			return
+		end
+		if hdir then
+			hl.dispatch(hl.dsp.window.move({ direction = hdir }))
+		end
+		if vdir then
+			hl.dispatch(hl.dsp.window.move({ direction = vdir }))
+		end
+	end
+end
+
+hl.bind("ALT + H", _snap_float("left", nil),    { description = "[Window Management|Snap] float to top-left" })
+hl.bind("ALT + L", _snap_float("right", nil),  { description = "[Window Management|Snap] float to bottom-right" })
+hl.bind("ALT + K", _snap_float(nil, "up"),        { description = "[Window Management|Snap] float to top" })
+hl.bind("ALT + J", _snap_float(nil, "down"),      { description = "[Window Management|Snap] float to bottom" })
+
 hl.monitor({
 	output = "eDP-1",
 	mode = "2560x1600@60",
@@ -67,12 +104,34 @@ hl.monitor({
 	scale = 1.6,
 })
 
+-- Instant workspace switching: disable workspace switch animations.
+-- Loads after HyDE's animation presets, so these overrides take precedence.
+hl.animation({ leaf = "workspaces", enabled = false })
+hl.animation({ leaf = "workspacesIn", enabled = false })
+hl.animation({ leaf = "workspacesOut", enabled = false })
+
 -- Invert scroll direction (natural scrolling)
 hl.config({
 	input = {
-		natural_scroll = true, -- invert mouse wheel
+		natural_scroll = false, -- invert mouse wheel
 		touchpad = {
 			natural_scroll = true, -- invert touchpad
 		},
 	},
+})
+
+hl.window_rule({
+	name= "opaque-apps",
+	match = {
+		class = "^(mpv|com.stremio.stremio|zen|kitty)$"
+	},
+	opaque = true,
+})
+
+hl.window_rule({
+	name= "borderless-apps",
+	match = {
+		class = "^(mpv|com.stremio.stremio|zen|kitty)$"
+	},
+	border_size = 0,
 })

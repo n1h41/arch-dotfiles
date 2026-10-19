@@ -12,3 +12,10 @@ safe_require('user.base')
 safe_require('user.highlights')
 safe_require('user.maps')
 safe_require('user.plugin')
+
+-- Colorscheme selection and configuration (see lua/user/theme.lua)
+local theme = require('user.theme')
+theme.load()
+
+-- NOTE: LSP configuration is loaded from after/plugin/lsp.lua so that it
+-- runs after all plugins have been loaded (see lua/user/lsp/*.lua).

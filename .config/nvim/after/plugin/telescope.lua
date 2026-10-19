@@ -32,3 +32,5 @@ telescope.setup {
     },
   }
 }
+
+-- telescope.load_extension("telescope-yaml")

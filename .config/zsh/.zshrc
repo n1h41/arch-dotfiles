@@ -66,6 +66,8 @@ export ANDROID_AVD_HOME=$HOME/.android/avd/
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Claude Code - Litellm
 #export ANTHROPIC_BASE_URL="http://localhost:4000"
 #export ANTHROPIC_AUTH_TOKEN="sk-1234"
@@ -112,6 +114,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # opencode
 export PATH=/home/n1h41/.opencode/bin:$PATH
+
+# ISTIO
+export PATH=$HOME/.istioctl/bin:$PATH
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
