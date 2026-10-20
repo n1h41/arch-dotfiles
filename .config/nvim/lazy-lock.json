@@ -24,6 +24,7 @@
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "gitsigns.nvim": { "branch": "main", "commit": "fd780920613e541cbdfac41bf711583ed49f9249" },
   "kanso.nvim": { "branch": "main", "commit": "1afbbb449aa0254823dbe1932e3cbb51886ff9fe" },
+  "kubernetes-schema-snippets.nvim": { "branch": "main", "commit": "4ede1f41dfbb29b0657f499043e16585e175dca4" },
   "kustomize.nvim": { "branch": "main", "commit": "e8d72f7b96b60e190ffa08ab84a7d75a61127afa" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },

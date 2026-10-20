@@ -115,12 +115,14 @@ vim.filetype.add({
 })
 
 -- Kubernetes schema glob patterns for common manifest locations/names.
--- Directory patterns cover kustomize layouts (base/, overlays/, crons/, configs/)
--- while an extglob guard keeps kustomization.yaml / helm values / compose / spring
--- application*.yml OUT of the k8s schema (they match their dedicated schemas below).
+-- Directory patterns cover kustomize + gitops layouts (base/, overlays/, crons/,
+-- configs/, ...). ArgoCD Application/ApplicationSet/AppProject manifests live under
+-- these dirs and resolve via the CRD store, so only non-k8s files (kustomization.yaml,
+-- helm values, Chart.yaml, compose) are excluded. Spring Boot application*.yml lives in
+-- src/main/resources, outside these dirs, so it never matches the dir patterns.
 -- NOTE: yamlls matches with picomatch { bash = true } — inside !(...) only literal
 -- words work (a '*' silently breaks the whole extglob into match-everything).
-local k8s_excl = "!(kustomization|values|Chart|application|bootstrap|compose|docker-compose)"
+local k8s_excl = "!(kustomization|values|Chart|compose|docker-compose)"
 local k8s_dirs = {
 	"k8s*", "kubernetes", "manifests", "deploy", "base*", "overlays*",
 	"resources", "crons", "configs", "*deployment*",

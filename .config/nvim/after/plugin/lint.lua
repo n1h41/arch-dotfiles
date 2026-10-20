@@ -74,7 +74,6 @@ local k8s_path_fragments = {
 -- (kube-linter would error on them)
 local non_manifest_basenames = {
 	'^kustomization%.', '^values', '^Chart%.', '^docker%-compose', '^compose%.',
-	'^application', '^bootstrap',
 }
 
 local function is_k8s_manifest(bufnr)

@@ -598,6 +598,13 @@ local plugins = {
 			enable_lua_snip = true,
 		}
 	},
+	-- Kubernetes / ArgoCD / CRD schema snippets (LuaSnip, works with yamlls)
+	{
+		"KevinNitroG/kubernetes-schema-snippets.nvim",
+		ft = "yaml",
+		dependencies = { "L3MON4D3/LuaSnip" },
+		opts = {},
+	},
 	-- LOCAL PLUGIN DEVELOPMENT
 	{
 		dir = "/home/n1h41/dev/nvim/personal/flutter-vm-service-nvim/",
