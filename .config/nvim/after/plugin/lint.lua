@@ -61,6 +61,7 @@ lint.linters.kube_linter = {
 lint.linters_by_ft = {
 	dockerfile = { 'hadolint' },
 	sh = { 'shellcheck' },
+	yaml = { 'yamllint' },
 }
 
 -- Path fragments that mark a yaml file as a Kubernetes manifest

@@ -244,8 +244,10 @@ Additional configured: `clangd`, `qmlls`, `omnisharp`, Flutter/Dart
 
 DevOps notes:
 - `towolf/vim-helm` provides ft=helm detection (templates/ under a chart with Chart.yaml)
-- yamlls kubernetes schema is path-scoped (k8s/, kubernetes/, manifests/, deploy/ + kind filenames); kustomize `base/`/`overlays/` are excluded intentionally
-- Linting via nvim-lint (`after/plugin/lint.lua`): `kube-linter` (k8s manifest paths only), `hadolint` (dockerfile), `shellcheck` (sh)
+- yamlls kubernetes schema is path-scoped (k8s/, kubernetes/, manifests/, deploy/, base/, overlays/, configs/, crons/ + kind filenames); non-manifest basenames (kustomization*, values*, Chart*, compose*, application*, bootstrap*) are excluded via extglob
+- Linting via nvim-lint (`after/plugin/lint.lua`): `kube-linter` (k8s manifest paths only), `yamllint` (yaml), `hadolint` (dockerfile), `shellcheck` (sh)
+- Linter binaries (`kube-linter`, `yamllint`, `hadolint`, `shellcheck`) are ensured via `mason.setup({ ensure_installed })` in `lua/user/lsp/init.lua`
+- `kustomize.nvim` (`allaman/kustomize.nvim`) is loaded on yaml with default keymaps (`<leader>kb` build, `<leader>kk` kinds, `<leader>kp` print, `<leader>kl` list, `<leader>kv` validate, `<leader>kd` deprecations) and LuaSnip snippets enabled; validate needs `kubeconform`, deprecations need `kubent` (both on system PATH)
 
 ## Important Files to Know
 

@@ -594,7 +594,9 @@ local plugins = {
 		},
 		ft = "yaml",
 		---@type KustomizeConfig
-		opts = {}
+		opts = {
+			enable_lua_snip = true,
+		}
 	},
 	-- LOCAL PLUGIN DEVELOPMENT
 	{

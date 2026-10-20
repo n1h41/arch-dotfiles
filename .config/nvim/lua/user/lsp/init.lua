@@ -6,7 +6,12 @@ local M = {}
 -- Setup mason for automatic LSP server installation
 local mason_status, mason = pcall(require, "mason")
 if mason_status then
-	mason.setup()
+	mason.setup({
+		ensure_installed = {
+			-- Linters used by nvim-lint (after/plugin/lint.lua)
+			'kube-linter', 'hadolint', 'shellcheck', 'yamllint',
+		},
+	})
 end
 
 local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
