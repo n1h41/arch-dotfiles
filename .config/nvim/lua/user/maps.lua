@@ -92,6 +92,8 @@ keymap.set('n', '<leader>fn', ':let @+=expand("%:t")<CR>')
 -- Format current line as JSON using jq
 keymap.set('n', '<leader>fj', ':.!jq<CR>')
 
+keymap.set('n', '<leader>dz', ':diffthis')
+
 --[[
 Unmapped but available for future use:
 -- Delete a word backwards without yanking

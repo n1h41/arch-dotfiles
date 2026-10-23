@@ -10,7 +10,7 @@ aliases = { "corpuser034g" = "matchai" }
 
 [hostname]
 ssh_only = false
-format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+format = '[$ssh_symbol](bold blue) - [$hostname](bold red) '
 trim_at = '.companyname.com'
 disabled = false
 
@@ -19,7 +19,8 @@ min_time = 500
 format = 'underwent [$duration](bold yellow)'
 
 [kubernetes]
-format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+# format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+format = 'on [⚙️ [($user on )](bold white)$context \([$namespace](bold yellow)\)](bold green) '
 disabled = false
 contexts = [
   { context_pattern = "dev.local.cluster.k8s", style = "green", symbol = "💔 " },

@@ -128,10 +128,30 @@ hl.window_rule({
 	opaque = true,
 })
 
+-- mpv: always open floating and pinned (visible on all workspaces)
+hl.window_rule({
+	name = "mpv-float-pin",
+	match = {
+		class = "^(mpv)$"
+	},
+	float = true,
+	pin = true,
+})
+
 hl.window_rule({
 	name= "borderless-apps",
 	match = {
 		class = "^(mpv|com.stremio.stremio|zen|kitty)$"
 	},
 	border_size = 0,
+})
+
+hl.window_rule({
+	name = "pinned-video-window",
+	match = {
+		class = "^(mpv|zen)$",
+		title = "^(Picture-in-Picture)$"
+	},
+	size = "524 293",
+	move = "1070 701"
 })

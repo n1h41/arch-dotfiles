@@ -34,10 +34,10 @@ local plugins = {
 	-- LSP
 	-- LSP Support (servers configured via vim.lsp.config in after/plugin/lsp.lua)
 	{ 'williamboman/mason.nvim' },
-	{ 'neovim/nvim-lspconfig' },          -- default server configs (cmd/root_dir/filetypes) for vim.lsp.config
+	{ 'neovim/nvim-lspconfig' }, -- default server configs (cmd/root_dir/filetypes) for vim.lsp.config
 	{ 'williamboman/mason-lspconfig.nvim' },
-	{ 'mfussenegger/nvim-lint' },         -- external linter integration (kube-linter, hadolint, ...)
-	{ 'onsails/lspkind-nvim' },           -- vscode like pictograms
+	{ 'mfussenegger/nvim-lint' }, -- external linter integration (kube-linter, hadolint, ...)
+	{ 'onsails/lspkind-nvim' },  -- vscode like pictograms
 	-- Autocompletion
 	{
 		'hrsh7th/nvim-cmp',
@@ -57,8 +57,16 @@ local plugins = {
 	{ 'saadparwaiz1/cmp_luasnip' },
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	-- Snippets
-	{ 'L3MON4D3/LuaSnip' },
-	{ 'rafamadriz/friendly-snippets' },
+	{
+		'L3MON4D3/LuaSnip',
+		dependencies = { 'rafamadriz/friendly-snippets' },
+	},
+	{
+		'rafamadriz/friendly-snippets',
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
