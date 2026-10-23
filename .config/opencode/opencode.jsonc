@@ -1,44 +1,34 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": true,
-  "agent": {
+  "update": "auto",
+  "agents": {
     "build": {
-      "mode": "primary",
-      "tools": {
-        "write": true,
-        "edit": true,
-        "bash": true
-      }
+      "mode": "primary"
     },
     "plan": {
       "mode": "primary",
-      "tools": {
-        "write": false,
-        "edit": false,
-        "bash": false
-      }
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" }
+      ]
     }
   },
   "mcp": {
-    "dart-mcp-server": {
-      "type": "local",
-      "command": [
-        "dart",
-        "mcp-server"
-      ],
-      "enabled": true,
-      "environment": {}
-    },
-		"jira": {
-      "type": "remote",
-      "url": "https://mcp.atlassian.com/v1/sse",
-      "enabled": true,
-      "oauth": {
-        "scope": "tools:read"
+    "servers": {
+      "dart-mcp-server": {
+        "type": "local",
+        "command": ["dart", "mcp-server"],
+        "disabled": false
+      },
+      "jira": {
+        "type": "remote",
+        "url": "https://mcp.atlassian.com/v1/sse",
+        "disabled": false,
+        "oauth": {
+          "scope": "tools:read"
+        }
       }
     }
   },
-  "plugin": [
-    "@tarquinen/opencode-dcp@latest"
-  ]
+  "plugins": ["@tarquinen/opencode-dcp@latest"]
 }

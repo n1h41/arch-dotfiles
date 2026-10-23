@@ -2,7 +2,9 @@
 description: Beast Mode 3.1
 mode: primary
 model: github-copilot/gpt-4.1
-temperature: 0.1
+request:
+  body:
+    temperature: 0.1
 ---
 # Beast Mode 3.1
 
