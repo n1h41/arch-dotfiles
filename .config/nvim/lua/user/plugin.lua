@@ -538,9 +538,19 @@ local plugins = {
 		dependencies = {
 			'folke/snacks.nvim',
 		},
+		config = function()
+			---@type opencode.Opts
+			vim.g.opencode_opts = {
+				server = {
+					start = function()
+						require('snacks.terminal').open('opencode', { win = { position = 'right' } })
+					end,
+				},
+			}
+		end,
 		-- Lazy-load on keymaps for faster startup
 		keys = {
-			{ '<leader>ot', function() require('opencode').toggle() end,                                desc = 'Toggle opencode',              mode = { 'n', 't' } },
+			{ '<leader>ot', function() require('snacks.terminal').toggle('opencode', { win = { position = 'right' } }) end, desc = 'Toggle opencode', mode = { 'n', 't' } },
 			{ '<leader>oa', function() require('opencode').ask() end,                                   desc = 'Ask opencode',                 mode = 'n' },
 			{ '<leader>oA', function() require('opencode').ask('@this: ', { submit = true }) end,       desc = 'Ask opencode about this',      mode = { 'n', 'x' } },
 			{ '<leader>oa', function() require('opencode').ask('@this: ') end,                          desc = 'Ask opencode about selection', mode = 'v' },

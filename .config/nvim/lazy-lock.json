@@ -70,7 +70,7 @@
   "oil.nvim": { "branch": "master", "commit": "d3733d933833a0e59b813ecec99341527adf0c28" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "1af6ffb9b5229a856e8090fa2f690e0931a5aace" },
   "onedark.nvim": { "branch": "master", "commit": "df4792accde9db0043121f32628bcf8e645d9aea" },
-  "opencode.nvim": { "branch": "main", "commit": "e7643e9efc878876bb9c68da6cf30c45d6c34e5a" },
+  "opencode.nvim": { "branch": "main", "commit": "f8e8cf02be7340489df1b67b518ce2842c65520f" },
   "pgsql.vim": { "branch": "master", "commit": "16584d7a1f2c528560a646a63625c6731a72c8c7" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "presence.nvim": { "branch": "main", "commit": "87c857a56b7703f976d3a5ef15967d80508df6e6" },
