@@ -123,7 +123,7 @@ hl.config({
 hl.window_rule({
 	name= "opaque-apps",
 	match = {
-		class = "^(mpv|com.stremio.stremio|zen|kitty)$"
+		class = "^(mpv|com.stremio.stremio|zen|kitty|steam)$"
 	},
 	opaque = true,
 })

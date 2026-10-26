@@ -23,7 +23,7 @@
       "jira": {
         "type": "remote",
         "url": "https://mcp.atlassian.com/v1/sse",
-        "disabled": false,
+        "disabled": true,
         "oauth": {
           "scope": "tools:read"
         }
